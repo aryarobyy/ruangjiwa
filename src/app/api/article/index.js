@@ -1,15 +1,15 @@
 import mongoose from "mongoose";
 
-const ConsulSchema = new mongoose.Schema({
+const ArticleSchema = new mongoose.Schema({
     statusMessage: String,
     statusCode: Number,
 
-    konsulId: {type: String, require:true},
+    adminId: {type: String, require:true},
+    name: {type: String, require:true},
+    articleId: {type: String, require:true},
     title: {type: String, require:true},
-    userId: {type: String, require:true},
-    doctorId: {type: String, require:true},
-    userName: {type: String, require:true},
-    doctorName: {type: String, require:true},
+    description: {type: String, require:true},
+    date: Date,
     messages: [
         {            
             messageId: {type: String, require:true}, //dari user
@@ -20,6 +20,6 @@ const ConsulSchema = new mongoose.Schema({
     ]
 })
 
-const Consul = mongoose.model('Consul', ConsulSchema)
+const Article = mongoose.model('Article', ArticleSchema)
 
-export default Consul
+export default Article
