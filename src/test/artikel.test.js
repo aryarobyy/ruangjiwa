@@ -9,6 +9,7 @@ describe('Artikel endpoint testing', () => {
         // const res = await request(articleHandler).get('/api/article');
         const { req, res} = createMocks();
 
+        // /api/article
         await articleHandler(req, res);
 
         expect(res._getStatusCode()).toBe(200);

@@ -1,3 +1,5 @@
+
+import { getAllArtikel } from "@/mongoMethods/artikel";
 import mongoose from "mongoose";
 
 const ArticleSchema = new mongoose.Schema({
@@ -24,7 +26,7 @@ const Article = mongoose.model('Article', ArticleSchema)
 
 // export default Article
 
-const articleHandler = (req, res) => {
+const articleHandler = async (req, res) => {
     const {method} = req;
     
     switch (method) {
@@ -34,6 +36,7 @@ const articleHandler = (req, res) => {
                 message: "Hello world!"
             })
             // logic ambil data artikel dari mongo
+            
             break;
         }
         case "POST": {
