@@ -22,4 +22,29 @@ const ArticleSchema = new mongoose.Schema({
 
 const Article = mongoose.model('Article', ArticleSchema)
 
-export default Article
+// export default Article
+
+const articleHandler = (req, res) => {
+    const {method} = req;
+    
+    switch (method) {
+        case "GET": {
+
+            res.status(200).json({
+                message: "Hello world!"
+            })
+            // logic ambil data artikel dari mongo
+            break;
+        }
+        case "POST": {
+
+            // logic post data artikel ke mongo
+            break;
+        }
+    
+        default:
+            break;
+    }
+}
+
+export default articleHandler
