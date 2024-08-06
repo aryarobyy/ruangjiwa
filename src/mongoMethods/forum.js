@@ -25,13 +25,13 @@ ForumSchema.pre('findOneAndUpdate', function (next) {
 const Forum = mongoose.models.Forum || mongoose.model('Forum', ForumSchema);
 
 
-export const addForum = async (req) => {
-    const newForum = new Forum(req);
+export const addForum = async (body) => {
+    const newForum = new Forum(body);
     await newForum.save();
     return newForum;
 };
 
-export const getForum = async (req) => {
-    const forum = await Forum.find(req)
+export const getForum = async (body) => {
+    const forum = await Forum.find(body)
     return forum;
     }
