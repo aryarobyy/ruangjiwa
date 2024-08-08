@@ -17,7 +17,7 @@ const TestingPage = () => {
     console.log(response);
   }
   const postClick = async () => {
-    const response = await axios.get("/api/artikel");
+    const response = await axios.get("/api/artikel/321");
     console.log(response);
   };
 

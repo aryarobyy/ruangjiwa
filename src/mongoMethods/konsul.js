@@ -1,25 +1,24 @@
-import connectDb from "@/libs/mongodb";
-import { ObjectId } from "mongodb";
+import connectDb from "@/libs/mongodb"
 
-const collectionName = 'artikel';
+const collectionName = "konsul";
 
-// Add new artikel
-export const postArtikel = async (data) => {
+// Add new Konsul 
+export const postKonsul = async (data) => {
     try {
         const {client, database} = await connectDb();
         const col = database.collection(collectionName);
-
-        const res = await col.insertOne(data)
+        
+        const res = await col.insertOne(data);
         await client.close();
 
         return res;
     } catch (error) {
-        throw Error(error.message);
+        throw new Error(error.message);
     }
 };
 
-// Get all artike
-export const getAllArtikel = async () => {
+
+export const getAllKonsul = async () => {
     try {
         const {client, database} = await connectDb();
         const col = database.collection(collectionName);
@@ -31,16 +30,15 @@ export const getAllArtikel = async () => {
     } catch (error) {
         throw new Error(error.message);
     }
-}
+};
 
-// Get specific artikel
-export const getArtikelById = async (idArtikel) => {
+
+export const getKonsulById = async (konsulId) => {
     try {
         const {client, database} = await connectDb();
         const col = database.collection(collectionName);
-        const id = Number(idArtikel)
 
-        const res = await col.findOne({"artikelId": id});
+        const res = await col.findOne({"konsulId": konsulId});
         await client.close();
 
         return res;
