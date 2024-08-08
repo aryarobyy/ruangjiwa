@@ -92,7 +92,7 @@ GET (get spesifik konsul): http://example.api/chat/(chatID)
     }
 
 
-POST (bikin konsul baru): http://example.api/chat
+POST (bikin konsul baru): http://example.api/konsul
     data = {
         konsulId: string,
         title: string
@@ -100,7 +100,7 @@ POST (bikin konsul baru): http://example.api/chat
         userName: string
     }
 
-POST (post message di konsul) http://example.api/chat/message
+POST (post message di konsul) http://example.api/chat/konsul
     data = {
         messageId: string (dari konsulId)
         sender: string (userId/dokterId)
