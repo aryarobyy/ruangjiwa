@@ -119,6 +119,7 @@ GET (get all donate by id) http://example.api/donate/(userId)
         data: [
             {
                 donateId: string
+                name: string 
                 userId: string
                 amount: number
             }
@@ -170,6 +171,7 @@ POST (bikin forum baru): http://example.api/forum/
         forumId: string
         userId/dokterId: string
         name: string
+        post: string
     }
 
 POST (post forumChat): http://example.api/forum/message

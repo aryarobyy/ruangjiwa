@@ -1,25 +1,47 @@
-import mongoose from 'mongoose';
+import connectDb from "@/libs/mongodb";
+import { ObjectId } from "mongodb";
 
-const userSchema = new mongoose.Schema({
-    age: { type: String, required: true },
-    role: { type: String, required: true },
-    name: { type: String, required: true },
-    username: { type: String, required: true },
-    email: { type: String, required: true },
-    password: { type: String, required: true, minLength: 8 },
-    chatId: { type: String },
-    penyakit: { type: String },
-});
+const collectionName = 'user';
 
-const User = mongoose.models.User || mongoose.model('User', userSchema);
+export const postUser = async (data) => {
+    try {
+        const {client, database} = await connectDb();
+        const col = database.collection(collectionName);
 
-export const registerUser = async (body) => {
-    const newUser = new User(body);
-    await newUser.save();
-    return newUser;
+        const res = await col.insertOne(data)
+        await client.close();
+
+        return res;
+    } catch (error) {
+        throw Error(error.message);
+    }
 };
 
-export const getUser = async (body) => {
-    const user = await User.findOne(body);
-    return user;
-};
+export const getAllUser = async () => {
+    try {
+        const {client, database} = await connectDb();
+        const col = database.collection(collectionName);
+
+        const res = await col.find({}).toArray();
+        await client.close();
+
+        return res;
+    } catch (error) {
+        throw new Error(error.message);
+    }
+}
+
+export const getUserById = async (idUser) => {
+    try {
+        const {client, database} = await connectDb();
+        const col = database.collection(collectionName);
+        const id = Number(idUser)
+
+        const res = await col.findOne({"userId": id});
+        await client.close();
+
+        return res;
+    } catch (error) {
+        throw new Error(error.message);
+    }
+}
