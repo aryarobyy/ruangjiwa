@@ -1,7 +1,7 @@
 ## User (GET, POST)
 GET (login): http://example.api/user
     return = {
-        statusMessage: string (success/failed),
+        statusMessage: string (Success/Failed),
         statusCode: number,
         data: {
             id: string,
@@ -29,7 +29,7 @@ POST (register): http://example.api/user
 ## dokter (GET, POST)
 GET (login dokter): http://example.api/dokter
     return = {
-        statusMessage: string (success/failed),
+        statusMessage: string (Success/Failed),
         statusCode: number,
         data: {
             id: string
@@ -54,10 +54,10 @@ POST (register user): http://example.api/dokter
     }
 
 
-## chat/Konsul (GET, POST) 
-GET (get semua konsul): http://example.api/chat/
+## Konsul (GET, POST) 
+GET (get semua konsul): http://example.api/konsul/
     return = {
-        status: string (success/failed)
+        message: string (Success/Failed)
         data: [
             {
                 konsulId: string
@@ -70,9 +70,9 @@ GET (get semua konsul): http://example.api/chat/
         ]
     }
 
-GET (get spesifik konsul): http://example.api/chat/(chatID)
+GET (get spesifik konsul): http://example.api/konsul/(konsulId)
     return = {
-        status: string (success/failed)
+        message: string (Success/Failed)
         data: {
             konsulId: string
             title: string
@@ -91,7 +91,6 @@ GET (get spesifik konsul): http://example.api/chat/(chatID)
         }
     }
 
-
 POST (bikin konsul baru): http://example.api/konsul
     data = {
         konsulId: string,
@@ -100,22 +99,32 @@ POST (bikin konsul baru): http://example.api/konsul
         userName: string
     }
 
-POST (post message di konsul) http://example.api/chat/konsul
+## Chat Konsul (GET, POST)
+POST (Send Message in Konsul): http://example.api/chat/konsul/(idKonsul)
     data = {
         messageId: string (dari konsulId)
         sender: string (userId/dokterId)
         name: string
         message: string
     }
-    
 
-
+GET (get message yg ada di konsul): http://example.api/chat/konsul/(konsulId)
+    return {
+            message: string (Success/Failed)
+            data: [
+                {
+                    messageId: string (dari konsulId)
+                    sender: string (userId/dokterId)
+                    name: string
+                    message: string
+                }
+            ]
+        }
 
 ## Donasi (GET, POST)
 GET (get all donate by id) http://example.api/donate/(userId)
     return = {
-        statusMessage: string (success/failed),
-        statusCode: number,
+        message: string (Success/Failed),
         data: [
             {
                 donateId: string
@@ -137,8 +146,7 @@ POST (add new donasi) http://example.api/donate
 ## Forum (GET, POST)
 GET (get semua forum): http://example.api/forum/
     return = {
-            statusMessage: string (success/failed);
-            statusCode: number
+            message: string (Success/Failed)
             data: {
                 forumId: string
                 title: string
@@ -147,26 +155,26 @@ GET (get semua forum): http://example.api/forum/
             }
     }
     
-GET (get spesifik forum): http://example.api/forum/forumId
+GET (get spesifik forum): http://example.api/forum/(forumId)
     return = {
-        statusMessage: string (success/failed);
-        statusCode: number
+        message: string (Success/Failed);
         data: {
             forumId: string
             userId/dokterId: string
             name: string
-            forumChat: [
+            messages: [
                 {
                     forumChatId: string
                     senderId: string
                     name: string
                     chat: string
+                    date: new Date()
                 }
             ]
         }
     }
 
-POST (bikin forum baru): http://example.api/forum/
+POST (bikin forum baru): http://example.api/api/forum
     data = {
         forumId: string
         userId/dokterId: string
@@ -174,13 +182,27 @@ POST (bikin forum baru): http://example.api/forum/
         post: string
     }
 
-POST (post forumChat): http://example.api/forum/message
+## Chat Forum (GET, POST)
+POST (Send Message in forum): http://example.api/chat/forum/(forumId)
     data = {
-        forumChatId: string,
-        senderId: string
+        messageId: string (dari konsulId)
+        sender: string (userId/dokterId)
         name: string
-        chat: string
+        message: string
     }
+
+GET (get message yg ada di forum): http://example.api/chat/forum/(forumId)
+    return {
+            message: string (Success/Failed)
+            data: [
+                {
+                    messageId: string (dari konsulId)
+                    sender: string (userId/dokterId)
+                    name: string
+                    message: string
+                }
+            ]
+        }
 
 ## Artikel (GET, POST)
 POST (bikin artikel): http://example.api/artikel

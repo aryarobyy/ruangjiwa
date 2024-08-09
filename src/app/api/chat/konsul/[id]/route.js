@@ -1,38 +1,36 @@
-import { postForum, getAllForum} from "@/mongoMethods/forum";
-import { v4 as uuidv4 } from "uuid";
+import { getKonsulMessage, postKonsulMessage } from "@/mongoMethods/chatKonsul";
 
 export const POST = async (req) => {
     try {
         const data = await req.json();
-        const uuid = uuidv4()
 
-        const newData = {...data, forumId:uuid}
-
-        await postForum(newData);
+        await postKonsulMessage(data);
         return Response.json({
             message: "Success"
-        })
+        });
+
     } catch (error) {
-        console.error('Error:', error.message);
+        console.error(error.message);
         return Response.json({
             message: "Failed"
         })
     }
 }
 
-export const GET = async () => {
+export const GET = async ({params}) => {
     try {
-        const response = getAllForum();
+        const konsulId = params.id;
+        const res = await getKonsulMessage(konsulId);
 
         return Response.json({
             message: "Success",
-            data: response
+            data: res
         })
     } catch (error) {
         console.error(error.message);
         return Response.json({
             message: "Failed",
-            data: []
+            data: null
         })
     }
-}   
+}
