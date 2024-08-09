@@ -1,34 +1,47 @@
-import mongoose from "mongoose";
+import connectDb from "@/libs/mongodb";
+import { ObjectId } from "mongodb";
 
-const DonateSchema = new mongoose.Schema({
-    statusMessage: String,
-    statusCode: Number,
+const collectionName = 'donate';
 
-    userId : {type: mongoose.ObjectId, require: true},
-    amount : {type: Number, require: true},
-    createdAt: {type: String, default: Date.now}, 
-    updatedAt: {type: String, default: Date.now}
-})
+export const postDonate = async (data) => {
+    try {
+        const {client, database} = await connectDb();
+        const col = database.collection(collectionName);
 
-DonateSchema.pre('save', function (next) {
-    this.updatedAt = Date.now();
-    next();
-});
+        const res = await col.insertOne(data)
+        await client.close();
 
-DonateSchema.pre('findOneAndUpdate', function (next) {
-    this.set({ updatedAt: Date.now() });
-    next();
-});
-
-const Donate = mongoose.models.Donate || mongoose.model('Donate', DonateSchema)
-
-export const addDonate = async (body) => {
-    const newDonate = new Donate(body);
-    await newDonate.save();
-    return newDonate;
+        return res;
+    } catch (error) {
+        throw Error(error.message);
+    }
 };
 
-export const getDonate = async (body) => {
-    const donate = await Donate.findOne(body);
-    return donate;
-};
+export const getAllDonate = async () => {
+    try {
+        const {client, database} = await connectDb();
+        const col = database.collection(collectionName);
+
+        const res = await col.find({}).toArray();
+        await client.close();
+
+        return res;
+    } catch (error) {
+        throw new Error(error.message);
+    }
+}
+
+export const getDonateById = async (idDonate) => {
+    try {
+        const {client, database} = await connectDb();
+        const col = database.collection(collectionName);
+        const id = Number(idDonate)
+
+        const res = await col.findOne({"donateId": id});
+        await client.close();
+
+        return res;
+    } catch (error) {
+        throw new Error(error.message);
+    }
+}

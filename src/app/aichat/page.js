@@ -9,7 +9,8 @@ const AIChat = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const genAI = new GoogleGenerativeAI(process.env.AI_CHAT_API);
+                const genAI = new GoogleGenerativeAI("AIzaSyDCuTDdJ0UD2hDQXG1pWC2D87u9NyqI4UQ");
+                // const genAI = new GoogleGenerativeAI(process.env.NEXT_PUBLIC_AI_CHAT);
                 
                 const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
                 const prompt = "Write a story about a magic backpack."; // input ini tinggal sambungin aja
