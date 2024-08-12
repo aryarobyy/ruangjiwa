@@ -3,7 +3,7 @@ import { getKonsulMessage } from "@/mongoMethods/chatKonsul";
 import { getKonsulById } from "@/mongoMethods/konsul";
 import axios from "axios";
 
-export const GET = async ({params}) => {
+export const GET = async (req, {params}) => {
     try {
         const konsulId = params.id;
 

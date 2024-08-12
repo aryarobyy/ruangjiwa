@@ -246,3 +246,33 @@ GET (spesifik artikel): http://example.api/artikel/(artikelId)
             date: Date
         }
     }
+
+
+## Chat Bot Room (GET, POST)
+GET (get room chat by id): http://example.api/chatBot/(idUser)
+return {
+    status: string (Success/Failed),
+    data {
+        _id: string,
+        chatId: string (idUser),
+        messages: [
+            messageId: string,
+            role: string (user/model),
+            text: string
+        ]
+    }
+}
+
+POST (buat room chatbot baru): http://example.api/chatBot
+    data: {
+        chatId: string (idUser),
+        messages: []
+    }
+
+## Chat Bot (POST) 
+    POST (send message into bot): http://example.api/api/chat/chatBot/(chatId)
+    data: {
+        messageId: string (uuid)
+        role: string (user/model),
+        text: string
+    }
