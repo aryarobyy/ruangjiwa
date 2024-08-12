@@ -275,4 +275,5 @@ POST (buat room chatbot baru): http://example.api/chatBot
         messageId: string (uuid)
         role: string (user/model),
         text: string
+        date: newDate();
     }
