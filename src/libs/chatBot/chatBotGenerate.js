@@ -18,12 +18,9 @@ export const generateChatContent = async (prompt, historyMessage) => {
             history: historyMessage,
         })
         const result = await chat.sendMessage(prompt);
-        console.log(result.response.text());
         return result.response.text();
     } else {
         const result = await model.generateContent(newPromt);
         return result.response.text();
     };
-
-
 }
