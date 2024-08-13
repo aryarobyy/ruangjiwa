@@ -1,7 +1,11 @@
+import About from "@/components/About"
+import Hero from "@/components/Hero"
+
 const Home = () => {
     return(
         <>
-            <p>lorem</p>
+            <Hero />
+            <About />
         </>
     )
 }
