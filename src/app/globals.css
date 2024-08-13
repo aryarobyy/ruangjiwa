@@ -6,6 +6,16 @@
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
+
+  --hero-bg-color: #f9fafb;
+  --title-color: #111827; 
+  --text-color: #6b7280; 
+  --button-bg-color: #059669; 
+  --button-hover-bg-color: #047857; 
+  --button-focus-ring-color: #fbbf24; 
+  --button-text-color: #ffffff;
+
+  /*  */
 }
 
 @media (prefers-color-scheme: dark) {
@@ -13,6 +23,14 @@
     --foreground-rgb: 255, 255, 255;
     --background-start-rgb: 0, 0, 0;
     --background-end-rgb: 0, 0, 0;
+
+    /* --hero-bg-color: #1f2937;
+    --hero-title-color: #f3f4f6;
+    --hero-text-color: #9ca3af;
+    --button-bg-color: #10b981;
+    --button-hover-bg-color: #059669;
+    --button-focus-ring-color: #fde68a;
+    --button-text-color: #1f2937; */
   }
 }
 
