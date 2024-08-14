@@ -9,6 +9,7 @@ import { useRouter } from "next/navigation";
 import LoadingChildren from "@/components/system/LoadingChildren";
 import chatBotIcon from "@/../public/icons/chatbotIcon.png"
 import Image from "next/image";
+import useToast from "@/hooks/useHotToast";
 
 const AIChat = ({params}) => {
     const [historyMessage, setHistoryMessage] = useState([]);
@@ -19,6 +20,8 @@ const AIChat = ({params}) => {
     const [loadingCreateRoom, setLoadingCreateRoom] = useState(false);
     const route = useRouter();
     const chatId = params.id;
+
+    const { pushToast, updateToast} = useToast();
 
     useEffect(() => {
         getHistoryMessage();
