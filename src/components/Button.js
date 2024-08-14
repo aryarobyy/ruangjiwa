@@ -5,12 +5,12 @@ const Button = () => {
     <>
         <div className="flex items-center gap-4">
                 <div className="sm:flex sm:gap-4">
-                  <Link className="rounded-md bg-teal-600 px-5 py-2.5 text-sm font-medium text-white shadow"
+                  <Link className="rounded-md bg-[var(--button-bg-color)] px-5 py-2.5 text-sm font-medium text-white shadow"
                     href="/login">Login</Link>
 
                   <div className="hidden sm:flex">
                     <Link
-                      className="rounded-md bg-gray-100 px-5 py-2.5 text-sm font-medium text-teal-600"
+                      className="rounded-md bg-gray-100 px-5 py-2.5 text-sm font-medium text-[var(--button-bg-color)]"
                       href="/register"
                     >
                       Register
