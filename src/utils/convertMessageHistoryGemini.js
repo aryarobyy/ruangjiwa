@@ -27,6 +27,5 @@ export const convertHistoryMessageGemini = (arrHistory) => {
         });
     }
 
-
     return result;
 }

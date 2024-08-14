@@ -59,7 +59,21 @@ body {
   scrollbar-width: none; /* Menghilangkan scrollbar di Firefox */
 }
 
+/* Loader */
 /* HTML: <div class="loader"></div> */
+.loader-children {
+  /* width: 15px; */
+  aspect-ratio: 1;
+  border-radius: 50%;
+  animation: loader-children 1s infinite linear alternate;
+}
+@keyframes loader-children {
+    0%  {box-shadow: 20px 0 #059669, -20px 0 #0002;background: #059669 }
+    33% {box-shadow: 20px 0 #059669, -20px 0 #0002;background: #0002}
+    66% {box-shadow: 20px 0 #0002,-20px 0 #059669; background: #0002}
+    100%{box-shadow: 20px 0 #0002,-20px 0 #059669; background: #059669 }
+}
+
 .loader-typing-chatbot {
   width: 30px;
   aspect-ratio: 4;

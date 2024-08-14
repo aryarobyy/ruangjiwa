@@ -9,9 +9,9 @@ export default function Button({ children, className, type, value, onClick, disa
       disabled={disabled}
       value={value}
       className={cn(
-        disabled ? 'cursor-not-allowed' : 'hover:bg-sky-600 dark:hover:bg-sky-600',
-        'rounded bg-sky-500 px-3 py-1.5 text-sm font-medium text-white outline-none transition-all',
-        'focus:ring-2 focus:ring-sky-400 dark:bg-sky-500',
+        disabled ? 'cursor-not-allowed' : 'hover:bg-buttonBgPrimaryHover',
+        'rounded bg-buttonBgPrimary px-3 py-1.5 text-sm font-medium text-white outline-none transition-all',
+        'focus:ring-2 focus:ring-primaryHover',
         className,
       )}
     >
@@ -70,9 +70,9 @@ Button.success = ({ children, className, type, value, onClick, disabled, ...prop
       disabled={disabled}
       value={value}
       className={cn(
-        disabled ? 'cursor-not-allowed' : 'hover:bg-emerald-700 dark:hover:bg-emerald-700',
-        'rounded bg-emerald-600 px-3 py-1.5 text-sm font-medium text-white outline-none transition-all dark:bg-emerald-600',
-        'focus:ring-2 focus:ring-emerald-400',
+        disabled ? 'cursor-not-allowed' : 'hover:bg-buttonBgPrimaryHover',
+        'rounded bg-buttonBgPrimary px-3 py-1.5 text-sm font-medium text-white outline-none transition-all',
+        'focus:ring-2 focus:ring-primaryHover',
         className,
       )}
     >

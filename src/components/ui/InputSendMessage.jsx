@@ -6,7 +6,7 @@ const InputSendMessage = ({placeholder, handleSubmitForm, className, handleChang
 
 
     return (
-        <form className={`p-3 bg-slate-300 w-full rounded-t-lg active:ring-0 text-black ${className}`} onSubmit={handleSubmitForm}>
+        <form className={`p-3 bg-slate-300 w-full rounded-t-lg active:ring-0  ${className}`} onSubmit={handleSubmitForm}>
             <div className="flex w-full justify-between items-center gap-4 px-2">
                 <input className="w-full p-2 px-3 rounded-lg active:outline-none outline-none" type="text" placeholder={placeholder} value={value} onChange={handleChangeInput} />
                 <button onClick={handleSubmitForm}>
