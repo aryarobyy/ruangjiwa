@@ -1,4 +1,4 @@
-import { postForum, getAllForum} from "@/mongoMethods/forum";
+import { mongoPostForum, mongoGetAllForum} from "@/mongoMethods/forum";
 import { v4 as uuidv4 } from "uuid";
 
 export const POST = async (req) => {
@@ -8,7 +8,7 @@ export const POST = async (req) => {
 
         const newData = {...data, forumId:uuid}
 
-        await postForum(newData);
+        await mongoPostForum(newData);
         return Response.json({
             message: "Success"
         })
@@ -22,7 +22,7 @@ export const POST = async (req) => {
 
 export const GET = async () => {
     try {
-        const response = getAllForum();
+        const response = mongoGetAllForum();
 
         return Response.json({
             message: "Success",

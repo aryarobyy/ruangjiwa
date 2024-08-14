@@ -1,12 +1,11 @@
-import { generateChatContent } from "@/libs/chatBot/chatBotGenerate";
-import { getMessageChatBot, postMessageChatBot } from "@/mongoMethods/chatBot";
+import { mongoGetMessageChatBot, mongoPostMessageChatBot } from "@/mongoMethods/chatBot";
 
 export const POST = async (req, {params}) => {
     try {
         const data = await req.json();
         const messageId = params.id;
 
-        await postMessageChatBot(data, messageId);
+        await mongoPostMessageChatBot(data, messageId);
 
         return Response.json({message: "Success"});
     } catch (error) {
@@ -19,7 +18,7 @@ export const GET = async ({params}) => {
     try {
         const messageId = params.id;
 
-        const res = await getMessageChatBot(messageId);
+        const res = await mongoGetMessageChatBot(messageId);
         return Response.json({
             message: "Success",
             data: res

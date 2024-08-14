@@ -2,7 +2,7 @@ import connectDb from "@/libs/mongodb"
 
 const collectionName = "forum";
 
-export const postForum = async (data) => {
+export const mongoPostForum = async (data) => {
     try {
         const {client, database} = await connectDb();
         const col = database.collection(collectionName);
@@ -17,7 +17,7 @@ export const postForum = async (data) => {
 };
 
 
-export const getAllForum = async () => {
+export const mongoGetAllForum = async () => {
     try {
         const {client, database} = await connectDb();
         const col = database.collection(collectionName);
@@ -32,7 +32,7 @@ export const getAllForum = async () => {
 };
 
 
-export const getForumById = async (id) => {
+export const mongoGetForumById = async (id) => {
     try {
         const {client, database} = await connectDb();
         const col = database.collection(collectionName);

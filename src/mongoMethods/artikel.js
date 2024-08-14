@@ -1,10 +1,9 @@
 import connectDb from "@/libs/mongodb";
-import { ObjectId } from "mongodb";
 
 const collectionName = 'artikel';
 
 // Add new artikel
-export const postArtikel = async (data) => {
+export const mongoPostArtikel = async (data) => {
     try {
         const {client, database} = await connectDb();
         const col = database.collection(collectionName);
@@ -19,7 +18,7 @@ export const postArtikel = async (data) => {
 };
 
 // Get all artike
-export const getAllArtikel = async () => {
+export const mongoGetAllArtikel = async () => {
     try {
         const {client, database} = await connectDb();
         const col = database.collection(collectionName);
@@ -34,7 +33,7 @@ export const getAllArtikel = async () => {
 }
 
 // Get specific artikel
-export const getArtikelById = async (idArtikel) => {
+export const mongoGetArtikelById = async (idArtikel) => {
     try {
         const {client, database} = await connectDb();
         const col = database.collection(collectionName);

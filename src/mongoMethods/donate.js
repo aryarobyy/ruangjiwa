@@ -3,7 +3,7 @@ import { ObjectId } from "mongodb";
 
 const collectionName = 'donate';
 
-export const postDonate = async (data) => {
+export const mongoPostDonate = async (data) => {
     try {
         const {client, database} = await connectDb();
         const col = database.collection(collectionName);
@@ -17,7 +17,7 @@ export const postDonate = async (data) => {
     }
 };
 
-export const getAllDonate = async () => {
+export const mongoGetAllDonate = async () => {
     try {
         const {client, database} = await connectDb();
         const col = database.collection(collectionName);
@@ -31,7 +31,7 @@ export const getAllDonate = async () => {
     }
 }
 
-export const getDonateById = async (idDonate) => {
+export const mongoGetDonateById = async (idDonate) => {
     try {
         const {client, database} = await connectDb();
         const col = database.collection(collectionName);

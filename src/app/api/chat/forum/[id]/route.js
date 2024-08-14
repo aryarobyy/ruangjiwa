@@ -1,10 +1,10 @@
-import { getForumMessage, postForumMessage } from "@/mongoMethods/chatForum";
+import { mongoGetForumMessage, mongoPostForumMessage } from "@/mongoMethods/chatForum";
 
 export const POST = async (req) => {
     try {
         const data = await req.json();
 
-        await postForumMessage(data);
+        await mongoPostForumMessage(data);
         return Response.json({
             message: "Success"
         });
@@ -20,7 +20,7 @@ export const POST = async (req) => {
 export const GET = async ({params}) => {
     try {
         const forumId = params.id;
-        const res = await getForumMessage(forumId);
+        const res = await mongoGetForumMessage(forumId);
 
         return Response.json({
             message: "Success",

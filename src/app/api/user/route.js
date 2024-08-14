@@ -1,4 +1,4 @@
-import { postUser, getAllUser } from "@/mongoMethods/user";
+import { mongoPostUser, mongoGetAllUser } from "@/mongoMethods/user";
 import { v4 as uuidv4 } from "uuid";
 
 export const POST = async (req, res) => {
@@ -8,7 +8,7 @@ export const POST = async (req, res) => {
         const uuid = uuidv4()
         const userId = {...data, id:uuid}
 
-        await postUser(userId);
+        await mongoPostUser(userId);
         return Response.json({message: "Success"});
     } catch (error) {
         console.error(error.message);
@@ -21,7 +21,7 @@ export const POST = async (req, res) => {
 
 export const GET = async () => {
     try {
-        const response = await getAllUser();
+        const response = await mongoGetAllUser();
 
         return Response.json({
             message: "Success",

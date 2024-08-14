@@ -1,8 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { getChatBotRoom, postChatBotRoom, postNewMessageChatBot } from "@/helpers/chatbot";
-import axiosInstance from "@/libs/axiosInterface";
+import { getChatBotRoom, postChatBotRoom } from "@/helpers/chatbot";
 import ChatSection from "@/components/chatbot/ChatSection";
 import Button from "@/components/ui/Button";
 import { useRouter } from "next/navigation";
@@ -43,7 +42,10 @@ const AIChat = ({params}) => {
     // handler function
     const handleShowMessage = async () => {
       if(loadingGetMessage) {
-        alert("Lagi fetching history");
+        pushToast({
+          isLoading: true,
+          message: "Memuat Obrolan... Coba lagi nanti"
+        })
         return;
       };
 
@@ -69,6 +71,10 @@ const AIChat = ({params}) => {
     };
 
     const handleCreateRoom = async () => {
+      const toastId = pushToast({
+        isLoading: true,
+        message: "Membuat Obrolan..."
+      });
       setLoadingCreateRoom(true);
         try {
             const data = {
@@ -82,9 +88,17 @@ const AIChat = ({params}) => {
             } else {
               await getHistoryMessage();
             };
+            updateToast({
+              toastId,
+              message: "Berhasil Membuat Obrolan"
+            })
         } catch (error) {
             console.error(error.message);
-            // toast
+            updateToast({
+              toastId,
+              isError: true,
+              message: error.message
+            })
         } finally {
           setLoadingCreateRoom(false);
         }
@@ -95,6 +109,7 @@ const AIChat = ({params}) => {
         <ChatSection
           historyMessage={historyMessage}
           setHistoryMessage={setHistoryMessage}
+          isShowMessage={isShowMessage}
           setIsShowMessage={setIsShowMessage}
           chatId={chatId}
           className={`rounded-md ${isShowMessage ? "" : "hidden"}`}

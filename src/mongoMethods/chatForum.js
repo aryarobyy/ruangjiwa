@@ -2,7 +2,7 @@ import connectDb from "@/libs/mongodb"
 
 const collectionName = "forum_message"
 
-export const getForumMessage = async (forumId) => {
+export const mongoGetForumMessage = async (forumId) => {
     try {
         const {client, database} = await connectDb();
         const col = database.collection(collectionName);
@@ -16,7 +16,7 @@ export const getForumMessage = async (forumId) => {
     }
 }
 
-export const postForumMessage = async (data) => {
+export const mongoPostForumMessage = async (data) => {
     try {
         const {client, database} = await connectDb();
         const col = database.collection(collectionName);

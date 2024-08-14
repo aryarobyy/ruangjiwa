@@ -29,3 +29,7 @@ export const postNewMessageChatBot = async (data, chatId, historyMessage, isByUs
     }
 
 };
+
+export const deleteChatBotRoom = async (chatId) => {
+    return axiosInstance.delete(`${url.ENDPOINT_CHATBOT}/${chatId}`)
+}

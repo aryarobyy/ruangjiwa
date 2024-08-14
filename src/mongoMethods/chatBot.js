@@ -4,7 +4,7 @@ const collectionName = "bot_message";
 
 
 // Method bikin room chat bot
-export const postChatBotRoom = async (data) => {
+export const mongoPostChatBotRoom = async (data) => {
     try {
         const {client, database} = await connectDb();
         const col = database.collection(collectionName);
@@ -18,7 +18,7 @@ export const postChatBotRoom = async (data) => {
     }
 }
 
-export const getChatBotRoom = async (chatId) => {
+export const mongoGetChatBotRoom = async (chatId) => {
     try {
         const {client, database} = await connectDb();
         const col = database.collection(collectionName);
@@ -32,11 +32,25 @@ export const getChatBotRoom = async (chatId) => {
     }
 }
 
+export const mongoDeleteChatBotRoom = async (chatId) => {
+    try {
+        const {client, database} = await connectDb();
+        const col = database.collection(collectionName);
+
+        const res = await col.deleteOne({chatId});
+        client.close();
+
+        return res;
+    } catch (error) {
+        throw new Error(error.message);
+    }
+}
+
 
 // ## Message ##
 
 // Method post message di room chat bot
-export const postMessageChatBot = async (data, messageId) => {
+export const mongoPostMessageChatBot = async (data, messageId) => {
     try {
         const {client, database} = await connectDb();
         const col = database.collection(collectionName);
@@ -55,7 +69,7 @@ export const postMessageChatBot = async (data, messageId) => {
 };
 
 // method get semua message di room chat bot
-export const getMessageChatBot = async (chatId) => {
+export const mongoGetMessageChatBot = async (chatId) => {
     try {
         const {client, database} = await connectDb();
         const col = database.collection(collectionName);
