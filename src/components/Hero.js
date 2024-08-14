@@ -3,26 +3,52 @@ import Link from "next/link";
 
 const Hero = () => {
   return (
-    <section className="overflow-hidden bg-[var(--hero-bg-color)] sm:grid sm:grid-cols-2">
-      <div className="p-8 md:p-12 lg:px-16 lg:py-24">
-        <div className="mx-auto max-w-xl text-center ltr:sm:text-left rtl:sm:text-right">
-          <h2 className="text-2xl font-bold text-[var(--hero-title-color)] md:text-3xl">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit
+    <section className="relative overflow-hidden bg-[var(--hero-bg-color)] sm:grid sm:grid-cols-2">
+      <div className="absolute inset-0 bg-gradient-to-r from-[var(--hero-bg-color)] to-transparent opacity-50"></div>
+      
+      <div className="relative z-10 p-8 md:p-12 lg:px-16 lg:py-24">
+        <div className="mx-auto max-w-xl text-center sm:text-left">
+          <h2 className="text-2xl font-bold text-[var(--title-color)] md:text-3xl">
+            Prioritaskan Kesehatan Mental Anda
           </h2>
 
-          <p className="hidden text-[var(--text-color)] md:mt-4 md:block">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Et, egestas
-            tempus tellus etiam sed. Quam a scelerisque amet ullamcorper eu enim
-            et fermentum, augue. Aliquet amet volutpat quisque ut interdum
-            tincidunt duis.
+          <p className="mt-4 text-[var(--text-color)] md:text-lg">
+            Kami di sini untuk mendukung Kamu dalam perjalanan menuju kesejahteraan emosional dan mental yang lebih baik.
           </p>
 
-          <div className="mt-4 md:mt-8">
+          <ul className="mt-6 space-y-4 text-left text-[var(--text-color)]">
+            <li className="flex items-center">
+              <svg className="h-5 w-5 text-[var(--button-bg-color)] mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span>Pendekatan berbasis bukti</span>
+            </li>
+            <li className="flex items-center">
+              <svg className="h-5 w-5 text-[var(--button-bg-color)] mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span>Sesi yang dapat disesuaikan</span>
+            </li>
+            <li className="flex items-center">
+              <svg className="h-5 w-5 text-[var(--button-bg-color)] mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span>Akses ke sumber daya eksklusif</span>
+            </li>
+          </ul>
+
+          <div className="mt-8 flex flex-col items-center md:flex-row md:justify-start">
             <Link
               href="/register"
               className="inline-block rounded bg-[var(--button-bg-color)] px-12 py-3 text-sm font-medium text-[var(--button-text-color)] transition hover:bg-[var(--button-hover-bg-color)] focus:outline-none focus:ring focus:ring-[var(--button-focus-ring-color)]"
             >
               Get Started Today
+            </Link>
+            <Link
+              href="/contact"
+              className="mt-4 md:mt-0 md:ml-4 inline-block rounded bg-transparent border border-[var(--button-bg-color)] px-12 py-3 text-sm font-medium text-[var(--button-bg-color)] transition hover:bg-[var(--button-bg-color)] hover:text-white focus:outline-none focus:ring focus:ring-[var(--button-focus-ring-color)]"
+            >
+              Contact Us
             </Link>
           </div>
         </div>
@@ -30,11 +56,11 @@ const Hero = () => {
 
       <Image
         src="/landingPage.jpg"
-        alt="Photos"
-        className="rounded-lg"
+        alt="Mental Health Support"
+        className="rounded-lg object-cover"
         width={500}
         height={300}
-        layout="responsive "
+        layout="responsive"
         quality={100}
         priority
       />

@@ -1,7 +1,9 @@
+import BlogCard from "@/components/BlogCard"
+
 const article = () => {
   return (
     <div>
-      Articles
+      <BlogCard />
     </div>
   )
 }

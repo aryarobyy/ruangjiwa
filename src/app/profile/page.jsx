@@ -15,7 +15,7 @@ const Page = () => {
         </div>
       </div>
       <div className="flex-1 md:ml-6">
-        <h1 className="text-2xl font-semibold mb-2">Nama ini</h1>
+        <h1 className="text-2xl font-semibold mb-2 text-[var(--title-color)]">Nama ini</h1>
         <p className="text-gray-700 mb-4">
           Deskripsi singkat tentang pengguna. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam inventore cumque quidem, vero libero voluptatem, aliquid reiciendis corporis eum culpa magnam dolorem, nemo obcaecati? Aspernatur esse officia harum voluptates ratione.
         </p>
