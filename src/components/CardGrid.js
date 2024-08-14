@@ -22,15 +22,15 @@ const CardGrid = () => {
 
   return (
     <div className="max-w-screen-xl mx-auto py-12">
-      <h2 className="text-center text-2xl font-semibold mb-8">We Grow Businesses Online. Period.</h2>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <h2 className="text-center text-gray-500 text-2xl font-semibold mb-8">Creators.</h2>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
         <Card
           number={1}
-          title="Custom SEO Services"
-          description="Custom, organic SEO services that include technical audits, on-page search engine optimization."
+          title="CEO Of My Heart"
+          description="CEO"
           imgSrc={img}
-          imgAlt="Ahmad Suherdy"
-          personName="Ahmad Suherdy"
+          imgAlt="Gis"
+          personName="Gia"
         />
         <Card
           number={2}
