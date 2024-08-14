@@ -16,6 +16,22 @@ export const POST = async (imagePath) => {
   }
 };
 
+export const GET = async (imageUrl) => {
+	try {
+
+		if (!imageUrl) {
+			return res.status(400).json({ error: "Image URL is required" });
+		}
+
+    const imageDetails = await cloudinary.api.resource(imageUrl);
+
+		res.status(200).json(imageDetails);
+	} catch (err) {
+		console.error("Error retrieving image details: ", err.message);
+    res.status(500).json({ error: "Failed to retrieve image details" });
+	}
+};
+
 export const DELETE = async (imageUrl) => {
   try {
     const publicId = imageUrl.split("/").pop().split(".")[0];
