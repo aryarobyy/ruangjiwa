@@ -11,15 +11,25 @@
   },
   "dependencies": {
     "@google/generative-ai": "^0.16.0",
+<<<<<<< HEAD
     "@next/font": "^14.2.5",
+=======
+    "@radix-ui/react-slot": "^1.1.0",
+>>>>>>> 52ed238207319bb66391a27d2c4aea416a7b5bc8
     "axios": "^1.7.3",
+    "class-variance-authority": "^0.7.0",
     "dotenv": "^16.4.5",
+    "framer-motion": "^11.3.24",
+    "lucide-react": "^0.427.0",
     "mongodb": "^6.8.0",
     "mongoose": "^8.5.2",
     "next": "14.2.5",
     "react": "^18",
     "react-dom": "^18",
-    "react-hot-toast": "^2.4.1"
+    "react-hot-toast": "^2.4.1",
+    "react-icons": "^5.3.0",
+    "tailwind-merge": "^2.5.2",
+    "uuid": "^10.0.0"
   },
   "devDependencies": {
     "eslint": "^8",

@@ -1,10 +1,14 @@
 import { getAllArtikel, postArtikel } from "@/mongoMethods/artikel";
+import { v4 as uuidv4 } from "uuid";
 
 export const POST = async (req, res) => {
     try {
         const data = await req.json()
 
-        await postArtikel(data);
+        const uuid = uuidv4()
+        const newData = {...data, id:uuid}
+
+        await postArtikel(newData);
         return Response.json({message: "Success"});
     } catch (error) {
         console.error(error.message);
@@ -13,7 +17,6 @@ export const POST = async (req, res) => {
         })
     }
 };
-
 
 export const GET = async () => {
     try {
@@ -26,7 +29,7 @@ export const GET = async () => {
     } catch (error) {
         console.error(error.message);
         return Response.json({
-            message: "Error",  
+            message: "Failed",  
             data: []
         })
     }

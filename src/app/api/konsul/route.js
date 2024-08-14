@@ -1,5 +1,4 @@
-import { getAllArtikel } from "@/mongoMethods/artikel";
-import { postKonsul } from "@/mongoMethods/konsul";
+import { getAllKonsul, postKonsul } from "@/mongoMethods/konsul";
 
 
 
@@ -22,7 +21,7 @@ export const POST = async (req) => {
 
 export const GET = async () => {
     try {
-        const response = await getAllArtikel();
+        const response = await getAllKonsul();
 
         return Response.json({
             message: "Success",

@@ -1,37 +1,47 @@
-import mongoose from "mongoose";
+import connectDb from "@/libs/mongodb"
 
-const ForumSchema  = new mongoose.Schema({
-    statusMessage: String,
-    statusCode: Number,
+const collectionName = "forum";
 
-    title: {type: String, require:true},
-    post: {type: String, require:true},
-    userId: {type: mongoose.ObjectId, require:true},
-    doctorId: {type: mongoose.ObjectId, require:false},
-    createdAt: {type: String, default: Date.now}, 
-    updatedAt: {type: String, default: Date.now}
-})
+export const postForum = async (data) => {
+    try {
+        const {client, database} = await connectDb();
+        const col = database.collection(collectionName);
+        
+        const res = await col.insertOne(data);
+        await client.close();
 
-ForumSchema.pre('save', function (next) {
-    this.updatedAt = Date.now();
-    next();
-});
-
-ForumSchema.pre('findOneAndUpdate', function (next) {
-    this.set({ updatedAt: Date.now() });
-    next();
-});
-
-const Forum = mongoose.models.Forum || mongoose.model('Forum', ForumSchema);
-
-
-export const addForum = async (body) => {
-    const newForum = new Forum(body);
-    await newForum.save();
-    return newForum;
+        return res;
+    } catch (error) {
+        throw new Error(error.message);
+    }
 };
 
-export const getForum = async (body) => {
-    const forum = await Forum.find(body)
-    return forum;
+
+export const getAllForum = async () => {
+    try {
+        const {client, database} = await connectDb();
+        const col = database.collection(collectionName);
+
+        const res = await col.find({}).toArray();
+        await client.close();
+
+        return res;
+    } catch (error) {
+        throw new Error(error.message);
     }
+};
+
+
+export const getForumById = async (id) => {
+    try {
+        const {client, database} = await connectDb();
+        const col = database.collection(collectionName);
+
+        const res = await col.findOne({"forumId": id});
+        await client.close();
+
+        return res;
+    } catch (error) {
+        throw new Error(error.message);
+    }
+}
