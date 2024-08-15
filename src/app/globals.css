@@ -81,7 +81,7 @@ body {
 .loader-typing-chatbot {
   width: 30px;
   aspect-ratio: 4;
-  --_g: no-repeat radial-gradient(circle closest-side,#000 90%,#0000);
+  --_g: no-repeat radial-gradient(circle closest-side,#1f2937  90%,#0000);
   background: 
     var(--_g) 0%   50%,
     var(--_g) 50%  50%,

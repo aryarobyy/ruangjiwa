@@ -1,29 +1,33 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import InputSendMessage from "../ui/InputSendMessage";
-import { postNewMessageChatBot } from "@/helpers/chatbot";
+import { deleteChatBotRoom, postNewMessageChatBot } from "@/helpers/chatbot";
 import Button from "../ui/Button";
 import { ChevronsRight, Trash2 } from "lucide-react";
 import { motion } from "framer-motion";
 import { getHourFromDate } from "@/utils/dateConvert";
 import chatBotIcon from "@/../public/icons/chatbotIcon.png"
 import Image from "next/image";
+import useToast from "@/hooks/useHotToast";
 
 const ChatSection = ({
   historyMessage,
   setHistoryMessage,
   chatId,
   className,
-  setIsShowMessage
+  setIsShowMessage,
+  isShowMessage,
 }) => {
   const [inputMessage, setInputMessage] = useState("");
   const [loading, setLoading] = useState(false);
   const bodyMessageRef = useRef(null);
+  const {pushToast, updateToast} = useToast()
 
   useEffect(() => {
     bodyMessageRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [historyMessage]);
+  }, [historyMessage, isShowMessage]);
 
+  // handler function
   const handleSendMessage = async (e) => {
     e.preventDefault();
 
@@ -75,6 +79,35 @@ const ChatSection = ({
       setLoading(false);
     }
   };
+
+  const handleDeleteRoom = async () => {
+    const toastId = pushToast({
+      message: "Sedang menghapus...",
+      isLoading: true,
+    });
+
+    try {
+      const response = await deleteChatBotRoom(chatId);
+      console.log(response);
+      if(response.data.message !== "Success") {
+        throw new Error("Gagal Menghapus Obrolan!")
+      } else {
+        setHistoryMessage(null);
+        setIsShowMessage(false);
+        updateToast({
+          toastId,
+          message: "Berhasil Menghapus Obrolan.",
+        });
+      }
+    } catch (error) {
+      updateToast({
+        message: error.message,
+        toastId,
+        isError: true
+      });
+    }
+  }
+
   return (
     
     <motion.div
@@ -93,7 +126,7 @@ const ChatSection = ({
             <Image src={chatBotIcon} width={500} height={750} className="w-10" alt="Icon  Chat Bot" />
             <h1>Bot</h1>
           </div>
-          <Button.danger>
+          <Button.danger onClick={handleDeleteRoom}>
             <Trash2 />
           </Button.danger>
         </div>
@@ -126,7 +159,7 @@ const ChatSection = ({
               !loading && "hidden"
             }`}
           >
-            <div className="w-fit bg-slate-400 p-4 px-10 mr-10 rounded-md">
+            <div className="w-fit bg-slate-400 p-4 px-6 mr-10 rounded-md">
               <div className="loader-typing-chatbot"></div>
             </div>
           </div>

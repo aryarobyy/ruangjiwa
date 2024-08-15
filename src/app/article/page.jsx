@@ -7,5 +7,4 @@ const article = () => {
     </div>
   )
 }
-
 export default article

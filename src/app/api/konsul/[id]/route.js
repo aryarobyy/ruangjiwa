@@ -1,13 +1,11 @@
 import axiosInstance from "@/libs/axiosInterface";
-import { getKonsulMessage } from "@/mongoMethods/chatKonsul";
-import { getKonsulById } from "@/mongoMethods/konsul";
-import axios from "axios";
+import { mongoGetKonsulById } from "@/mongoMethods/konsul";
 
 export const GET = async (req, {params}) => {
     try {
         const konsulId = params.id;
 
-        const response = await getKonsulById(konsulId);
+        const response = await mongoGetKonsulById(konsulId);
         const { data } = await axiosInstance.get(`/api/chat/konsul/${konsulId}`)
         console.log(data);
 

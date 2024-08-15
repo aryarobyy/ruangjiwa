@@ -1,12 +1,11 @@
 import axiosInstance from "@/libs/axiosInterface";
-import { getForumMessage } from "@/mongoMethods/chatForum";
-import { getForumById } from "@/mongoMethods/forum";
+import { mongoGetForumById } from "@/mongoMethods/forum";
 
 export const GET = async ({params}) => {
     try {
         const forumId = params.id;
 
-        const response = await getForumById(forumId);
+        const response = await mongoGetForumById(forumId);
         const {data} = await axiosInstance.get(`/api/chat/forum/${forumId}`)
         console.log(data);
 

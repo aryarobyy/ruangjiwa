@@ -8,20 +8,22 @@ const BlogCard = () => {
 
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
         <article className="overflow-hidden rounded-lg shadow-lg transition hover:shadow-xl">
-          <Image
-            alt="Furniture arrangement"
-            src="/article1.jpg"
-            className="h-48 w-full object-cover"
-            width={320}
-            height={180}
-          />
+          <Link href="/">
+            <Image
+              alt="Furniture arrangement"
+              src="/article1.jpg"
+              className="h-48 w-full object-cover"
+              width={320}
+              height={180}
+            />
+          </Link>
           <div className="bg-white p-4 sm:p-6">
             <time dateTime="2022-10-10" className="block text-xs text-gray-500">
-              10th Oct 2022
+              15th Aug 2024
             </time>
             <Link href="">
               <h3 className="mt-2 text-lg font-semibold text-gray-900">
-                How to position your furniture for positivity
+                Mengatasi Rasa Khawatir dan Kecemasan
               </h3>
             </Link>
             <p className="mt-3 text-sm text-gray-500 line-clamp-3">
@@ -64,6 +66,37 @@ const BlogCard = () => {
             </p>
           </div>
         </article>
+
+        <article className="overflow-hidden rounded-lg shadow-lg transition hover:shadow-xl">
+          <Link href="/">
+            <Image
+              alt="Furniture arrangement"
+              src="/article1.jpg"
+              className="h-48 w-full object-cover"
+              width={320}
+              height={180}
+            />
+          </Link>
+          <div className="bg-white p-4 sm:p-6">
+            <time dateTime="2022-10-10" className="block text-xs text-gray-500">
+              15th Aug 2024
+            </time>
+            <Link href="">
+              <h3 className="mt-2 text-lg font-semibold text-gray-900">
+                Mengatasi Rasa Khawatir dan Kecemasan
+              </h3>
+            </Link>
+            <p className="mt-3 text-sm text-gray-500 line-clamp-3">
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+              Recusandae dolores, possimus pariatur animi temporibus nesciunt
+              praesentium dolore sed nulla ipsum eveniet corporis quidem,
+              mollitia itaque minus soluta, voluptates neque explicabo tempora
+              nisi culpa eius atque dignissimos. Molestias explicabo corporis
+              voluptatem?
+            </p>
+          </div>
+        </article>
+
       </div>
     </div>
   );

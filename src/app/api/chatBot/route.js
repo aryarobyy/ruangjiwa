@@ -1,11 +1,11 @@
-import { postChatBotRoom } from "@/mongoMethods/chatBot";
+import { mongoPostChatBotRoom} from "@/mongoMethods/chatBot";
 
 // post new chat bot room
 export const POST = async (req) => {
     try {
         const data = await req.json();
     
-        await postChatBotRoom(data);
+        await mongoPostChatBotRoom(data);
     
         return Response.json({
             message: "Success"

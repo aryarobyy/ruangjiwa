@@ -3,7 +3,7 @@ import connectDb from "@/libs/mongodb"
 const collectionName = "konsul";
 
 // Add new Konsul 
-export const postKonsul = async (data) => {
+export const mongoPostKonsul = async (data) => {
     try {
         const {client, database} = await connectDb();
         const col = database.collection(collectionName);
@@ -18,7 +18,7 @@ export const postKonsul = async (data) => {
 };
 
 
-export const getAllKonsul = async () => {
+export const mongoGetAllKonsul = async () => {
     try {
         const {client, database} = await connectDb();
         const col = database.collection(collectionName);
@@ -33,7 +33,7 @@ export const getAllKonsul = async () => {
 };
 
 
-export const getKonsulById = async (konsulId) => {
+export const mongoGetKonsulById = async (konsulId) => {
     try {
         const {client, database} = await connectDb();
         const col = database.collection(collectionName);

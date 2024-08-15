@@ -66,11 +66,21 @@ const Navbar = () => {
                   <li>
                     <Link
                       className="text-[var(--text-color)] text-base transition hover:text-[var(--button-hover-bg-color)]"
+                      href="/ruangMeditasi"
+                    >
+                      Ruang Meditasi
+                    </Link>
+                  </li>
+
+                  <li>
+                    <Link
+                      className="text-[var(--text-color)] text-base transition hover:text-[var(--button-hover-bg-color)]"
                       href="/profile"
                     >
                       Profile sementara
                     </Link>
                   </li>
+
                 </ul>
               </nav>
               <Button />

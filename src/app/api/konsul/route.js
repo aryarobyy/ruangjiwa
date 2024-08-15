@@ -1,4 +1,4 @@
-import { getAllKonsul, postKonsul } from "@/mongoMethods/konsul";
+import {mongoGetAllKonsul, mongoPostKonsul } from "@/mongoMethods/konsul";
 
 
 
@@ -6,7 +6,7 @@ export const POST = async (req) => {
     try {
         const data = await req.json();
 
-        await postKonsul(data);
+        await mongoPostKonsul(data);
 
         return Response.json({
             message: "Success"
@@ -21,7 +21,7 @@ export const POST = async (req) => {
 
 export const GET = async () => {
     try {
-        const response = await getAllKonsul();
+        const response = await mongoGetAllKonsul();
 
         return Response.json({
             message: "Success",

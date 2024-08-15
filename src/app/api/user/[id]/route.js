@@ -1,10 +1,10 @@
-import { getUser } from "@/mongoMethods/user";
+import { mongoGetUserById } from "@/mongoMethods/user";
 
 export const GET = async (req, {params}) => {
     try {
         const userId = params._id;
 
-        const response = await getUser(userId);
+        const response = await mongoGetUserById(userId);
 
         return Response.json({
             message: "Success",

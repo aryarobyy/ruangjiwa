@@ -2,7 +2,7 @@ import connectDb from "@/libs/mongodb"
 
 const collectionName = "konsul_message"
 
-export const getKonsulMessage = async (messageId) => {
+export const mongoGetKonsulMessage = async (messageId) => {
     try {
         const {client, database} = await connectDb();
         const col = database.collection(collectionName);
@@ -16,7 +16,7 @@ export const getKonsulMessage = async (messageId) => {
     }
 };
 
-export const postKonsulMessage = async (data) => {
+export const mongoPostKonsulMessage = async (data) => {
     try {
         const {client, database} = await connectDb();
         const col = database.collection(collectionName);

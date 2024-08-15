@@ -1,9 +1,8 @@
 import connectDb from "@/libs/mongodb";
-import { ObjectId } from "mongodb";
 
 const collectionName = 'user';
 
-export const postUser = async (data) => {
+export const mongoPostUser = async (data) => {
     try {
         const {client, database} = await connectDb();
         const col = database.collection(collectionName);
@@ -17,7 +16,7 @@ export const postUser = async (data) => {
     }
 };
 
-export const getAllUser = async () => {
+export const mongoGetAllUser = async () => {
     try {
         const {client, database} = await connectDb();
         const col = database.collection(collectionName);
@@ -31,7 +30,7 @@ export const getAllUser = async () => {
     }
 }
 
-export const getUserById = async (idUser) => {
+export const mongoGetUserById = async (idUser) => {
     try {
         const {client, database} = await connectDb();
         const col = database.collection(collectionName);

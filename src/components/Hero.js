@@ -39,7 +39,7 @@ const Hero = () => {
 
           <div className="mt-8 flex flex-col items-center md:flex-row md:justify-start">
             <Link
-              href="/register"
+              href="/auth/register"
               className="inline-block rounded bg-[var(--button-bg-color)] px-12 py-3 text-sm font-medium text-[var(--button-text-color)] transition hover:bg-[var(--button-hover-bg-color)] focus:outline-none focus:ring focus:ring-[var(--button-focus-ring-color)]"
             >
               Get Started Today

@@ -1,10 +1,10 @@
-import { postDonate, getAllDonate } from "@/mongoMethods/donate";
+import { mongoPostDonate, mongoGetAllDonate } from "@/mongoMethods/donate";
 
 export const POST = async (req, res) => {
     try {
         const data = await req.json()
 
-        await postDonate(data);
+        await mongoPostDonate(data);
         return Response.json({message: "Success"});
     } catch (error) {
         console.error(error.message);
@@ -17,7 +17,7 @@ export const POST = async (req, res) => {
 
 export const GET = async () => {
     try {
-        const response = await getAllDonate();
+        const response = await mongoGetAllDonate();
 
         return Response.json({
             message: "Success",
