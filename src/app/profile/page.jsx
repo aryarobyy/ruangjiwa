@@ -15,23 +15,23 @@ const Page = () => {
         </div>
       </div>
       <div className="flex-1 md:ml-6">
-        <h1 className="text-2xl font-semibold mb-2">Nama ini</h1>
+        <h1 className="text-2xl font-semibold mb-2 text-[var(--title-color)]">Nama ini</h1>
         <p className="text-gray-700 mb-4">
           Deskripsi singkat tentang pengguna. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam inventore cumque quidem, vero libero voluptatem, aliquid reiciendis corporis eum culpa magnam dolorem, nemo obcaecati? Aspernatur esse officia harum voluptates ratione.
         </p>
         <div className="flow-root">
           <dl className="divide-y divide-gray-100 text-sm">
             <div className="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
-              <dt className="font-medium text-gray-900">Title</dt>
-              <dd className="text-gray-700 sm:col-span-2">Mr</dd>
+              <dt className="font-medium text-gray-900">Umur</dt>
+              <dd className="text-gray-700 sm:col-span-2">20</dd>
             </div>
             <div className="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
-              <dt className="font-medium text-gray-900">Name</dt>
-              <dd className="text-gray-700 sm:col-span-2">John Frusciante</dd>
+              <dt className="font-medium text-gray-900">Penyakit</dt>
+              <dd className="text-gray-700 sm:col-span-2">Kanker</dd>
             </div>
             <div className="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
-              <dt className="font-medium text-gray-900">Occupation</dt>
-              <dd className="text-gray-700 sm:col-span-2">Guitarist</dd>
+              <dt className="font-medium text-gray-900">Email</dt>
+              <dd className="text-gray-700 sm:col-span-2">eriwhqerwe@gmail</dd>
             </div>
             <div className="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
               <dt className="font-medium text-gray-900">Salary</dt>
