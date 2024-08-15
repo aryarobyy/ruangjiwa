@@ -11,11 +11,9 @@
   },
   "dependencies": {
     "@google/generative-ai": "^0.16.0",
-<<<<<<< HEAD
-    "@next/font": "^14.2.5",
-=======
+    "next/font": "^14.2.5",
     "@radix-ui/react-slot": "^1.1.0",
->>>>>>> 52ed238207319bb66391a27d2c4aea416a7b5bc8
+
     "axios": "^1.7.3",
     "class-variance-authority": "^0.7.0",
     "dotenv": "^16.4.5",
