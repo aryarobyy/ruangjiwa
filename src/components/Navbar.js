@@ -1,8 +1,12 @@
+'use client'
 import Image from "next/image";
 import Link from "next/link";
-import Button from "./Button";
+import Button from "./ui/Button";
+import { useAuth } from "@/context/AuthContext";
 
 const Navbar = () => {
+  const {user, logoutUser} = useAuth();
+
   return (
     <>
       <header className="bg-[var(--hero-bg-color)]">
@@ -75,15 +79,40 @@ const Navbar = () => {
                   <li>
                     <Link
                       className="text-[var(--text-color)] text-base transition hover:text-[var(--button-hover-bg-color)]"
-                      href="/profile"
+                      href={`/aichat/${user ? user.userId : "guest" }`}
                     >
-                      Profile sementara
+                      ImuBot
                     </Link>
                   </li>
-
                 </ul>
               </nav>
-              <Button />
+              {
+                user ? (
+                  <div className="flex gap-3 items-center justify-center">
+                    <Button>
+                      <Link href={"/profile"}>Profile</Link>
+                    </Button>
+                    <Button.danger onClick={logoutUser}>
+                      Test Logout
+                    </Button.danger>
+                  </div>
+                ): (
+                <div className={`flex gap-3 items-center justify-center`}>
+                  <Button>
+                    <Link href={"/auth/login"}>
+                      Login
+                    </Link>
+                  </Button>
+                  <Button.tertary>
+                    <Link href={"/auth/register"}>
+                      Register
+                    </Link>
+                  </Button.tertary>
+                </div>
+
+                )
+              }
+              {/* <Button /> */}
             </div>
           </div>
         </div>

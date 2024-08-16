@@ -1,4 +1,61 @@
+"use client";
+import Button from "@/components/ui/Button";
+import { Input } from "@/components/ui/Input";
+import { useAuth } from "@/context/AuthContext";
+import useToast from "@/hooks/useHotToast";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+
 const Login = () => {
+  const [data, setData] = useState({
+    username: "",
+    password: "",
+  });
+  const [role, setRole] = useState('user');
+  const router = useRouter();
+  const {loginUser, user} = useAuth();
+  const {pushToast, updateToast} = useToast();
+
+  useEffect(() => {
+    if(user) router.push('/');
+  }, [])
+
+  // handler funtion
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const toastId = pushToast({
+      message: "Ditunggu ya!...",
+      isLoading: true
+    });
+
+    try {
+      if(role === 'user') {
+        await loginUser(data);
+      } else {
+        // await ...
+        updateToast({
+          toastId,
+          message: "Belum gua atur buat dokter. Obrolin lagi aja persyaratan register dokter",
+          isError: true
+        })
+        return;
+      }
+      updateToast({
+        toastId,
+        message: "Berhasil Login",
+      })
+    } catch (error) {
+      console.error(error.message);
+      updateToast({
+        toastId,
+        message: error.message,
+        isError: true
+      })
+
+    }
+  }
+
   return (
     <section className="bg-white">
       <div className="lg:grid lg:min-h-screen align-middle">
@@ -20,7 +77,7 @@ const Login = () => {
             </a>
 
             <h1 className="mt-6 text-2xl font-bold text-gray-900 sm:text-3xl md:text-4xl">
-              Welcome to Sahabat Medis
+              Selamat datang kembali
             </h1>
 
             <p className="mt-4 leading-relaxed text-gray-500">
@@ -28,20 +85,30 @@ const Login = () => {
               nam dolorum aliquam, quibusdam aperiam voluptatum.
             </p>
 
-            <form action="#" className="mt-8 grid grid-cols-6 gap-6">
+            <div className="text-gray-500 w-full text-center flex flex-col gap-2">
+              <h1>Login sebagai</h1>
+              <div className="flex gap-3 items-center justify-center">
+                <Button onClick={(e) => setRole(e.target.value)} value={"user"} className={`${role === 'user' ? 'bg-blue-500 ring-blue-500 hover:bg-blue-600 focus:ring-blue-500' : ''}`}>User</Button>
+                <Button.secondary onClick={(e) => setRole(e.target.value)} value={"dokter"} className={`${role === 'dokter' ? 'bg-blue-500 ring-blue-500 hover:bg-blue-600 focus:ring-blue-500' : ''}`} >Dokter</Button.secondary>
+              </div>
+            </div>
+
+            <form onSubmit={handleSubmit} className="mt-4 grid grid-cols-6 gap-6">
               <div className="col-span-6">
                 <label
                   htmlFor="Email"
                   className="block text-sm font-medium text-gray-700"
-                >Email
+                >
+                  Username
                 </label>
 
-                <input
-                  type="email"
-                  id="Email"
-                  name="email"
-                  className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-md block p-2.5"
-                  placeholder="name@flowbite.com"
+                <Input
+                  type={"text"}
+                  value={data.username}
+                  onChange={(e) =>
+                    setData((prev) => ({ ...prev, username: e.target.value }))
+                  }
+                  placeholder={"Username"}
                   required
                 />
               </div>
@@ -51,31 +118,28 @@ const Login = () => {
                   htmlFor="Password"
                   className="block text-sm font-medium text-gray-700"
                 >
-                  {" "}
-                  Password{" "}
+                  Password
                 </label>
 
-                <input
-                  type="password"
-                  id="Password"
-                  name="password"
-                  className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-md block p-2.5"
-                  placeholder="Password"
+                <Input
+                  type={"password"}
+                  value={data.password}
+                  onChange={(e) => setData(prev => ({...prev, password: e.target.value}))}
+                  placeholder={"Sandi Password"}
                   required
                 />
               </div>
 
               <div className="col-span-6 sm:flex sm:items-center sm:gap-4">
-                <button className="inline-block shrink-0 rounded-md border border-green-600 bg-green-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-transparent hover:text-green-600 focus:outline-none focus:ring active:text-green-500">
+                <Button onClick={handleSubmit}>
                   Login
-                </button>
+                </Button>
 
                 <p className="mt-4 text-sm text-gray-500 sm:mt-0">
                   Belum Punya Akun?
-                  <a href="#" className="text-gray-700 underline p-1">
-                    Sign In
+                  <a href="/auth/register" className="text-gray-700 underline p-1">
+                    Buat akun
                   </a>
-                  .
                 </p>
               </div>
             </form>

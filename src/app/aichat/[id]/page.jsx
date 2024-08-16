@@ -9,22 +9,25 @@ import LoadingChildren from "@/components/system/LoadingChildren";
 import chatBotIcon from "@/../public/icons/chatbotIcon.png"
 import Image from "next/image";
 import useToast from "@/hooks/useHotToast";
+import { useAuth } from "@/context/AuthContext";
 
 const AIChat = ({params}) => {
-    const [historyMessage, setHistoryMessage] = useState([]);
+    const [historyMessage, setHistoryMessage] = useState(null);
     const [isShowMessage, setIsShowMessage] = useState(false);
     
     // loading
     const [loadingGetMessage, setLoadingGetMessage] = useState(false);
     const [loadingCreateRoom, setLoadingCreateRoom] = useState(false);
     const route = useRouter();
+    const {user} = useAuth();
     const chatId = params.id;
 
     const { pushToast, updateToast} = useToast();
 
     useEffect(() => {
+      if(user) {
         getHistoryMessage();
-
+      }
       }, []);
       
     const getHistoryMessage = async () => {
@@ -44,14 +47,13 @@ const AIChat = ({params}) => {
       if(loadingGetMessage) {
         pushToast({
           isLoading: true,
-          message: "Memuat Obrolan... Coba lagi nanti"
+          message: "Lagi memuat obrolan... Coba lagi nanti ya!"
         })
         return;
       };
 
         // if authenticated
-        if(true) {
-
+        if(user) {
           if(!historyMessage) {
             try {
               await handleCreateRoom();
@@ -65,7 +67,7 @@ const AIChat = ({params}) => {
 
           setIsShowMessage(true);
         } else {
-          route.push('/login');
+          route.push('/auth/login');
         };
 
     };

@@ -1,8 +1,9 @@
 "use client";
 import * as url from '@/helpers/endpointUrl';
+import { getUserById } from '@/helpers/user';
 import axiosInstance from "@/libs/axiosInterface";
 import { useRouter } from "next/navigation";
-import { createContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 
 const AuthContext = createContext();
 
@@ -13,18 +14,28 @@ export const AuthProvider = ({ children }) => {
 
     useEffect(() => {
         const token = localStorage.getItem('token');
-        console.log(token);
+
+        const verifyToken = async () => {
+            try {
+                const result = await axiosInstance.post(`${url.ENDPOINT_USER}/verifyToken`, {token});
+                if(result.data.message === "Success") {
+                    const userData = await getUserById(result.data.user.userId);
+                    if(userData.data.message === "Success") {
+                        setUser(userData.data.data);
+                    } else {
+                        throw new Error(userData.data.message);
+                    };
+                }
+            } catch (error) {
+                console.error(error.message);
+                localStorage.removeItem('token');
+            } finally {
+                setLoading(false);
+            }
+        }
+
         if(token) {
-            axiosInstance.post(`${url.ENDPOINT_USER}/verifyToken`, {token})
-                .then((res) => {
-                    setUser(res.data.user);
-                })
-                .catch(() => {
-                    localStorage.removeItem('token');
-                })
-                .finally(() => {
-                    setLoading(false);
-                })
+            verifyToken();
         } else {
             setLoading(false);
         }
@@ -33,7 +44,11 @@ export const AuthProvider = ({ children }) => {
     const loginUser = async (data) => {
         try {
             const res = await axiosInstance.post(`${url.ENDPOINT_USER}/login`, data);
-            const {token, userData} = res.data.data;
+
+            if(res.data.message !== "Success") throw new Error(res.data.message);
+            
+            const {token, userData} = res.data;
+            console.log(token, userData);
 
             // simpen di localstorage token nya;
             localStorage.setItem('token', token);
@@ -46,10 +61,11 @@ export const AuthProvider = ({ children }) => {
     };
     
     const logoutUser = async () => {
+        console.log("test");
         try {
             localStorage.removeItem('token');
             setUser(null);
-            router.push('/');
+            // router.push('/');
         } catch (error) {
             console.error(error.message);
             throw error;
@@ -62,3 +78,5 @@ export const AuthProvider = ({ children }) => {
         </AuthContext.Provider>
     )
 };
+
+export const useAuth = () => useContext(AuthContext);
