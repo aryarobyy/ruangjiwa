@@ -1,5 +1,5 @@
 import Image from "next/image";
-import img from "@/../public/img.png";
+// import img from "@/../public/img.png";
 
 const CardGrid = () => {
   const Card = ({ number, title, description, imgSrc, imgAlt, personName }) => (

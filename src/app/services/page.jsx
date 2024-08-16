@@ -1,14 +1,14 @@
+import Link from "next/link";
+
 const Service = () => {
   return (
     <section className="bg-white text-black">
       <div className="max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8 lg:py-16">
         <div className="max-w-xl">
-          <h2 className="text-3xl font-bold sm:text-4xl">What makes us special</h2>
+          <h2 className="text-3xl font-bold sm:text-4xl">Pelayanan Kami</h2>
 
           <p className="mt-4 text-gray-700">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat
-            dolores iure fugit totam iste obcaecati. Consequatur ipsa quod ipsum
-            sequi culpa delectus, cumque id tenetur quibusdam, quos fuga minima.
+          Kami menyediakan berbagai layanan yang dirancang buat mendukung kesehatan mental dan kesejahteraan emosional Kamu lhoo. Tim ahli kami siap membantu Kamu dalam perjalanan menuju keseimbangan dan kebahagiaan emosional, Tetap semangat dan jangan mudah buat menyerah!
           </p>
         </div>
 
@@ -34,12 +34,12 @@ const Service = () => {
             </span>
 
             <div>
-              <h2 className="text-lg font-bold">Lorem, ipsum dolor.</h2>
+              <h2 className="text-lg font-bold">Mentor Ahli Psikologi</h2>
 
               <p className="mt-1 text-sm text-gray-700">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Error
-                cumque tempore est ab possimus quisquam reiciendis tempora
-                animi! Quaerat, saepe?
+              <b><i>Bersama Profesional Terpercaya</i></b>
+              <br/>
+              Mentor kami memiliki latar belakang yang kuat dalam psikologi klinis dan konseling, serta telah membantu banyak individu untuk menemukan keseimbangan dan ketenangan dalam hidup mereka.
               </p>
             </div>
           </div>
@@ -66,12 +66,12 @@ const Service = () => {
             </span>
 
             <div>
-              <h2 className="text-lg font-bold">Lorem, ipsum dolor.</h2>
+              <h2 className="text-lg font-bold">Anonimitas Forum</h2>
 
               <p className="mt-1 text-sm text-gray-700">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Error
-                cumque tempore est ab possimus quisquam reiciendis tempora
-                animi! Quaerat, saepe?
+              <b><i>Berbagi Tanpa Rasa Khawatir</i></b>
+              <br/>
+                Kamu bisa mengikuti diskusi kami dan teman-teman lainnya. Bersama-sama, kita dapat saling mendukung dan belajar dari pengalaman satu sama lain.
               </p>
             </div>
           </div>
@@ -97,12 +97,12 @@ const Service = () => {
             </span>
 
             <div>
-              <h2 className="text-lg font-bold">Lorem, ipsum dolor.</h2>
+              <h2 className="text-lg font-bold">Konsultasi Personal</h2>
 
               <p className="mt-1 text-sm text-gray-700">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Error
-                cumque tempore est ab possimus quisquam reiciendis tempora
-                animi! Quaerat, saepe?
+              <b><i>Solusi yang Tepat untuk Kamu</i></b>
+              <br/>
+              Dapatkan sesi konsultasi personal yang disesuaikan dengan kebutuhan dan situasi unik Anda. Bersama konselor berpengalaman, Anda akan menemukan jalan keluar dari masalah dan mencapai tujuan kesehatan mental Anda.
               </p>
             </div>
           </div>
@@ -128,12 +128,12 @@ const Service = () => {
             </span>
 
             <div>
-              <h2 className="text-lg font-bold">Lorem, ipsum dolor.</h2>
+              <h2 className="text-lg font-bold">Meditasi dan Relaksasi</h2>
 
               <p className="mt-1 text-sm text-gray-700">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Error
-                cumque tempore est ab possimus quisquam reiciendis tempora
-                animi! Quaerat, saepe?
+              <b><i>Temukan Ketenangan di Tengah Kesibukan</i></b>
+              <br/>
+              Manfaatkan fitur meditasi yang dirancang untuk membantu Kamu melepaskan stres dan menemukan ketenangan. Nikmati panduan yang mudah diikuti kapan saja, di mana saja.<Link className="text-[var(--button-bg-color)]" href="/login" > pelajari lebih lanjut.</Link>
               </p>
             </div>
           </div>
@@ -159,12 +159,12 @@ const Service = () => {
             </span>
 
             <div>
-              <h2 className="text-lg font-bold">Lorem, ipsum dolor.</h2>
+              <h2 className="text-lg font-bold">Saran dan Rekomendasi</h2>
 
               <p className="mt-1 text-sm text-gray-700">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Error
-                cumque tempore est ab possimus quisquam reiciendis tempora
-                animi! Quaerat, saepe?
+              <b><i>Langkah Positif untuk Kehidupan Lebih Baik</i></b>
+              <br/>
+              Terima saran dan rekomendasi dari para ahli yang bisa Kamu lakukan buat ningkatin kesehatan mental dan kualitas hidup Kamu. Setiap rekomendasi didasarkan pada pendekatan holistik dan penelitian terbaru.
               </p>
             </div>
           </div>
@@ -190,12 +190,12 @@ const Service = () => {
             </span>
 
             <div>
-              <h2 className="text-lg font-bold">Lorem, ipsum dolor.</h2>
+              <h2 className="text-lg font-bold">Jurnal Pribadi</h2>
 
               <p className="mt-1 text-sm text-gray-700">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Error
-                cumque tempore est ab possimus quisquam reiciendis tempora
-                animi! Quaerat, saepe?
+              <b><i>Ekspresikan Diri dengan Jujur</i></b>
+              <br/>
+              Gunakan fitur ini sebagai sarana untuk menulis dan mencatat perjalanan emosional Kamu. Ini adalah tempat untuk merenung, memproses perasaan, dan melacak kemajuan kesehatan mental Kamu.
               </p>
             </div>
           </div>
