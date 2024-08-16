@@ -1,8 +1,15 @@
+"use client"
+
 import Image from "next/image";
 import Link from "next/link";
 import Button from "./Button";
+import { useState } from "react";
+import { getUser } from "@/helpers/user";
+import useGetUserProfile from "@/utils/useGetUserProfile";
 
 const Navbar = () => {
+  const {user} = useGetUserProfile()
+
   return (
     <>
       <header className="bg-[var(--hero-bg-color)]">
@@ -73,18 +80,22 @@ const Navbar = () => {
                   </li>
 
                   <li>
+                    {user && (
                     <Link
                       className="text-[var(--text-color)] text-base transition hover:text-[var(--button-hover-bg-color)]"
                       href="/profile"
                     >
                       Profile sementara
                     </Link>
+                    )}
                   </li>
 
                 </ul>
               </nav>
+              {!user && (
               <Button />
-            </div>
+              )}
+              </div>
           </div>
         </div>
       </header>
