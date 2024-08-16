@@ -5,13 +5,10 @@ const jwtGenerate = (userId, res) => {
 		expiresIn: "15d",
 	});
 
-	res.cookie("jwt", token, {
-		httpOnly: true, // more secure
-		maxAge: 15 * 24 * 60 * 60 * 1000, // 15 days
-		sameSite: "strict", // CSRF
-	});
+	const cookie = `jwt=${token}; HttpOnly; Max-Age=${15 * 24 * 60 * 60}; Path=/; Secure; SameSite=Strict`;
 
-	return token;
+
+	return {token, cookie};
 };
 
 export default jwtGenerate;
