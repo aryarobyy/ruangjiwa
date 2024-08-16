@@ -34,9 +34,8 @@ export const mongoGetUserById = async (idUser) => {
     try {
         const {client, database} = await connectDb();
         const col = database.collection(collectionName);
-        const id = Number(idUser)
 
-        const res = await col.findOne({"userId": id});
+        const res = await col.findOne({"userId": iduser});
         await client.close();
 
         return res;
