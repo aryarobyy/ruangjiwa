@@ -2,10 +2,11 @@ import { mongoPostUser, mongoGetAllUser } from "@/mongoMethods/user";
 import { v4 as uuidv4 } from "uuid";
 import bcrypt from "bcryptjs";
 import { uploadImage } from "@/utils/cloudinary";
+import jwt from 'jsonwebtoken'
+import jwtGenerate from "@/hooks/jwtGenerate";
 
 export const POST = async (req, res) => {
     try {
-        const data = await req.json();
 
         const uuid = uuidv4();
         const { password, profilePic,...otherData } = data;
@@ -21,8 +22,9 @@ export const POST = async (req, res) => {
         const userData = {...otherData, id: uuid, password: hashedPassword, profilePic: profilePicUrl,
         };
 
+        jwtGenerate(uuid, res)
         await mongoPostUser(userId);
-        return Response.json({ message: "Success" });
+        return Response.json({ message: "Success", token });
     } catch (error) {
         console.error(error.message);
         return Response.json({
@@ -31,10 +33,11 @@ export const POST = async (req, res) => {
     }
 };
 
-export const GET = async () => {
+export const GET = async (res) => {
     try {
         const response = await mongoGetAllUser();
 
+        jwtGenerate(response, res)
         return Response.json({
             message: "Success",
             data: response,

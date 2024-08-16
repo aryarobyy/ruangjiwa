@@ -8,3 +8,11 @@ export const postUser = async (data) => {
         
     }
 }
+
+export const getUser = async () => {
+    return axiosInstance.get(`${url.ENDPOINT_USER}`);
+};
+
+export const getUserById = async (userId) => {
+    return axiosInstance.get(`${url.ENDPOINT_USER}/${userId}`)
+}

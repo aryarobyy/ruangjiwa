@@ -1,7 +1,5 @@
 import link from "next/link";
 
-
-
 const SignIn = () => {
     return(
 <section className="bg-white">
