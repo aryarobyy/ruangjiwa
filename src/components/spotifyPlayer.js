@@ -1,7 +1,7 @@
 const SpotifyPlayer = ({ playlistId }) => {
   return (
     <div className="mt-8">
-      <h2 className="text-2xl font-semibold text-black mb-4">
+      <h2 className="text-2xl font-semibold text-[var(--title-color)] mb-4">
         Musik untuk Relaksasi
       </h2>
       <iframe
