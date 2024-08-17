@@ -1,6 +1,6 @@
 "use client"
 import React from 'react';
-import useGetUserProfile from '@/utils/useGetUserProfile';
+import { useAuth } from '@/context/AuthContext';
 
 function ProfileCard({
     name,
@@ -11,6 +11,7 @@ function ProfileCard({
     coverImage,
     profileImage
 }) {
+    const { user } = useAuth()
     return (
         <div className="max-w-4xl mx-4 sm:max-w-md md:max-w-md lg:max-w-lg xl:max-w-lg sm:mx-auto md:mx-auto lg:mx-auto xl:mx-auto mt-16 bg-white shadow-xl rounded-lg text-gray-900">
             <div className="rounded-t-lg h-48 overflow-hidden">
@@ -61,7 +62,7 @@ function ProfileCard({
             </ul>
             <div className="p-4 border-t mx-8 mt-4">
                 <button className="w-1/2 block mx-auto rounded-full bg-gray-900 hover:shadow-lg font-semibold text-white px-6 py-2">
-                    Follow
+                    Edit
                 </button>
             </div>
         </div>

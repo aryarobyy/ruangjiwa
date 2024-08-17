@@ -53,3 +53,21 @@ export const mongoGetUserByUsername = async (username) => {
 
     return res;
 }
+
+export const mongoUpdateUser = async (username, data) => {
+    try {
+        const {client, database} = await connectDb();
+        const col = database.collection(collectionName);
+
+        const response = await col.updateOne(
+            {username},
+            {$set: data}
+        )
+        
+        await client.close()
+
+        return response
+    } catch(e){
+        throw new Error(e.message)
+    }
+}

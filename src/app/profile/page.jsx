@@ -1,6 +1,7 @@
 'use client'
 import { useAuth } from "@/context/AuthContext";
 import Image from "next/image";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
@@ -55,6 +56,7 @@ const Page = () => {
             </div>
           </dl>
         </div>
+      <Link href="/profile/edit" className="text-black"  > Edit your profile </Link>
       </div>
     </div>
   );
