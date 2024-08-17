@@ -11,7 +11,6 @@ const schema = Joi.object({
 export const POST = async (req, res) => {
     try {
         const data = await req.json();
-        console.log(data);
         const {error, value} = schema.validate(data);
 
         if(error) {

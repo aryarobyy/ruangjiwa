@@ -19,12 +19,23 @@ export const AuthProvider = ({ children }) => {
             try {
                 const result = await axiosInstance.post(`${url.ENDPOINT_USER}/verifyToken`, {token});
                 if(result.data.message === "Success") {
-                    const userData = await getUserById(result.data.user.userId);
-                    if(userData.data.message === "Success") {
-                        setUser(userData.data.data);
+
+                    // !! get data from database or for alternatif to better rendering get data from localstorage. Kak gem !!
+
+                    // const userData = await getUserById(result.data.user.userId);
+                    // if(userData.data.message === "Success") {
+                    //     setUser(userData.data.data);
+                    // } else {
+                    //     throw new Error(userData.data.message);
+                    // };
+
+                    const userData = localStorage.getItem('userData');
+
+                    if(!userData) {
+                        localStorage.removeItem('token');
                     } else {
-                        throw new Error(userData.data.message);
-                    };
+                        setUser(userData);
+                    }
                 }
             } catch (error) {
                 console.error(error.message);
@@ -48,10 +59,10 @@ export const AuthProvider = ({ children }) => {
             if(res.data.message !== "Success") throw new Error(res.data.message);
             
             const {token, userData} = res.data;
-            console.log(token, userData);
 
-            // simpen di localstorage token nya;
+            // simpen di localstorage token sama data nya;
             localStorage.setItem('token', token);
+            localStorage.setItem('userData', userData);
             setUser(userData);
             router.push('/');
         } catch (error) {
@@ -61,11 +72,11 @@ export const AuthProvider = ({ children }) => {
     };
     
     const logoutUser = async () => {
-        console.log("test");
         try {
             localStorage.removeItem('token');
+            localStorage.removeItem('userData');
             setUser(null);
-            // router.push('/');
+            router.push('/');
         } catch (error) {
             console.error(error.message);
             throw error;

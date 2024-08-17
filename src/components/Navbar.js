@@ -1,11 +1,37 @@
-'use client'
+"use client"
 import Image from "next/image";
 import Link from "next/link";
 import Button from "./ui/Button";
 import { useAuth } from "@/context/AuthContext";
+import useToast from "@/hooks/useHotToast";
+// import Button from "./Button";
 
 const Navbar = () => {
   const {user, logoutUser} = useAuth();
+  // const {user} = useGetUserProfile()
+  const {pushToast, updateToast} = useToast()
+
+  const handleLogout = async () => {
+    const toastId = pushToast({
+      message: "Ditunggu ya!...",
+      isLoading: true
+    });
+    try {
+      await logoutUser();
+      updateToast({
+        toastId,
+        message: "Berhasil logout!"
+      });
+    } catch (error) {
+      console.error(error.message);
+      updateToast({
+        toastId,
+        message: error.message,
+        isError: true
+      })
+      
+    }
+  }
 
   return (
     <>
@@ -92,7 +118,7 @@ const Navbar = () => {
                     <Button>
                       <Link href={"/profile"}>Profile</Link>
                     </Button>
-                    <Button.danger onClick={logoutUser}>
+                    <Button.danger onClick={handleLogout}>
                       Test Logout
                     </Button.danger>
                   </div>
@@ -114,6 +140,9 @@ const Navbar = () => {
               }
               {/* <Button /> */}
             </div>
+              {/* {!user && (
+              <Button />
+              )} */}
           </div>
         </div>
       </header>

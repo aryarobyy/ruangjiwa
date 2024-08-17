@@ -18,7 +18,7 @@ const Login = () => {
 
   useEffect(() => {
     if(user) router.push('/');
-  }, [])
+  }, [])  
 
   // handler funtion
   const handleSubmit = async (e) => {
