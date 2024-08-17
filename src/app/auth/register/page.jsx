@@ -18,6 +18,8 @@ const Register = () => {
   
     try {
       const userData = await postUser(inputs);
+      router.push("/")
+      localStorage.setItem("user-data", data.token)
       console.log("data", userData);
   
       console.log("Inputs", inputs);
