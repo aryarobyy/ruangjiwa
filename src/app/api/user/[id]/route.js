@@ -2,7 +2,7 @@ import { mongoGetUserById } from "@/mongoMethods/user";
 
 export const GET = async (req, {params}) => {
     try {
-        const userId = params._id;
+        const userId = params.id;
 
         const response = await mongoGetUserById(userId);
 

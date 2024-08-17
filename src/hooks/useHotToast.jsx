@@ -28,6 +28,7 @@ export default function useToast() {
           maxWidth: 380,
           fontSize: '13px',
         },
+        duration: 10000
       });
     }
   };

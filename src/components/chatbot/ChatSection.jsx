@@ -117,7 +117,7 @@ const ChatSection = ({
       className={`fixed h-screen md:h-[90dvh] w-full md:md:w-1/3 top-0 md:top-14 shadow-md shadow-gray-600 bg-secondary ring-1 ring-gray-500 md:right-1 rounded-xl ${className}`}
     >
       <div className="flex flex-col h-full relative min-h-full justify-between">
-        <div className="p-4 bg-slate-300 rounded-b-xl text-center text-lg top-0 w-full sticky box-border text-dark flex justify-between items-center rounded-xl">
+        <div className="p-4 bg-slate-300 rounded-b-xl text-center text-lg top-0 w-full sticky box-border flex justify-between items-center rounded-xl">
           <Button.secondary onClick={() => setIsShowMessage(false)}>
             <ChevronsRight />
           </Button.secondary>
