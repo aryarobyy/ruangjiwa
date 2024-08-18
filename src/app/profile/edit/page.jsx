@@ -27,7 +27,7 @@ function EditProfile() {
         const selectedFile = e.target.files?.[0];
     
         if (!selectedFile) {
-            alert("Please select a file.");
+            alert("Tolong pilih File");
             return;
         }
         setFile(selectedFile);
@@ -37,7 +37,7 @@ function EditProfile() {
 
     const handleUploadImage = async () => {
         const toastId = pushToast({
-            message: "Uploading image...",
+            message: "Mengupload gambar...",
             isLoading: true,
         });
         try {
@@ -50,13 +50,13 @@ function EditProfile() {
     
             updateToast({
                 toastId,
-                message: "Image uploaded successfully",
+                message: "sukses mengganti gambar",
             });
         } catch (error) {
             console.error(error.message);
             updateToast({
                 toastId,
-                message: "Failed to upload image",
+                message: "gagal untuk upload gambar",
                 isError: true,
             });
         }
@@ -66,7 +66,7 @@ function EditProfile() {
         e.preventDefault();
         const toastId = pushToast({
             isLoading: true,
-            message: "Please wait...",
+            message: "Mohon tunggu...",
         });
 
         try {
@@ -77,10 +77,10 @@ function EditProfile() {
             // console.log("Data to update:", update);
 
             const response = await updateUser(update);
-            console.log("Response data after update:", response.data);
+            console.log("Respon data setelah update:", response.data);
             
             if (response.data.message === "Success") {
-                console.log("Updated user data:", response.data.userData);
+                console.log("User data terupdate:", response.data.userData);
                 setUpdate({
                     name: "",
                     username: "",
@@ -92,14 +92,14 @@ function EditProfile() {
                 });
                 updateToast({
                     toastId,
-                    message: "Profile updated successfully",
+                    message: "Profile berhasil di perbarui",
                 });
                 router.push("/profile");
             } else {
-                console.log("Update failed:", response.data.message);
+                console.log("Update profile gagal:", response.data.message);
             }
         } catch (error) {
-            console.error("Error during update:", error);
+            console.error("Error ketika update", error);
             updateToast({
                 toastId,
                 message: error.message,

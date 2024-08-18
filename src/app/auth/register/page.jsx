@@ -42,7 +42,7 @@ const Register = () => {
     });
     try {
       if (inputs.password !== confirmPass) {
-        throw new Error("Please Confirm the Password");
+        throw new Error("Tolong konfirmasi password");
       }
 
       const response = await registerUser(inputs);
@@ -53,8 +53,6 @@ const Register = () => {
           username: inputs.username,
           password: inputs.password
         });
-
-        localStorage.setItem("userData", JSON.stringify(inputs));
 
         updateToast({
           toastId,
