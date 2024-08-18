@@ -8,7 +8,6 @@ export const postImage = async (file) => {
         return axiosInstance.post(`${url.ENDPOINT_IMAGE}`, newFile);
     } catch (error) {
         console.error(error.message);
-        throw new Error(error.message);
-        
+        throw new Error(error.message);       
     }
 }

@@ -225,11 +225,12 @@ GET (semua artikel): http://example.api/artikel
         data: [
                 {
                     "_id": "66b44d021cc5622b6c6e68b4",
-                    "adminId": stringUID,
+                    "creatorId": string,
                     "artikelId": stringUID,
                     "name": string,
                     "title": string,
                     "description": string,
+                    image: string
                     "date": stringDate
                 }
         ]

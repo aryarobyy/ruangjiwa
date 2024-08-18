@@ -1,141 +1,253 @@
-"use client"
-import link from "next/link";
-import { postUser  } from "@/helpers/user";
-import { useState } from "react";
+"use client";
+import { postUser, registerUser } from "@/helpers/user";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import useToast from "@/hooks/useHotToast";
+import { Input } from "@/components/ui/Input";
+import { useAuth } from "@/context/AuthContext";
+import Button from "@/components/ui/Button";
 
 const Register = () => {
   const [inputs, setInputs] = useState({
     name: "",
+    username: "",
     email: "",
     password: "",
   });
-  const router = useRouter()
+  const [confirmPass, setConfirmPass] = useState("");
+  const [role, setRole] = useState('user');
+  const router = useRouter();
+  const { updateToast, pushToast } = useToast();
+  const { user, loginUser, logoutUser } = useAuth();
 
-  const handleSignIn = async (e) => {
+  const testLogin = {
+    username: "zaxchaxs",
+    password: "marsha123"
+  }
+
+  // checking if user is already logged. Kak gem.
+  useEffect(() => {
+    if(user) {
+      router.push('/');
+    }
+  }, []);
+
+  // function handler
+  const handleRegister = async (e) => {
     e.preventDefault();
-  
+
+    const toastId = pushToast({
+      isLoading: true,
+      message: "Mohon tunggu...",
+    });
     try {
-      const userData = await postUser(inputs);
-      router.push("/")
-      localStorage.setItem("user-data", data.token)
-      console.log("data", userData);
-  
-      console.log("Inputs", inputs);
+      if (inputs.password !== confirmPass) {
+        throw new Error("Tolong konfirmasi password");
+      }
+
+      const response = await registerUser(inputs);
+      if (response.data.message !== "Success") {
+        throw Error(response.data.message);
+      } else {
+        loginUser({
+          username: inputs.username,
+          password: inputs.password
+        });
+
+        updateToast({
+          toastId,
+          message: "Berhasil",
+        });
+        setInputs({
+          name: "",
+          username: "",
+          email: "",
+          password: "",
+        });
+      }
     } catch (error) {
       console.error(error);
+      updateToast({
+        toastId,
+        message: error.message,
+        isError: true,
+      });
     }
   };
-  
 
-    return(
-<section className="bg-white">
+  return (
+    <section className="bg-white">
+      <div className="lg:grid lg:min-h-screen align-middle">
+        <main className="flex items-center justify-center px-8 py-8 sm:px-12 lg:col-span-7 lg:px-16 lg:py-12 xl:col-span-6">
+          <div className="max-w-xl lg:max-w-3xl p-7 shadow-md">
+            <a className="block text-green-600" href="#">
+              <span className="sr-only">Home</span>
+            </a>
 
-  <div className="lg:grid lg:min-h-screen align-middle">
-    
-    <main className="flex items-center justify-center px-8 py-8 sm:px-12 lg:col-span-7 lg:px-16 lg:py-12 xl:col-span-6">
-      <div className="max-w-xl lg:max-w-3xl p-7 shadow-md">
-        <a className="block text-green-600" href="#">
-          <span className="sr-only">Home</span>
-        </a>
+            <h1 className="mt-6 text-2xl font-bold text-gray-900 sm:text-3xl md:text-4xl">
+              Selamat datang di Sahabat Medis
+            </h1>
 
-        <h1 className="mt-6 text-2xl font-bold text-gray-900 sm:text-3xl md:text-4xl">
-          Welcome to Sahabat Medis
-        </h1>
-
-        <p className="mt-4 leading-relaxed text-gray-500">
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eligendi nam dolorum aliquam,
-          quibusdam aperiam voluptatum.
-        </p>
-
-        <form action="#" onSubmit={handleSignIn} className="mt-8 grid grid-cols-6 gap-6">
-          <div className="col-span-6">
-            <label htmlFor="NamaLengkap" className="block text-sm font-medium text-gray-700">
-              Nama Lengkap
-            </label>
-
-            <input
-              type="text"
-              id="NamaLengkap"
-              name="nama-lengkap"
-              onChange={(e) => setInputs({...inputs,name: e.target.value})}
-              value={inputs.name}
-              className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-md p-2.5" required
-            />
-          </div>
-
-          
-
-          <div className="col-span-6">
-            <label htmlFor="Email" className="block text-sm font-medium text-gray-700"> Email </label>
-
-            <input
-              type="email"
-              id="Email"
-              name="email"
-              onChange={(e) => setInputs({...inputs, email: e.target.value})}
-              value={inputs.email}
-              className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-md p-2.5" placeholder="Example@gmail.com" required
-            />
-          </div>
-
-          <div className="col-span-6 sm:col-span-3">
-            <label htmlFor="Password" className="block text-sm font-medium text-gray-700"> Password </label>
-
-            <input
-              type="password"
-              id="Password"
-              name="password"
-              onChange={(e) => setInputs({...inputs, password: e.target.value})}
-              value={inputs.password}
-              className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-md p-2.5" required
-            />
-          </div>
-{/* 
-          <div className="col-span-6 sm:col-span-3">
-            <label htmlFor="PasswordConfirmation" className="block text-sm font-medium text-gray-700">
-              Password Confirmation
-            </label>
-
-            <input
-              type="password"
-              id="PasswordConfirmation"
-              name="password_confirmation"
-              onChange={(e) => setInputs({...inputs, confirmPassword: e.target.value})}
-              value={inputs.confirmPassword}
-              className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-md p-2.5" required
-            />
-          </div> */}
-
-          <div className="col-span-6">
-            <p className="text-sm text-gray-500">
-              By creating an account, you agree to our
-              <a href="#" className="text-gray-700 underline"> terms and conditions </a>
-              and
-              <a href="#" className="text-gray-700 underline p-1">privacy policy</a>.
+            <p className="mt-4 leading-relaxed text-gray-500">
+              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eligendi
+              nam dolorum aliquam, quibusdam aperiam voluptatum.
             </p>
-          </div>
 
-          <div className="col-span-6 sm:flex sm:items-center sm:gap-4">
-            <button
-              className="inline-block shrink-0 rounded-md border border-green-600 bg-green-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-transparent hover:text-green-600 focus:outline-none focus:ring active:text-green-500"
-              onClick={handleSignIn}
-            >
-              Create an account
-            </button>
+            <div className="text-gray-500 mt-4 w-full text-center flex flex-col gap-2">
+              <h1 className="font-semibold">Buat Akun:</h1>
+              <div className="flex gap-3 items-center justify-center">
+                <Button onClick={(e) => setRole(e.target.value)} value={"user"} className={`${role === 'user' ? 'bg-blue-500 ring-blue-500 hover:bg-blue-600 focus:ring-blue-500' : ''}`}>User</Button>
+                <Button.secondary onClick={(e) => setRole(e.target.value)} value={"dokter"} className={`${role === 'dokter' ? 'bg-blue-500 ring-blue-500 hover:bg-blue-600 focus:ring-blue-500' : ''}`} >Dokter</Button.secondary>
+              </div>
+            </div>
 
-            <p className="mt-4 text-sm text-gray-500 sm:mt-0">
-              Already have an account?
-              <a href="#" className="text-gray-700 underline p-1">Log in</a>.
-            </p>
+            {
+              role === 'user' ? (
+                
+                // user form
+                <form
+                  onSubmit={handleRegister}
+                  className={`mt-4 grid grid-cols-6 gap-4`}
+                >
+                  <div className="col-span-6">
+                    <label
+                      htmlFor="NamaLengkap"
+                      className="block text-sm font-medium text-gray-700 my-2"
+                    >
+                      Nama Lengkap
+                    </label>
+                    <Input
+                      type={"text"}
+                      value={inputs.name}
+                      onChange={(e) =>
+                        setInputs((prev) => ({ ...prev, name: e.target.value }))
+                      }
+                      placeholder={"Nama Lengkap"}
+                      required
+                    />
+                  </div>
+
+                  <div className="col-span-6">
+                    <label
+                      htmlFor="Username"
+                      className="block text-sm font-medium text-gray-700 my-2"
+                    >
+                      Username
+                    </label>
+                    <Input
+                      type={"text"}
+                      value={inputs.username}
+                      onChange={(e) =>
+                        setInputs((prev) => ({ ...prev, username: e.target.value }))
+                      }
+                      placeholder={"Username"}
+                      required
+                    />
+                  </div>
+
+                  <div className="col-span-6">
+                    <label
+                      htmlFor="Email"
+                      className="block text-sm font-medium text-gray-700 my-2"
+                    >
+                      Email
+                    </label>
+                    <Input
+                      type={"email"}
+                      value={inputs.email}
+                      onChange={(e) =>
+                        setInputs((prev) => ({ ...prev, email: e.target.value }))
+                      }
+                      placeholder={"Email"}
+                      required
+                    />
+                  </div>
+
+                  <div className="col-span-6 sm:col-span-3">
+                    <label
+                      htmlFor="Password"
+                      className="block text-sm font-medium text-gray-700 my-2"
+                    >
+                      Password
+                    </label>
+                    <Input
+                      type={"password"}
+                      value={inputs.password}
+                      onChange={(e) =>
+                        setInputs((prev) => ({ ...prev, password: e.target.value }))
+                      }
+                      placeholder={"Sandi Password"}
+                      required
+                    />
+                  </div>
+
+                  <div className="col-span-6 sm:col-span-3">
+                    <label
+                      htmlFor="Password"
+                      className="block text-sm font-medium text-gray-700 my-2"
+                    >
+                      Confirm Password
+                    </label>
+                    <Input
+                      type={"password"}
+                      value={confirmPass}
+                      onChange={(e) => setConfirmPass(e.target.value)}
+                      placeholder={"Sandi Password"}
+                      required
+                    />
+                  </div>
+
+                  <div
+                    className={`${
+                      confirmPass && inputs.password !== confirmPass ? "" : "hidden"
+                    } w-full text-center text-sm font-medium text-red-500 col-span-6`}
+                  >
+                    <p>{"Password didn't match"}</p>
+                  </div>
+
+                  <div className="col-span-6">
+                    <p className="text-sm text-gray-500">
+                      By creating an account, you agree to our
+                      <a href="#" className="text-gray-700 underline">
+                        {` terms and conditions `}
+                      </a>
+                      and
+                      <a href="#" className="text-gray-700 underline p-1">
+                        privacy policy.
+                      </a>
+                    </p>
+                  </div>
+
+                  <div className="col-span-6 sm:flex sm:items-center sm:gap-4">
+                      <Button onClick={handleRegister}>
+                        Buat Akun
+                      </Button>
+                    <p className="mt-4 text-sm text-gray-500 sm:mt-0">
+                      Already have an account?
+                      <a href="/auth/login" className="text-gray-700 underline p-1">
+                        Log in
+                      </a>
+                    </p>
+                  </div>
+                </form>
+              ) : (
+
+                // dokter form
+              <form action="" className="">
+                <div className="text-dark">
+                  <h1>From Dokter</h1>
+                </div>
+              </form>
+
+              )
+            }
+
+            {/* form dokter */}
           </div>
-        </form>
+        </main>
       </div>
-    </main>
-  </div>
-</section>
-    )
-}
+    </section>
+  );
+};
 
 export default Register;

@@ -1,14 +1,37 @@
 "use client"
-
 import Image from "next/image";
 import Link from "next/link";
-import Button from "./Button";
-import { useState } from "react";
-import { getUser } from "@/helpers/user";
-import useGetUserProfile from "@/utils/useGetUserProfile";
+import Button from "./ui/Button";
+import { useAuth } from "@/context/AuthContext";
+import useToast from "@/hooks/useHotToast";
+// import Button from "./Button";
 
 const Navbar = () => {
-  const {user} = useGetUserProfile()
+  const {user, logoutUser} = useAuth();
+  // const {user} = useGetUserProfile()
+  const {pushToast, updateToast} = useToast()
+
+  const handleLogout = async () => {
+    const toastId = pushToast({
+      message: "Ditunggu ya!...",
+      isLoading: true
+    });
+    try {
+      await logoutUser();
+      updateToast({
+        toastId,
+        message: "Berhasil logout!"
+      });
+    } catch (error) {
+      console.error(error.message);
+      updateToast({
+        toastId,
+        message: error.message,
+        isError: true
+      })
+      
+    }
+  }
 
   return (
     <>
@@ -80,22 +103,46 @@ const Navbar = () => {
                   </li>
 
                   <li>
-                    {user && (
                     <Link
                       className="text-[var(--text-color)] text-base transition hover:text-[var(--button-hover-bg-color)]"
-                      href="/profile"
+                      href={`/aichat/${user ? user.userId : "guest" }`}
                     >
-                      Profile sementara
+                      ImuBot
                     </Link>
-                    )}
                   </li>
-
                 </ul>
               </nav>
-              {!user && (
+              {
+                user ? (
+                  <div className="flex gap-3 items-center justify-center">
+                    <Button>
+                      <Link href={"/profile"}>Profile</Link>
+                    </Button>
+                    <Button.danger onClick={handleLogout}>
+                      Test Logout
+                    </Button.danger>
+                  </div>
+                ): (
+                <div className={`flex gap-3 items-center justify-center`}>
+                  <Button>
+                    <Link href={"/auth/login"}>
+                      Login
+                    </Link>
+                  </Button>
+                  <Button.tertary>
+                    <Link href={"/auth/register"}>
+                      Register
+                    </Link>
+                  </Button.tertary>
+                </div>
+
+                )
+              }
+              {/* <Button /> */}
+            </div>
+              {/* {!user && (
               <Button />
-              )}
-              </div>
+              )} */}
           </div>
         </div>
       </header>

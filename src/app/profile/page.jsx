@@ -1,42 +1,27 @@
 "use client"
-import React from 'react';
-import useGetUserProfile from '@/utils/useGetUserProfile';
+import React, { useState } from 'react';
+import { useAuth } from '@/context/AuthContext';
+import Link from 'next/link';
 
-function ProfileCard({
-    name,
-    username,
-    medicalHistory,
-    age,
-    role,
-    coverImage,
-    profileImage
-}) {
+function ProfileCard() {
+  const {user} = useAuth()
+  console.log(user)
     return (
         <div className="max-w-4xl mx-4 sm:max-w-md md:max-w-md lg:max-w-lg xl:max-w-lg sm:mx-auto md:mx-auto lg:mx-auto xl:mx-auto mt-16 bg-white shadow-xl rounded-lg text-gray-900">
-            <div className="rounded-t-lg h-48 overflow-hidden">
-                <img
-                    className="object-cover object-top w-full"
-                    src={coverImage}
-                    alt="Cover"
-                />
+            <div className="rounded-t-lg h-48 overflow-hidden bg-[url('https://images.unsplash.com/photo-1449844908441-8829872d2607?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NzEyNjZ8MHwxfHNlYXJjaHw2fHxob21lfGVufDB8MHx8fDE3MTA0MDE1NDZ8MA&ixlib=rb-4.0.3&q=80&w=1080')]">
             </div>
-            <div className="mx-auto w-48 h-48 relative -mt-24 border-4 border-white rounded-full overflow-hidden">
-                <img
-                    className="object-cover object-center h-full w-full"
-                    src={profileImage}
-                    alt="Profile"
-                />
+            <div className="mx-auto w-48 h-48 relative -mt-24 border-4 border-white rounded-full overflow-hidden bg-[url('https://images.unsplash.com/photo-1438761681033-6461ffad8d80?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NzEyNjZ8MHwxfHNlYXJjaHw4fHxwcm9maWxlfGVufDB8MHx8fDE3MTEwMDM0MjN8MA&ixlib=rb-4.0.3&q=80&w=1080')] ">
             </div>
             <div className="text-center mt-4">
-                <h2 className="font-semibold text-2xl">{name}</h2>
-                <p className="text-gray-500">@{username}</p>
+                <p className="text-gray-500">username: @{user?.username} </p>
+                <h2 className="font-semibold text-2xl">Nama: {user?.name}</h2>
             </div>
             <div className="text-center mt-4">
-                <p className="text-gray-700"><strong>Usia:</strong> {age} tahun</p>
-                <p className="text-gray-700"><strong>Riwayat Penyakit:</strong> {medicalHistory}</p>
-                <p className="text-gray-700"><strong>Role:</strong> {role}</p>
+                <p className="text-gray-700"><strong>Usia: {user?.age}</strong>  tahun</p>
+                <p className="text-gray-700"><strong>Riwayat Penyakit: {user?.medHistory}</strong> </p>
+                <p className="text-gray-700"><strong>{user?.role}</strong></p>
             </div>
-            <ul className="py-6 mt-4 text-gray-700 flex items-center justify-around">
+            {/* <ul className="py-6 mt-4 text-gray-700 flex items-center justify-around">
                 <li className="flex flex-col items-center justify-around">
                     <svg className="w-6 fill-current text-blue-900" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                         <path
@@ -58,11 +43,11 @@ function ProfileCard({
                         />
                     </svg>
                 </li>
-            </ul>
+            </ul> */}
             <div className="p-4 border-t mx-8 mt-4">
-                <button className="w-1/2 block mx-auto rounded-full bg-gray-900 hover:shadow-lg font-semibold text-white px-6 py-2">
-                    Follow
-                </button>
+                <Link href='/profile/edit' className=" flex-center w-1/2 block mx-auto rounded-full bg-gray-900 hover:shadow-lg font-semibold text-white px-6 py-2">
+                    Edit
+                </Link>
             </div>
         </div>
     );

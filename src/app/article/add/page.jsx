@@ -109,7 +109,7 @@ const ArtikelAdd = () => {
   };
 
   return (
-    <div className="w-full flex justify-center items-center p-10">
+    <div className="w-full flex justify-center items-center p-10 bg-primary">
       <div className="w-fit flex flex-col gap-2">
         <h1>Testing Artikel Post page</h1>
 
