@@ -53,6 +53,9 @@ const Register = () => {
           username: inputs.username,
           password: inputs.password
         });
+
+        localStorage.setItem("userData", JSON.stringify(inputs));
+
         updateToast({
           toastId,
           message: "Berhasil",

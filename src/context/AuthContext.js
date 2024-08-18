@@ -30,11 +30,12 @@ export const AuthProvider = ({ children }) => {
                     // };
 
                     const userData = localStorage.getItem('userData');
-
+                    const parsedUserData  = JSON.parse(userData)
+                    console.log(parsedUserData)
                     if(!userData) {
                         localStorage.removeItem('token');
                     } else {
-                        setUser(userData);
+                        setUser(parsedUserData);
                     }
                 }
             } catch (error) {
@@ -62,7 +63,7 @@ export const AuthProvider = ({ children }) => {
 
             // simpen di localstorage token sama data nya;
             localStorage.setItem('token', token);
-            localStorage.setItem('userData', userData);
+            localStorage.setItem('userData', JSON.stringify(userData));
             setUser(userData);
             router.push('/');
         } catch (error) {
@@ -91,3 +92,7 @@ export const AuthProvider = ({ children }) => {
 };
 
 export const useAuth = () => useContext(AuthContext);
+
+export const useGetUser = () => {
+
+}

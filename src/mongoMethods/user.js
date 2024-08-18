@@ -53,21 +53,32 @@ export const mongoGetUserByUsername = async (username) => {
 
     return res;
 }
-
 export const mongoUpdateUser = async (username, data) => {
     try {
-        const {client, database} = await connectDb();
+        const { client, database } = await connectDb();
         const col = database.collection(collectionName);
 
-        const response = await col.updateOne(
-            {username},
-            {$set: data}
-        )
-        
-        await client.close()
+        console.log("Updating user with username:", username);
+        console.log("Data to update:", data);
 
-        return response
-    } catch(e){
-        throw new Error(e.message)
+        const res = await col.updateOne(
+            { username }, // Change userId to username
+            { $set: data }
+        );
+
+        console.log("Update result:", res);
+
+        const updatedUser = await col.findOne({ username }); // Change userId to username
+
+        await client.close();
+
+        if (res.modifiedCount === 0) {
+            throw new Error("Update failed or no changes made.");
+        }
+
+        return updatedUser;
+    } catch (e) {
+        console.error("Error updating user:", e);
+        throw new Error("Failed to update user: " + e.message);
     }
-}
+};
