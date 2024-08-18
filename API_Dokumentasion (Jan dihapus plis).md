@@ -21,6 +21,7 @@ POST (register): http://example.api/user
         username: string,
         password: string,
         email: string,
+        role: string
         umur?: string,
         penyakit?: string,
     }
@@ -42,13 +43,14 @@ GET (login dokter): http://example.api/dokter
         }
     }
 
-POST (register user): http://example.api/dokter
+POST (register dokter): http://example.api/dokter
     data = {
         id: string
         name: string
         username: string
         password: string
         email: string
+        role: string
         umur?: string
         spesialis?: string
     }

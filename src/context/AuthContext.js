@@ -1,6 +1,5 @@
 "use client";
 import * as url from '@/helpers/endpointUrl';
-import { getUserById } from '@/helpers/user';
 import axiosInstance from "@/libs/axiosInterface";
 import { useRouter } from "next/navigation";
 import { createContext, useContext, useEffect, useState } from "react";
@@ -30,11 +29,12 @@ export const AuthProvider = ({ children }) => {
                     // };
 
                     const userData = localStorage.getItem('userData');
-
+                    
                     if(!userData) {
                         localStorage.removeItem('token');
                     } else {
-                        setUser(userData);
+                        const parsedData = JSON.parse(userData);
+                        setUser(parsedData);
                     }
                 }
             } catch (error) {
@@ -62,7 +62,7 @@ export const AuthProvider = ({ children }) => {
 
             // simpen di localstorage token sama data nya;
             localStorage.setItem('token', token);
-            localStorage.setItem('userData', userData);
+            localStorage.setItem('userData', JSON.stringify(userData));
             setUser(userData);
             router.push('/');
         } catch (error) {

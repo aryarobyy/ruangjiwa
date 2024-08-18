@@ -20,11 +20,6 @@ const Register = () => {
   const { updateToast, pushToast } = useToast();
   const { user, loginUser, logoutUser } = useAuth();
 
-  const testLogin = {
-    username: "zaxchaxs",
-    password: "marsha123"
-  }
-
   // checking if user is already logged. Kak gem.
   useEffect(() => {
     if(user) {
