@@ -33,11 +33,11 @@ const Register = () => {
 
     const toastId = pushToast({
       isLoading: true,
-      message: "Mohon tunggu...",
+      message: "Ditunggu ya!...",
     });
     try {
       if (inputs.password !== confirmPass) {
-        throw new Error("Please Confirm the Password");
+        throw new Error("Tolong konfirmasi password");
       }
 
       const response = await registerUser(inputs);
@@ -48,9 +48,10 @@ const Register = () => {
           username: inputs.username,
           password: inputs.password
         });
+
         updateToast({
           toastId,
-          message: "Berhasil",
+          message: "Berhasil!",
         });
         setInputs({
           name: "",

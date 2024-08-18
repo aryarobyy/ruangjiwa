@@ -18,6 +18,7 @@ const AIChat = ({params}) => {
     // loading
     const [loadingGetMessage, setLoadingGetMessage] = useState(false);
     const [loadingCreateRoom, setLoadingCreateRoom] = useState(false);
+
     const route = useRouter();
     const {user} = useAuth();
     const chatId = params.id;
@@ -36,6 +37,10 @@ const AIChat = ({params}) => {
             const result = await getChatBotRoom(chatId);
             setHistoryMessage(result.data.data?.message);
         } catch (error) {
+          pushToast({
+            isError: true,
+            message: "Sepertinya IMU gagal memuat obrolan..."
+          })
             console.error("Error fetching data: ", error);
         } finally {
           setLoadingGetMessage(false);
@@ -156,7 +161,6 @@ const AIChat = ({params}) => {
               </p>
             </div>
           </div>
-          <button onClick={() => console.log(historyMessage)}>Log</button>
         </div>
 
         <div className=" md:w-1/4 text-dark md:pt-20">

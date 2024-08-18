@@ -4,12 +4,14 @@ import Link from "next/link";
 import Button from "./ui/Button";
 import { useAuth } from "@/context/AuthContext";
 import useToast from "@/hooks/useHotToast";
+import { useRouter } from "next/navigation";
 // import Button from "./Button";
 
 const Navbar = () => {
   const {user, logoutUser} = useAuth();
   // const {user} = useGetUserProfile()
   const {pushToast, updateToast} = useToast()
+  const router = useRouter();
 
   const handleLogout = async () => {
     const toastId = pushToast({
@@ -96,7 +98,7 @@ const Navbar = () => {
                   <li>
                     <Link
                       className="text-[var(--text-color)] text-base transition hover:text-[var(--button-hover-bg-color)]"
-                      href="/ruangMeditasi"
+                      href="/ruang-meditasi"
                     >
                       Ruang Meditasi
                     </Link>
@@ -105,37 +107,45 @@ const Navbar = () => {
                   <li>
                     <Link
                       className="text-[var(--text-color)] text-base transition hover:text-[var(--button-hover-bg-color)]"
-                      href={`/aichat/${user ? user.userId : "guest" }`}
+                      href={`/aichat/${user ? user.username : "guest" }`}
                     >
-                      ImuBot
+                      IMU ChatBot
                     </Link>
                   </li>
                 </ul>
               </nav>
               {
-                user ? (
+                user?.role === 'user' ? (
                   <div className="flex gap-3 items-center justify-center">
-                    <Button>
-                      <Link href={"/profile"}>Profile</Link>
+                    <Button onClick={() => router.push('/profile')}>
+                      Profile
                     </Button>
                     <Button.danger onClick={handleLogout}>
                       Test Logout
                     </Button.danger>
                   </div>
-                ): (
-                <div className={`flex gap-3 items-center justify-center`}>
-                  <Button>
-                    <Link href={"/auth/login"}>
-                      Login
-                    </Link>
-                  </Button>
-                  <Button.tertary>
-                    <Link href={"/auth/register"}>
-                      Register
-                    </Link>
-                  </Button.tertary>
-                </div>
-
+                ) : user?.role === 'admin' ? (
+                  <>
+                    <Button onClick={() => router.push('/admin/dashboard')}>
+                      Dashboard
+                    </Button>
+                    <Button.danger onClick={handleLogout}>
+                      Test Logout
+                    </Button.danger>
+                  </>
+                ) : user?.role === 'dokter' ? (
+                    <Button onClick={() => router.push('/dokter/dashboard')}>
+                      Dashboard
+                    </Button>
+                ) : (
+                  <div className={`flex gap-3 items-center justify-center`}>
+                    <Button onClick={() => router.push('/auth/login')}>
+                        Login
+                    </Button>
+                    <Button.tertary onClick={() => router.push('/auth/register')}>
+                        Register
+                    </Button.tertary>
+                  </div>
                 )
               }
               {/* <Button /> */}
