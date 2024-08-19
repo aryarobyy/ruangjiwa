@@ -20,11 +20,6 @@ const Register = () => {
   const { updateToast, pushToast } = useToast();
   const { user, loginUser, logoutUser } = useAuth();
 
-  const testLogin = {
-    username: "zaxchaxs",
-    password: "marsha123"
-  }
-
   // checking if user is already logged. Kak gem.
   useEffect(() => {
     if(user) {
@@ -38,7 +33,7 @@ const Register = () => {
 
     const toastId = pushToast({
       isLoading: true,
-      message: "Mohon tunggu...",
+      message: "Ditunggu ya!...",
     });
     try {
       if (inputs.password !== confirmPass) {
@@ -56,7 +51,7 @@ const Register = () => {
 
         updateToast({
           toastId,
-          message: "Berhasil",
+          message: "Berhasil!",
         });
         setInputs({
           name: "",
@@ -69,7 +64,7 @@ const Register = () => {
       console.error(error);
       updateToast({
         toastId,
-        message: error.message,
+        message: "Ops! Sepertinya gagal!",
         isError: true,
       });
     }

@@ -28,7 +28,7 @@ export const POST = async (req, res) => {
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(data.password, salt);
 
-        const newData = {...data, userId: uuid, password: hashedPassword}
+        const newData = {...data, userId: uuid, password: hashedPassword, role: 'user'}
 
         const token = jwtGenerate(uuid, res)
         await mongoPostUser(newData);
