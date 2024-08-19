@@ -8,6 +8,7 @@ import { updateUser } from '@/helpers/user';
 import { postImage } from '@/helpers/image';
 import { CiCamera } from "react-icons/ci";
 import { useRouter } from 'next/navigation';
+import { RxAvatar } from 'react-icons/rx';
 
 function EditProfile() {
     const refAddFile = useRef(null);
