@@ -5,7 +5,7 @@ const SpotifyPlayer = ({ playlistId }) => {
         Musik untuk Relaksasi
       </h2>
       <iframe
-        src={`https://open.spotify.com/embed/playlist/${playlistId}`}
+        src={`https://open.spotify.com/embed/album/${playlistId}`}
         width="300"
         height="380"
         frameBorder="0"

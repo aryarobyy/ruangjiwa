@@ -27,8 +27,8 @@ const CardGrid = () => {
         <Card
           number={1}
           title="FrontEnd Developer"
-          description=""
-          imgSrc={img}
+          description="test"
+          imgSrc=""
           imgAlt="Dikry Ramdani"
           personName="Dikry Ramdani"
         />

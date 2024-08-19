@@ -3,8 +3,8 @@ import Link from "next/link";
 
 const BlogCard = () => {
   return (
-    <div className="max-w-screen-xl mx-auto p-4 bg-white text-black">
-      <h1 className="text-3xl font-bold text-center mb-8">Article Page</h1>
+    <div className="max-w-screen-xl mx-auto p-4 bg-[var(--hero-bg-color)] text-black">
+      <h1 className="text-3xl font-bold text-center mb-8 text-[var(--title-color)]">Article Page</h1>
 
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
         <article className="overflow-hidden rounded-lg shadow-lg transition hover:shadow-xl">

@@ -2,12 +2,12 @@ import Link from "next/link";
 
 const Service = () => {
   return (
-    <section className="bg-white text-black">
+    <section className="bg-[var(--hero-bg-color)] text-black">
       <div className="max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8 lg:py-16">
         <div className="max-w-xl">
-          <h2 className="text-3xl font-bold sm:text-4xl">Pelayanan Kami</h2>
+          <h2 className="text-3xl font-bold sm:text-4xl text-[var(--title-color)]">Pelayanan Kami</h2>
 
-          <p className="mt-4 text-gray-700">
+          <p className="mt-4 text-[var(--text-color)]">
           Kami menyediakan berbagai layanan yang dirancang buat mendukung kesehatan mental dan kesejahteraan emosional Kamu lhoo. Tim ahli kami siap membantu Kamu dalam perjalanan menuju keseimbangan dan kebahagiaan emosional, Tetap semangat dan jangan mudah buat menyerah!
           </p>
         </div>

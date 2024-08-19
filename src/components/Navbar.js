@@ -4,6 +4,7 @@ import Link from "next/link";
 import Button from "./ui/Button";
 import { useAuth } from "@/context/AuthContext";
 import useToast from "@/hooks/useHotToast";
+import ToggleMode from "./ToggleMode";
 // import Button from "./Button";
 
 const Navbar = () => {
@@ -43,6 +44,7 @@ const Navbar = () => {
                 <span className="sr-only">Home</span>
                 <Image src="/logo.svg" alt="logo" width={64} height={29} />
               </Link>
+              <ToggleMode/>
             </div>
 
             <div className="md:flex md:items-center md:gap-12">
