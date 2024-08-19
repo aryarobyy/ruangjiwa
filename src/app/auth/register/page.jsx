@@ -64,7 +64,7 @@ const Register = () => {
       console.error(error);
       updateToast({
         toastId,
-        message: error.message,
+        message: "Ops! Sepertinya gagal!",
         isError: true,
       });
     }

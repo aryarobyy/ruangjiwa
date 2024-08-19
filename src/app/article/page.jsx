@@ -1,10 +1,12 @@
 import BlogCard from "@/components/BlogCard"
+import Navbar from "@/components/Navbar"
 
 const article = () => {
   return (
-    <div>
+    <>
+      <Navbar />
       <BlogCard />
-    </div>
+    </>
   )
 }
 export default article

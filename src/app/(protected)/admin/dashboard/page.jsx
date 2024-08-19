@@ -1,14 +1,14 @@
-const RevenueChart = dynamic(() => import("./components/RevenueChart"), {
+const RevenueChart = dynamic(() => import("../../../../components/adminComponent/RevenueChart"), {
   ssr: false,
 });
-const Statistics = dynamic(() => import("./components/Statistics"), {
+const Statistics = dynamic(() => import("../../../../components/adminComponent/Statistics"), {
   ssr: false,
 });
 import AdminBreadcrumb from "@/components/adminComponent/AdminBreadcrumb";
-import ProgressCard from "./components/ProgressCard";
-import RecentOrders from "./components/RecentOrders";
-import Sources from "./components/Sources";
-import TopPerformers from "./components/TopPerformers";
+import ProgressCard from "@/components/adminComponent/ProgressCard";
+import RecentOrders from "@/components/adminComponent/RecentOrders";
+import Sources from "@/components/adminComponent/Sources";
+import TopPerformers from "@/components/adminComponent/TopPerformers";
 import dynamic from "next/dynamic";
 
 export const metadata = {
