@@ -198,10 +198,20 @@ GET (get message yg ada di forum): http://example.api/chat/forum/(forumId)
             message: string (Success/Failed)
             data: [
                 {
-                    messageId: string (dari konsulId)
-                    sender: string (userId/dokterId)
+                    forumId: string
+                    createdBy: string
                     name: string
-                    message: string
+                    createdAt: string
+                    title:
+                    messages: [
+                        {
+                            idMessage: string
+                            createdBy: string
+                            name: string
+                            message: string
+                            createdAt: string
+                        }
+                    ]
                 }
             ]
         }

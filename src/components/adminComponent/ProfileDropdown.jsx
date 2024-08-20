@@ -1,9 +1,12 @@
 import avatar1 from '@/assets/images/avatars/img-1.jpg'
+import { useAuth } from '@/context/AuthContext'
 import Image from 'next/image'
 import Link from 'next/link'
 import { LuLogOut, LuNewspaper, LuSettings, LuUser } from 'react-icons/lu'
 
 const ProfileDropdown = () => {
+  const {user} = useAuth();
+
   return (
     <div className="hs-dropdown relative inline-flex">
       <button
@@ -16,9 +19,9 @@ const ProfileDropdown = () => {
           className="inline-block size-9 rounded-full"
           src={avatar1}
         />
-        <div className="hidden text-start lg:block">
-          <p className="text-sm font-bold text-white">Diane Berry</p>
-          <p className="mt-1 text-xs font-semibold text-zinc-400">Admin</p>
+        <div className="text-start text-dark">
+          <p className="text-sm font-bold">{user.name}</p>
+          <p className="mt-1 text-xs font-semibold ">Admin</p>
         </div>
       </button>
       <div className="hs-dropdown-menu duration mt-2 hidden min-w-[12rem] rounded-lg border border-default-200 bg-white p-2 opacity-0 shadow-md transition-[opacity,margin] hs-dropdown-open:opacity-100 dark:bg-default-50">

@@ -4,7 +4,7 @@ import { LuChevronsRight } from "react-icons/lu";
 const AdminBreadcrumb = ({ title }) => {
   return (
     <section className="hidden md:block">
-      <div className="container">
+      <div className="px-8">
         <div className="my-6 rounded-lg border border-default-200 bg-white dark:bg-default-50">
           <div className="flex items-center justify-between p-6">
             <h4 className="text-lg font-medium text-default-900">{title}</h4>

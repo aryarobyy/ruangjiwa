@@ -15,23 +15,8 @@ export const POST = async (req, res) => {
     return Response.json({ message: "Success", data: response.secure_url });
   } catch (error) {
     console.error("Error uploading image: ", error.message);
-    return Response.json({ message: "Failed", data: null });
-  }
-};
-
-export const GET = async (imageId) => {
-
-  // Return colors in the response
-  const options = {
-    colors: true,
-  };
-
-  try {
-      // Get details about the asset
-      const result = await cloudinary.api.resource(imageId, options);
-      console.log(result);
-      return result.colors;
-      } catch (error) {
-      console.error(error);
+    // throw new Error(error.message);
+    
+    return Response.json({ message: error.message, data: null });
   }
 };

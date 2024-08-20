@@ -1,5 +1,6 @@
 import {
   LuAlertOctagon,
+  LuBookOpen,
   LuComponent,
   LuMessagesSquare,
   LuRadar,
@@ -14,6 +15,7 @@ import dropbox from '@/assets/images/brand/dropbox.png'
 import slack from '@/assets/images/brand/slack.png'
 import dribble from '@/assets/images/brand/dribbble.png'
 import behance from '@/assets/images/brand/behance.png'
+import { BookOpenText } from 'lucide-react'
 
 const adminMenu = [
   {
@@ -22,14 +24,9 @@ const adminMenu = [
     icon: LuRadar,
   },
   {
-    name: 'Chat',
-    link: '/admin/chat',
-    icon: LuMessagesSquare,
-  },
-  {
-    name: 'Project',
-    link: '/admin/project',
-    icon: LuTarget,
+    name: 'Artikel',
+    link: '/admin/artikel',
+    icon: LuBookOpen,
   },
   {
     name: 'Ui Components',
@@ -89,6 +86,117 @@ const apps= [
     name: 'Behance',
     image: behance,
   },
+]
+
+export const artikel = [
+  {
+    creatorId: '123',
+    name: 'Irzi',
+    artikelId: 'lorem ipsum',
+    title: 'Cara mencegah kesepian di tengah gempuran sosial media',
+    description: " Lorem ipsum dolor sit, amet consectetur adipisicing elit. Maxime in dolore corrupti, cupiditate voluptate officia nihil non numquam aut molestias! Tempore itaque odit animi et sunt officiis repellat? Magnam, laudantium. Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque dolorem asperiores modi error enim omnis molestias dolores, sapiente consequuntur deleniti velit sunt assumenda labore hic amet esse odio quibusdam animi.",
+    image: 'https://via.placeholder.com/600/771796',
+    date: new Date()
+  },
+  {
+    creatorId: '123',
+    name: 'Irzi',
+    artikelId: 'lorem ipsum',
+    title: 'Cara mencegah kesepian di tengah gempuran sosial media',
+    description: " Lorem ipsum dolor sit, amet consectetur adipisicing elit. Maxime in dolore corrupti, cupiditate voluptate officia nihil non numquam aut molestias! Tempore itaque odit animi et sunt officiis repellat? Magnam, laudantium. Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque dolorem asperiores modi error enim omnis molestias dolores, sapiente consequuntur deleniti velit sunt assumenda labore hic amet esse odio quibusdam animi.",
+    image: 'https://via.placeholder.com/600/771796',
+    date: new Date()
+  },
+  {
+    creatorId: '123',
+    name: 'Irzi',
+    artikelId: 'lorem ipsum',
+    title: 'Cara mencegah kesepian di tengah gempuran sosial media',
+    description: " Lorem ipsum dolor sit, amet consectetur adipisicing elit. Maxime in dolore corrupti, cupiditate voluptate officia nihil non numquam aut molestias! Tempore itaque odit animi et sunt officiis repellat? Magnam, laudantium. Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque dolorem asperiores modi error enim omnis molestias dolores, sapiente consequuntur deleniti velit sunt assumenda labore hic amet esse odio quibusdam animi.",
+    image: 'https://via.placeholder.com/600/771796',
+    date: new Date()
+  },
+  {
+    creatorId: '123',
+    name: 'Irzi',
+    artikelId: 'lorem ipsum',
+    title: 'Cara mencegah kesepian di tengah gempuran sosial media',
+    description: " Lorem ipsum dolor sit, amet consectetur adipisicing elit. Maxime in dolore corrupti, cupiditate voluptate officia nihil non numquam aut molestias! Tempore itaque odit animi et sunt officiis repellat? Magnam, laudantium. Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque dolorem asperiores modi error enim omnis molestias dolores, sapiente consequuntur deleniti velit sunt assumenda labore hic amet esse odio quibusdam animi.",
+    image: 'https://via.placeholder.com/600/771796',
+    date: new Date()
+  },
+  {
+    creatorId: '123',
+    name: 'Irzi',
+    artikelId: 'lorem ipsum',
+    title: 'Cara mencegah kesepian di tengah gempuran sosial media',
+    description: " Lorem ipsum dolor sit, amet consectetur adipisicing elit. Maxime in dolore corrupti, cupiditate voluptate officia nihil non numquam aut molestias! Tempore itaque odit animi et sunt officiis repellat? Magnam, laudantium. Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque dolorem asperiores modi error enim omnis molestias dolores, sapiente consequuntur deleniti velit sunt assumenda labore hic amet esse odio quibusdam animi.",
+    image: 'https://via.placeholder.com/600/771796',
+    date: new Date()
+  },
+  {
+    creatorId: '123',
+    name: 'Irzi',
+    artikelId: 'lorem ipsum',
+    title: 'Cara mencegah kesepian di tengah gempuran sosial media',
+    description: " Lorem ipsum dolor sit, amet consectetur adipisicing elit. Maxime in dolore corrupti, cupiditate voluptate officia nihil non numquam aut molestias! Tempore itaque odit animi et sunt officiis repellat? Magnam, laudantium. Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque dolorem asperiores modi error enim omnis molestias dolores, sapiente consequuntur deleniti velit sunt assumenda labore hic amet esse odio quibusdam animi.",
+    image: 'https://via.placeholder.com/600/771796',
+    date: new Date()
+  },
+  {
+    creatorId: '123',
+    name: 'Irzi',
+    artikelId: 'lorem ipsum',
+    title: 'Cara mencegah kesepian di tengah gempuran sosial media',
+    description: " Lorem ipsum dolor sit, amet consectetur adipisicing elit. Maxime in dolore corrupti, cupiditate voluptate officia nihil non numquam aut molestias! Tempore itaque odit animi et sunt officiis repellat? Magnam, laudantium. Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque dolorem asperiores modi error enim omnis molestias dolores, sapiente consequuntur deleniti velit sunt assumenda labore hic amet esse odio quibusdam animi.",
+    image: 'https://via.placeholder.com/600/771796',
+    date: new Date()
+  },
+  {
+    creatorId: '123',
+    name: 'Irzi',
+    artikelId: 'lorem ipsum',
+    title: 'Cara mencegah kesepian di tengah gempuran sosial media',
+    description: " Lorem ipsum dolor sit, amet consectetur adipisicing elit. Maxime in dolore corrupti, cupiditate voluptate officia nihil non numquam aut molestias! Tempore itaque odit animi et sunt officiis repellat? Magnam, laudantium. Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque dolorem asperiores modi error enim omnis molestias dolores, sapiente consequuntur deleniti velit sunt assumenda labore hic amet esse odio quibusdam animi.",
+    image: 'https://via.placeholder.com/600/771796',
+    date: new Date()
+  },
+  {
+    creatorId: '123',
+    name: 'Irzi',
+    artikelId: 'lorem ipsum',
+    title: 'Cara mencegah kesepian di tengah gempuran sosial media',
+    description: " Lorem ipsum dolor sit, amet consectetur adipisicing elit. Maxime in dolore corrupti, cupiditate voluptate officia nihil non numquam aut molestias! Tempore itaque odit animi et sunt officiis repellat? Magnam, laudantium. Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque dolorem asperiores modi error enim omnis molestias dolores, sapiente consequuntur deleniti velit sunt assumenda labore hic amet esse odio quibusdam animi.",
+    image: 'https://via.placeholder.com/600/771796',
+    date: new Date()
+  },
+  {
+    creatorId: '123',
+    name: 'Irzi',
+    artikelId: 'lorem ipsum',
+    title: 'Cara mencegah kesepian di tengah gempuran sosial media',
+    description: " Lorem ipsum dolor sit, amet consectetur adipisicing elit. Maxime in dolore corrupti, cupiditate voluptate officia nihil non numquam aut molestias! Tempore itaque odit animi et sunt officiis repellat? Magnam, laudantium. Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque dolorem asperiores modi error enim omnis molestias dolores, sapiente consequuntur deleniti velit sunt assumenda labore hic amet esse odio quibusdam animi.",
+    image: 'https://via.placeholder.com/600/771796',
+    date: new Date()
+  },
+  {
+    creatorId: '123',
+    name: 'Irzi',
+    artikelId: 'lorem ipsum',
+    title: 'Cara mencegah kesepian di tengah gempuran sosial media',
+    description: " Lorem ipsum dolor sit, amet consectetur adipisicing elit. Maxime in dolore corrupti, cupiditate voluptate officia nihil non numquam aut molestias! Tempore itaque odit animi et sunt officiis repellat? Magnam, laudantium. Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque dolorem asperiores modi error enim omnis molestias dolores, sapiente consequuntur deleniti velit sunt assumenda labore hic amet esse odio quibusdam animi.",
+    image: 'https://via.placeholder.com/600/771796',
+    date: new Date()
+  },
+]
+
+export const forum = [
+  {
+    forumId: '123',
+    createdBy: 'zaxchaxs',
+    name: "Irzi",
+    createdAt: ''
+  }
 ]
 
 export { adminMenu, messages, apps }

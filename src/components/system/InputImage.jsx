@@ -18,7 +18,7 @@ const InputImage = ({tempImg, title, handleAddFileChange, className, ...props}) 
         <div
           onClick={() => refAddFile.current?.click()}
           className={cn(
-            "p-20 transform h-74 rounded-lg object-cover brightness-90 transition-all duration-500 group-hover:scale-110 group-hover:brightness-100 border-2 border-dashed border-gray-500 flex items-center justify-center w-full cursor-pointer", className
+            "p-20 transform h-56 rounded-lg object-cover brightness-90 transition-all duration-500 group-hover:scale-110 group-hover:brightness-100 border-2 border-dashed border-gray-300 flex items-center justify-center w-full cursor-pointer", className
           )}
           {...props}
         >

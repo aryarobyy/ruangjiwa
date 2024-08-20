@@ -55,7 +55,7 @@ const MaximizeScreen = () => {
     <button
       onClick={toggleFullScreen}
       type="button"
-      className="inline-flex size-9 flex-shrink-0 items-center justify-center gap-2 rounded-md align-middle font-medium text-zinc-200 transition-all duration-300 hover:bg-white/10"
+      className="inline-flex size-9 flex-shrink-0 items-center justify-center gap-2 rounded-md align-middle font-medium transition-all duration-300 hover:bg-white/10"
     >
       {fullScreenOn ? (
         <LuMinimize className="size-5" />
