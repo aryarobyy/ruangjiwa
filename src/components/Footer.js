@@ -86,7 +86,7 @@ const Footer = () => {
             </li>
 
             <li>
-              <Link href="/ruangMeditasi" className="text-[var(--text-color)] transition hover:opacity-75"> Ruang Meditasi </Link>
+              <Link href="/ruang-meditasi" className="text-[var(--text-color)] transition hover:opacity-75"> Ruang Meditasi </Link>
             </li>
 
             <li>
