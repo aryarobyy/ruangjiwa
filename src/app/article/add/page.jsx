@@ -1,4 +1,5 @@
 'use client'
+import Navbar from "@/components/Navbar";
 import InputImage from "@/components/system/InputImage";
 import Button from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input"
@@ -109,17 +110,20 @@ const ArtikelAdd = () => {
   };
 
   return (
-    <div className="w-full flex justify-center items-center p-10 bg-primary">
-      <div className="w-fit flex flex-col gap-2">
-        <h1>Testing Artikel Post page</h1>
+    <>
+      <Navbar />
+      <div className="w-full flex justify-center items-center p-10 bg-primary">
+        <div className="w-fit flex flex-col gap-2">
+          <h1>Testing Artikel Post page</h1>
 
-        <Input placeholder="Judul artikel" onChange={handleChangeTitle} value={newData.title} />
-        <Input placeholder="Deskripsi artikel" onChange={handleChangeDesc} value={newData.description} />
-        <InputImage title={"Poster"} tempImg={tempImg} handleAddFileChange={handleFileChange} />
-        <Button onClick={handleUploadImage}>Upload Gambar</Button>
-        <Button onClick={handleSubmit}>Submit</Button>
+          <Input placeholder="Judul artikel" onChange={handleChangeTitle} value={newData.title} />
+          <Input placeholder="Deskripsi artikel" onChange={handleChangeDesc} value={newData.description} />
+          <InputImage title={"Poster"} tempImg={tempImg} handleAddFileChange={handleFileChange} />
+          <Button onClick={handleUploadImage}>Upload Gambar</Button>
+          <Button onClick={handleSubmit}>Submit</Button>
+        </div>
       </div>
-    </div>
+    </>
   )
 }
 

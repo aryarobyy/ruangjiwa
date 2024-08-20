@@ -1,6 +1,5 @@
 "use client";
 import * as url from '@/helpers/endpointUrl';
-import { getUserById } from '@/helpers/user';
 import axiosInstance from "@/libs/axiosInterface";
 import { useRouter } from "next/navigation";
 import { createContext, useContext, useEffect, useState } from "react";
@@ -30,12 +29,12 @@ export const AuthProvider = ({ children }) => {
                     // };
 
                     const userData = localStorage.getItem('userData');
-                    const parsedUserData  = JSON.parse(userData)
-                    console.log(parsedUserData)
+                    
                     if(!userData) {
                         localStorage.removeItem('token');
                     } else {
-                        setUser(parsedUserData);
+                        const parsedData = JSON.parse(userData);
+                        setUser(parsedData);
                     }
                 }
             } catch (error) {

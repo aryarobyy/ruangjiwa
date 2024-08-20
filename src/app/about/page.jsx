@@ -81,24 +81,30 @@
 
 // export default About;
 
-import CardGrid from "@/components/CardGrid"
+import CardGrid from "@/components/CardGrid";
+import Navbar from "@/components/Navbar";
 
 const About = () => {
-  
-return (
-  <section className="bg-gray-100 py-12">
-    <div className="container mx-auto px-6">
-      <h2 className="text-3xl font-semibold text-center text-gray-400">About Us</h2>
-      <p className="mt-4 text-center font-semibold text-gray-800 max-w-2xl mx-auto">
-        Kami adalah tim yang berdedikasi untuk membantu Anda menemukan keseimbangan mental dan emosional. Dengan pendekatan berbasis ilmu pengetahuan dan empati, kami hadir untuk mendukung kesehatan mental Anda.
-      </p>
+  return (
+    <>
+    <Navbar />
+      <section className="bg-gray-100 py-12">
+        <div className="container mx-auto px-6">
+          <h2 className="text-3xl font-semibold text-center text-gray-400">
+            About Us
+          </h2>
+          <p className="mt-4 text-center font-semibold text-gray-800 max-w-2xl mx-auto">
+            Kami adalah tim yang berdedikasi untuk membantu Anda menemukan
+            keseimbangan mental dan emosional. Dengan pendekatan berbasis ilmu
+            pengetahuan dan empati, kami hadir untuk mendukung kesehatan mental
+            Anda.
+          </p>
 
-    <CardGrid />
+          <CardGrid />
+        </div>
+      </section>
+    </>
+  );
+};
 
-  </div>
-  </section>
-      )
-
-}
-
-export default About 
+export default About;
