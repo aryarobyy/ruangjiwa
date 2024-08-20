@@ -17,35 +17,39 @@ import { getAllArtikel } from "@/helpers/artikel";
 import { useAuth } from "@/context/AuthContext";
 import { useRouter } from "next/navigation";
 
-// export const metadata = {
-//   title: "Dashboard",
-// };
 
 const Dashboard = () => {
   const [artikel, setArtikel] = useState([]);
   const [dokter, setDokter] = useState();
   const {user} = useAuth();
   const router = useRouter();
-
+  const [loadingGetData, setLoadingGetData] = useState(false);
+  
   useEffect(() => {
-
-    try {
-      const getAllData = async () => {
-        const artikels = await getAllArtikel();
-        setArtikel(artikels.data.data);
-      };
-      
       if(user.role !== 'admin') {
         router.push('/');
         return;
       } else {
-        // getAllData()
+        getAllData()
       };
+  }, []);
+
+  const getAllData = async () => {
+    setLoadingGetData(true);
+    try {
+      const artikels = await getAllArtikel();
+      setArtikel(artikels.data.data);
     } catch (error) {
       console.error(error.message);
-       
+    } finally {
+      setLoadingGetData(false);
     }
-  }, []);
+  };
+  
+  const handleDeletedArtikel = (artikelId) => {
+    const newArtikel = artikel.slice('').filter(item => item.artikelId !== artikelId);
+    setArtikel(newArtikel); 
+  }
 
   return (
     <div className="text-dark bg-primary border-2 border-white">
@@ -54,7 +58,6 @@ const Dashboard = () => {
         <div className="px-8">
           <div className="my-6 space-y-6">
             {/* <Statistics /> */}
-            <button onClick={() => console.log(artikel)}>Log</button>
 
             <div className="grid gap-6 lg:grid-cols-2">
               <ProgressCard />
@@ -73,7 +76,7 @@ const Dashboard = () => {
             <div className="w-full">
               {/* <RecentOrders /> */}
               {/* <BlogSection title={"List Forum"} /> */}
-              <BlogSection title={"List Artikel"} />
+              <BlogSection title={"List Artikel"} data={artikel} type={'dashboard'} isGettingData={loadingGetData} onDeletedItem={handleDeletedArtikel} />
             </div>
           </div>
         </div>

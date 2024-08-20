@@ -15,9 +15,9 @@ const TopBar = () => {
     <header className="sticky top-0 z-50">
       <div className="z-50 flex w-full flex-wrap border-b border-default-200 bg-slate-50 py-2.5 text-sm sm:flex-nowrap sm:justify-start sm:py-4">
         <nav className="px-8 flex w-full items-center justify-between gap-6">
-          <div className=''>
+          <div className='text-dark font-semibold text-xl'>
             <Link href="/" className="block">
-              <Label className={"text-dark font-semibold text-xl"}>Sahabat Medis</Label>
+              Sahabat Medis
             </Link>
           </div>
           <div className="flex items-center gap-3">

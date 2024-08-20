@@ -11,6 +11,18 @@ export const postNewArtikel = async (data) => {
     );
 };
 
+export const updateArtikel = async (artikelId, data) => {
+    return axiosInstance.put(`${url.ENDPOINT_ARTIKEL}/${artikelId}`, data)
+}
+
 export const getArtikelById = async (artikelId) => {
     return axiosInstance.get(`${url.ENDPOINT_ARTIKEL}/${artikelId}`)
+};
+
+export const deleteArtikelById = async (artikelId) => {
+    return axiosInstance.delete(`${url.ENDPOINT_ARTIKEL}/${artikelId}`)
+}
+
+export const deleteAllArtikel = async () => {
+    return axiosInstance.delete(`${url.ENDPOINT_ARTIKEL}`)
 };

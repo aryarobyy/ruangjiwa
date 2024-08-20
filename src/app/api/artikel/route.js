@@ -1,4 +1,5 @@
-import { mongoGetAllArtikel, mongoPostArtikel} from "@/mongoMethods/artikel";
+import { messages } from "@/components/adminComponent/data";
+import { mongoDeleteAllArtikel, mongoGetAllArtikel, mongoPostArtikel} from "@/mongoMethods/artikel";
 import Joi from "joi";
 import { v4 as uuidv4 } from "uuid";
 const schema = Joi.object({
@@ -41,5 +42,17 @@ export const GET = async () => {
             message: "Failed",  
             data: []
         })
+    }
+}
+
+export const DELETE = async () => {
+    try {
+        const response = await mongoDeleteAllArtikel();
+        return Response.json({
+            message: "Success"
+        });
+    } catch (error) {
+        console.error(error.message);
+        return Response.json({message: error.message})
     }
 }
