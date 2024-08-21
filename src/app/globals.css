@@ -16,6 +16,9 @@
   --button-text-color: #ffffff;
   --compo-color: #ebebeb;
 
+  --chat-bg: #f9fafb;
+  --box-chat: #e8e9ea;
+
   --button-secondary-bg-color: #f3f4f6;  
   --button-secondary-hover-bg-color: #e5e7eb; 
 }
@@ -48,7 +51,10 @@
   --button-hover-bg-color: #059669;
   --button-focus-ring-color: #fde68a;
   --button-text-color: #1f2937;
-  --compo-color: #047857; 
+  --compo-color: #047857;
+
+  --chat-bg: #2a374b;
+  --box-chat: #414141;
   ;
 }
 

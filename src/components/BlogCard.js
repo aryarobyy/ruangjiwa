@@ -17,12 +17,12 @@ const BlogCard = () => {
               height={180}
             />
           </Link>
-          <div className="bg-white p-4 sm:p-6">
+          <div className="bg-[var(--hero-bg-color)] p-4 sm:p-6">
             <time dateTime="2022-10-10" className="block text-xs text-gray-500">
               15th Aug 2024
             </time>
             <Link href="">
-              <h3 className="mt-2 text-lg font-semibold text-gray-900">
+              <h3 className="mt-2 text-lg font-semibold text-[var(--title-color)]">
                 Mengatasi Rasa Khawatir dan Kecemasan
               </h3>
             </Link>
@@ -47,12 +47,12 @@ const BlogCard = () => {
               height={180}
             />
           </Link>
-          <div className="bg-white p-4 sm:p-6">
+          <div className="bg-[var(--hero-bg-color)] p-4 sm:p-6">
             <time dateTime="2022-10-10" className="block text-xs text-gray-500">
               10th Oct 2022
             </time>
             <Link href="/">
-              <h3 className="mt-2 text-lg font-semibold text-gray-900">
+              <h3 className="mt-2 text-lg font-semibold text-[var(--title-color)]">
                 How to position your furniture for positivity
               </h3>
             </Link>
@@ -77,12 +77,12 @@ const BlogCard = () => {
               height={180}
             />
           </Link>
-          <div className="bg-white p-4 sm:p-6">
+          <div className="bg-[var(--hero-bg-color)] p-4 sm:p-6">
             <time dateTime="2022-10-10" className="block text-xs text-gray-500">
               15th Aug 2024
             </time>
             <Link href="">
-              <h3 className="mt-2 text-lg font-semibold text-gray-900">
+              <h3 className="mt-2 text-lg font-semibold text-[var(--title-color)]">
                 Mengatasi Rasa Khawatir dan Kecemasan
               </h3>
             </Link>

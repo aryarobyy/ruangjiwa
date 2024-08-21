@@ -115,7 +115,7 @@ const AIChat = ({params}) => {
     return (
       <>
         <Navbar />
-        <div className="w-full bg-primary text-gray-900 min-h-screen relative flex flex-col-reverse md:flex md:flex-row gap-2">
+        <div className="w-full bg-[var(--hero-bg-color)] min-h-screen relative flex flex-col-reverse md:flex md:flex-row gap-2">
           <ChatSection
             historyMessage={historyMessage}
             setHistoryMessage={setHistoryMessage}
@@ -126,10 +126,10 @@ const AIChat = ({params}) => {
           />
           <div className="w-full md:w-2/3">
             <div className="w-full md:p-6">
-              <div className="w-full text-center font-semibold text-xl text-dark p-4">
+              <div className="w-full text-center font-semibold text-xl text-[var(--title-color)] p-4">
                 <h1>Atasi Kesepianmu dengan ChatBot IMU</h1>
               </div>
-              <div className="text-base text-justify flex flex-col gap-2 p-4 text-dark">
+              <div className="text-base text-justify flex flex-col gap-2 p-4 text-[var(--title-color)]">
                 <h3 className="px-4 text-lg font-semibold">Tahukah kamu ?</h3>
                 <p>
                   Tahu nggak sih, sekitar 80% dari kita semua pasti pernah merasa
@@ -170,7 +170,7 @@ const AIChat = ({params}) => {
             <div className="w-full p-6 flex flex-col gap-6 justify-center items-center">
               <div className="text-lg font-semibold w-full text-center flex flex-col justify-center items-center">
                 <Image src={chatBotIcon} width={600} height={750} className="h-36 md:h-56 w-fit"  alt="Icon ChatBot"  />
-                  <h1>Yuk! Mulai chat sama aku</h1>
+                  <h1 className="text-[var(--title-color)]">Yuk! Mulai chat sama aku</h1>
               </div>
               <div className="w-fit flex flex-col justify-center items-center gap-2">
                 {
