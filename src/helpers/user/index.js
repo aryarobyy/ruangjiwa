@@ -9,8 +9,8 @@ export const registerUser = async (data) => {
     return axiosInstance.post(`${url.ENDPOINT_USER}/register`, data);
 }
 
-export const updateUser = async (userId, data) => {
-    return axiosInstance.put(`${url.ENDPOINT_USER}/update`, {userId,...data});
+export const updateUser = async (username, data) => {
+    return axiosInstance.put(`${url.ENDPOINT_USER}/update`, {username,...data});
 }
 
 export const getUserByUsername = async (username) => {

@@ -53,23 +53,23 @@ export const mongoGetUserByUsername = async (username) => {
 
     return res;
 }
-export const mongoUpdateUser = async (userId, data) => {
+export const mongoUpdateUser = async (username, data) => {
     try {
         const { client, database } = await connectDb();
         const col = database.collection(collectionName);
 
-        console.log("Updating user with username:", userId);
+        console.log("Updating user with username:", username);
         console.log("Data to update:", data);
 
         const res = await col.updateOne(
-            { userId }, 
+            { username }, 
             { $set: data }
         );
 
         console.log("Update result:", res);
         
 
-        const updatedUser = await col.findOne({ userId }); 
+        const updatedUser = await col.findOne({ username }); 
         console.log("Updated User data:", updatedUser)
 
         await client.close();
