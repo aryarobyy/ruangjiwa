@@ -1,7 +1,7 @@
 export const dateConvert = (date) => {
-    // const newDate = new Date(date);
+    const newDate = new Date(date);
 
-    // const hour newDate.getHours
+    return newDate.toLocaleDateString('in-IN')
 }
 
 export const getHourFromDate = (date) => {

@@ -1,16 +1,17 @@
 import Link from 'next/link'
 import { messages } from './data'
 import { LuMail } from 'react-icons/lu'
+import { BellDot } from 'lucide-react'
 
-const EmailDropdown = () => {
+const NotifDropDown = () => {
   return (
     <div className="hs-dropdown relative inline-flex [--placement:bottom-right]">
       <button
         id="hs-dropdown-with-header"
         type="button"
-        className="hs-dropdown-toggle inline-flex size-9 flex-shrink-0 items-center justify-center gap-2 rounded-md align-middle font-medium text-zinc-200 transition-all duration-300 hover:bg-white/10"
+        className="hs-dropdown-toggle inline-flex size-9 flex-shrink-0 items-center justify-center gap-2 rounded-md align-middle font-medium transition-all duration-300 hover:bg-white/10"
       >
-        <LuMail className="size-5" />
+        <BellDot className="size-5" />
         <span className="absolute -end-0 -top-0 size-4 rounded-full bg-primary text-xs font-medium text-white">
           2
         </span>
@@ -62,4 +63,4 @@ const EmailDropdown = () => {
   )
 }
 
-export default EmailDropdown
+export default NotifDropDown

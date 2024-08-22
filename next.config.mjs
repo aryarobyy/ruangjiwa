@@ -10,6 +10,18 @@ const nextConfig = {
       hostname: "res.cloudinary.com",
     }]
   },
+  images: {
+    remotePatterns: [
+      {
+      protocol: 'https',
+      hostname: 'via.placeholder.com'
+      },
+      {
+        protocol: 'https',
+        hostname: 'res.cloudinary.com'
+      }
+  ]
+  },
   webpack: (config) => {
     config.experiments = {
       topLevelAwait: true,

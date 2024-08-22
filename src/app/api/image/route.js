@@ -15,6 +15,9 @@ export const POST = async (req, res) => {
     return Response.json({ message: "Success", data: response.secure_url });
   } catch (error) {
     console.error("Error uploading image: ", error.message);
-    return Response.json({ message: "Failed", data: null });
+    // throw new Error(error.message);
+    
+    return Response.json({ message: error.message, data: null });
+
   }
 };

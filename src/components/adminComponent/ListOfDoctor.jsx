@@ -2,17 +2,22 @@ import Image from "next/image";
 import Link from "next/link";
 import { topPerformers } from "../../app/(protected)/admin/dashboard/data";
 import { LuLogOut, LuMoreVertical, LuPencil, LuTrash2 } from "react-icons/lu";
+import { Eye, SquarePen, UserCog } from "lucide-react";
 
-const TopPerformers = () => {
+// daftar list yg register dokter
+// daftar dokter
+// daftar user
+
+const ListOfDoctor = ({title, type}) => {
   return (
     <div className="rounded-md border border-default-200 bg-white dark:bg-default-50">
       <div className="border-b border-default-200 px-6 py-3">
-        <h4 className="text-lg text-default-900">Top Performers</h4>
+        <h4 className="text-lg text-dark">{title}</h4>
       </div>
       <div className="h-[440px] divide-y divide-default-200 overflow-y-auto [&::-webkit-scrollbar-track]:!bg-transparent [&::-webkit-scrollbar]:w-1">
         {topPerformers.map((performer, idx) => {
           return (
-            <div key={idx} className="flex items-center p-2.5">
+            <div key={idx} className="flex items-center p-2.5 px-4">
               <Image
                 src={performer.image}
                 width={48}
@@ -21,24 +26,26 @@ const TopPerformers = () => {
                 alt="performer"
               />
               <div className="flex-grow">
-                <h5 className="mt-1 text-default-900">{performer.name}</h5>
-                <h6 className="mt-1 text-default-600">{performer.position}</h6>
+                <h5 className="mt-1 text-dark">{performer.name}</h5>
+                <h6 className="mt-1 text-dark">{performer.position}</h6>
               </div>
               <div className="h-4">
                 <div className="hs-dropdown relative inline-flex [--placement:left-top] rtl:[--placement:bottom-left]">
                   <button type="button" className="hs-dropdown-toggle rounded">
-                    <LuMoreVertical className="size-4" />
+                    {
+                      type === 'active' ? <Eye className="size-4" /> : <UserCog className="size-4" />
+                    }
                   </button>
-                  <div className="hs-dropdown-menu z-10 mt-4 hidden min-w-[200px] rounded-lg border border-default-100 bg-white py-1.5 opacity-0 shadow-lg transition-[opacity,margin] hs-dropdown-open:opacity-100 dark:bg-default-50">
+                  <div className="hs-dropdown-menu z-10 mt-4 hidden min-w-[200px] rounded-lg border border-default-100 py-1.5 opacity-0 shadow-lg transition-[opacity,margin] hs-dropdown-open:opacity-100 ">
                     <Link
-                      className="mx-1.5 flex items-center rounded px-3 py-2 text-default-600 transition-all hover:bg-default-100 hover:text-default-700"
+                      className="mx-1.5 flex items-center rounded px-3 py-2 text-dark transition-all hover:bg-default-100 hover:text-dark"
                       href=""
                     >
-                      <LuPencil className="me-1.5 size-4" />
+                      <SquarePen className="me-1.5 size-4" />
                       <span>Edit</span>
                     </Link>
                     <Link
-                      className="mx-1.5 flex items-center rounded px-3 py-2 text-default-600 transition-all hover:bg-default-100 hover:text-default-700"
+                      className="mx-1.5 flex items-center rounded px-3 py-2 text-dark transition-all hover:bg-default-100 hover:text-dark"
                       href=""
                     >
                       <LuLogOut className="me-1.5 size-4" />
@@ -63,4 +70,4 @@ const TopPerformers = () => {
   );
 };
 
-export default TopPerformers;
+export default ListOfDoctor;
