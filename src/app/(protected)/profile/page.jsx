@@ -17,8 +17,23 @@ function ProfileCard() {
                 <div className="rounded-t-lg h-48 overflow-hidden bg-[url('https://images.unsplash.com/photo-1449844908441-8829872d2607?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NzEyNjZ8MHwxfHNlYXJjaHw2fHxob21lfGVufDB8MHx8fDE3MTA0MDE1NDZ8MA&ixlib=rb-4.0.3&q=80&w=1080')]">
                 </div>
                 <div className="mx-auto w-48 h-48 relative -mt-24 border-4 border-white rounded-full overflow-hidden ">
-                    {!user?.imgUrl && <Image src="/avatar.jpg" className="absolute top-0 left-0 w-full h-full object-cover" width={141}
-            height={141} /> }
+                {user?.image ? (
+        <Image
+            src={user?.image}
+            alt="Profile Image"
+            width={141}
+            height={141}
+            className="w-full h-full rounded-full object-cover"
+        />
+    ) : (
+        <Image
+            src="/avatar.jpg"
+            alt="Default Avatar"
+            width={141}
+            height={141}
+            className="w-full h-full rounded-full object-cover"
+        />
+    )}
                 </div>
                 <div className="text-center mt-4">
                     <p className="text-gray-500">username: @{user?.username} </p>
