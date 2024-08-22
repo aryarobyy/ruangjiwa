@@ -8,7 +8,8 @@ import { updateUser } from '@/helpers/user';
 import { postImage } from '@/helpers/image';
 import { CiCamera } from "react-icons/ci";
 import { useRouter } from 'next/navigation';
-import { RxAvatar } from 'react-icons/rx';
+import Image from 'next/image';
+import { useAuth } from '@/context/AuthContext';
 
 function EditProfile() {
     const refAddFile = useRef(null);
@@ -16,11 +17,14 @@ function EditProfile() {
     const [tempImg, setTempImg] = useState('');
     const [file, setFile] = useState(null);
     const router = useRouter()
+    const {user, editUser} = useAuth()
     const [update, setUpdate] = useState({
-        name: "",
-        username: "",
-        age: "",
-        medHistory: "",
+        userId: user?.userId,
+        name: user?.name,
+        username: user?.username,
+        age: user?.age,
+        medHistory: user?.medHistory,
+        profilePic: user?.profilePic,
     });
     
 
@@ -36,60 +40,59 @@ function EditProfile() {
         setTempImg(tempFile);
     };
 
-    const handleUploadImage = async () => {
-        const toastId = pushToast({
-            message: "Mengupload gambar...",
-            isLoading: true,
-        });
-        try {
-            const imagePath = await postImage(file);
-            setUpdate(prev => ({
-                ...prev,
-                image: imagePath.data.data,  
-                date: new Date()
-            }));
+    // const handleUploadImage = async () => {
+    //     const toastId = pushToast({
+    //         message: "Mengupload gambar...",
+    //         isLoading: true,
+    //     });
+    //     try {
+    //         const imagePath = await postImage(file);
+    //         setUpdate(prev => ({
+    //             ...prev,
+    //             image: imagePath.data.data,  
+    //             date: new Date()
+    //         }));
     
-            updateToast({
-                toastId,
-                message: "sukses mengganti gambar",
-            });
-        } catch (error) {
-            console.error(error.message);
-            updateToast({
-                toastId,
-                message: "gagal untuk upload gambar",
-                isError: true,
-            });
-        }
-    };
+    //         updateToast({
+    //             toastId,
+    //             message: "sukses mengganti gambar",
+    //         });
+    //     } catch (error) {
+    //         console.error(error.message);
+    //         updateToast({
+    //             toastId,
+    //             message: "gagal untuk upload gambar",
+    //             isError: true,
+    //         });
+    //     }
+    // };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         const toastId = pushToast({
             isLoading: true,
-            message: "Mohon tunggu...",
+            message: "Ditunggu ya...",
         });
 
         try {
-            if (file) {
-                await handleUploadImage();
+            if (!user.image && !file) {
+                updateToast({
+                    toastId,
+                    message: "Mohon upload gambar!"
+                })
+                return
             }
-
-            // console.log("Data to update:", update);
-
-            const response = await updateUser(update);
-            console.log("Respon data setelah update:", response.data);
             
+            const response = await editUser(file, update) 
+            console.log(response)
             if (response.data.message === "Success") {
-                console.log("User data terupdate:", response.data.userData);
                 setUpdate({
                     name: "",
                     username: "",
                     age: "",
                     medHistory: "",
-                    image: "",
+                    profilePic: "",
                     date: "",
-
                 });
                 updateToast({
                     toastId,
@@ -97,10 +100,11 @@ function EditProfile() {
                 });
                 router.push("/profile");
             } else {
-                console.log("Update profile gagal:", response.data.message);
+                console.error("Update profile failed:", response.data.message);
+                throw new Error(response.data.message)
             }
         } catch (error) {
-            console.error("Error ketika update", error);
+            console.error("Error when updating:", error.message);
             updateToast({
                 toastId,
                 message: error.message,
@@ -108,6 +112,7 @@ function EditProfile() {
             });
         }
     };
+    
 
     return (
         <section className="py-10 my-auto dark:bg-gray-900">
@@ -119,23 +124,41 @@ function EditProfile() {
                         </h1>
                         <h2 className="text-grey text-sm mb-4 dark:text-gray-400">Create Profile</h2>
                         <form onSubmit={handleSubmit}>
-                            <div className="w-full rounded-sm bg-cover bg-center bg-no-repeat items-center">
-                                <div 
-                                    className={`mx-auto flex justify-center w-[141px] h-[141px] rounded-full bg-cover bg-center bg-no-repeat`}
-                                    style={{ backgroundImage: `url(${tempImg || 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NzEyNjZ8MHwxfHNlYXJjaHw4fHxwcm9maWxlfGVufDB8MHx8fDE3MTEwMDM0MjN8MA&ixlib=rb-4.0.3&q=80&w=1080'})` }}
-                                >
-                                    <div className="bg-white/90 rounded-full w-6 h-6 text-center ml-28 mt-4">
-                                        <CiCamera className='w-6 h-5 text-blue-700 cursor-pointer' onClick={() => refAddFile.current.click()} />
-                                        <input 
-                                            type="file" 
-                                            ref={refAddFile} 
-                                            style={{ display: 'none' }} 
-                                            accept="image/*" 
-                                            onChange={handleFileChange} 
-                                        />
-                                    </div>
-                                </div>
-                            </div>
+                        <div className="relative w-[141px] h-[141px] rounded-full mx-auto">
+    {user?.profilePic ? (
+        <Image
+            src={tempImg ? tempImg : user?.profilePic}
+            alt="Profile Image"
+            width={141}
+            height={141}
+            className="w-full h-full rounded-full object-cover"
+        />
+    ) : (
+        <Image
+            src="/avatar.jpg"
+            alt="Default Avatar"
+            width={141}
+            height={141}
+            className="w-full h-full rounded-full object-cover"
+        />
+    )}
+
+    <div className="absolute top-0 right-0 bg-white/90 rounded-full w-8 h-8 flex items-center justify-center cursor-pointer">
+        <CiCamera
+            className="w-5 h-5 text-blue-700"
+            onClick={() => refAddFile.current.click()}
+        />
+    </div>
+
+    <input 
+        type="file" 
+        ref={refAddFile} 
+        style={{ display: 'none' }} 
+        accept="image/*" 
+        onChange={handleFileChange} 
+    />
+</div>
+
                             <h2 className="text-center mt-1 font-semibold dark:text-gray-300">Upload Profile Image</h2>
                             
                             <div className="flex lg:flex-row md:flex-col sm:flex-col xs:flex-col gap-2 justify-center w-full">

@@ -62,13 +62,15 @@ export const mongoUpdateUser = async (username, data) => {
         console.log("Data to update:", data);
 
         const res = await col.updateOne(
-            { username }, // Change userId to username
+            { username }, 
             { $set: data }
         );
 
         console.log("Update result:", res);
+        
 
-        const updatedUser = await col.findOne({ username }); // Change userId to username
+        const updatedUser = await col.findOne({ username }); 
+        console.log("Updated User data:", updatedUser)
 
         await client.close();
 

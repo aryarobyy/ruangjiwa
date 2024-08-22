@@ -114,14 +114,14 @@ const ChatSection = ({
       initial={{ x: 100, opacity: 0.5}}
       whileInView={{x: 0, opacity: 1}}
       transition={{type: "spring", bounce: 0.6}}
-      className={`fixed h-screen md:h-[90dvh] w-full md:md:w-1/3 top-0 md:top-14 shadow-md shadow-gray-600 bg-secondary ring-1 ring-gray-500 md:right-1 rounded-xl ${className}`}
+      className={`fixed h-screen md:h-[90dvh] w-full md:md:w-1/3 top-0 md:top-14 shadow-md shadow-gray-600 bg-[var(--chat-bg)] ring-1 ring-gray-500 md:right-1 rounded-xl ${className}`}
     >
       <div className="flex flex-col h-full relative min-h-full justify-between">
-        <div className="p-4 bg-slate-300 rounded-b-xl text-center text-lg top-0 w-full sticky box-border flex justify-between items-center rounded-xl">
+        <div className="p-4 bg-slate-400 rounded-b-xl text-center text-lg top-0 w-full sticky box-border flex justify-between items-center rounded-xl">
           <Button.secondary onClick={() => setIsShowMessage(false)}>
             <ChevronsRight />
           </Button.secondary>
-          <div className="w-full flex justify-center items-center font-semibold">
+          <div className="w-full flex justify-center items-center font-semibold text-[var(--title-color)]">
             <h1>IMU</h1>
             <Image src={chatBotIcon} width={500} height={750} className="w-10" alt="Icon  Chat Bot" />
             <h1>Bot</h1>
@@ -169,7 +169,7 @@ const ChatSection = ({
           handleChangeInput={(e) => setInputMessage(e.target.value)}
           handleSubmitForm={handleSendMessage}
           placeholder={"Masukkan pesan"}
-          className={"sticky box-border bottom-0"}
+          className={"sticky box-border bottom-0 bg-[var(--box-chat)]"}
           value={inputMessage}
         />
       </div>

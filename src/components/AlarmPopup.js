@@ -5,7 +5,7 @@ const AlarmPopup = ({ show, onStop }) => {
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-      <div className="bg-white p-6 rounded-lg shadow-lg text-center">
+      <div className="bg-[var(--hero-bg-color)] p-6 rounded-lg shadow-lg text-center">
         <h2 className="text-2xl font-bold mb-4 text-[var(--title-color)]">
           Alarm Berbunyi!
         </h2>

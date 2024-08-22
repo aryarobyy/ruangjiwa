@@ -5,7 +5,7 @@ export const PUT = async (req) => {
         const { username, ...data } = await req.json();
 
         if (!username || Object.keys(data).length === 0) {
-            return new Response(JSON.stringify({ message: "username or data not found" }), {
+            return new Response(JSON.stringify({ message: "userId or data not found" }), {
                 status: 400,
                 headers: { "Content-Type": "application/json" }
             });

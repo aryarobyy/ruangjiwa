@@ -18,5 +18,6 @@ export const POST = async (req, res) => {
     // throw new Error(error.message);
     
     return Response.json({ message: error.message, data: null });
+
   }
 };

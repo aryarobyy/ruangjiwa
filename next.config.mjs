@@ -5,6 +5,12 @@ const nextConfig = {
     serverComponentsExternalPackages: ["mongoose"]
   },
   images: {
+    remotePatterns: [{
+      protocol: "https",
+      hostname: "res.cloudinary.com",
+    }]
+  },
+  images: {
     remotePatterns: [
       {
       protocol: 'https',

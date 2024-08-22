@@ -12,3 +12,6 @@ export const ENDPOINT_USER = "/api/user"
 
 // image 
 export const ENDPOINT_IMAGE = "/api/image";
+
+//forum
+export const ENDPOINT_FORUM = "/api/forum";
