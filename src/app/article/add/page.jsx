@@ -37,11 +37,29 @@ const ArtikelAdd = () => {
   }
 
   const handleChangeTitle = (e) => {
-    setNewData(prev => ({...prev, title: e.target.value}))
+    const MAX_CHAR = 80;
+    const inpuTitle = e.target.value;
+    if(inpuTitle.length > MAX_CHAR ) {
+      const finalText = inpuTitle.slice(0, MAX_CHAR)
+      setNewData((prev) => ({ ...prev, title: finalText }))
+      setRemainingChar(0);
+    } else {
+      setNewData((prev) => ({ ...prev, title: inpuTitle}))
+      setRemainingChar(MAX_CHAR - inpuTitle.length)
+    }
   }
   
   const handleChangeDesc = (e) => {
-    setNewData(prev => ({...prev, description: e.target.value}))
+    const MAX_CHAR = 80;
+    const inpuDesc = e.target.value;
+    if(inpuDesc.length > MAX_CHAR ) {
+      const finalDesc = inpuDesc.slice(0, MAX_CHAR)
+      setNewData((prev) => ({ ...prev, description: finalDesc }))
+      setRemainingChar(0);
+    } else {
+      setNewData((prev) => ({ ...prev, description: inpuTitle}))
+      setRemainingChar(MAX_CHAR - inpuDesc.length)
+    }
   }
 
   const handleUploadImage = async () => {

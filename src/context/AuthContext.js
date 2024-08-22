@@ -3,6 +3,8 @@ import * as url from '@/helpers/endpointUrl';
 import axiosInstance from "@/libs/axiosInterface";
 import { useRouter } from "next/navigation";
 import { createContext, useContext, useEffect, useState } from "react";
+import { postImage } from '@/helpers/image';
+import { updateUser } from '@/helpers/user';
 
 const AuthContext = createContext();
 
@@ -10,9 +12,12 @@ export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading ] = useState(true);
     const router = useRouter();
+    
+
 
     useEffect(() => {
         const token = localStorage.getItem('token');
+        console.log(token)
 
         const verifyToken = async () => {
             try {
@@ -83,8 +88,24 @@ export const AuthProvider = ({ children }) => {
         }
     };
 
+    const editUser = async (file, data) => {
+        const tempData = {...data};
+        try{
+            const imagePath = await postImage(file);
+            const newData = {...tempData, image: imagePath.data.data}
+            console.log("Sukses update data")
+            const response = updateUser(newData.username, newData)
+            localStorage.setItem("userData", JSON.stringify(newData))
+            setUser(newData)
+            return response
+        } catch (error){
+            console.error("Something error", error.message)
+            throw error
+        }
+    }
+
     return(
-        <AuthContext.Provider value={{ user, loginUser, logoutUser, loading}}>
+        <AuthContext.Provider value={{ user, loginUser, logoutUser, editUser, loading}}>
             {!loading && children}
         </AuthContext.Provider>
     )

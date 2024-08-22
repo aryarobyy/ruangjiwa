@@ -4,6 +4,12 @@ const nextConfig = {
     esmExternals: "loose",
     serverComponentsExternalPackages: ["mongoose"]
   },
+  images: {
+    remotePatterns: [{
+      protocol: "https",
+      hostname: "res.cloudinary.com",
+    }]
+  },
   webpack: (config) => {
     config.experiments = {
       topLevelAwait: true,

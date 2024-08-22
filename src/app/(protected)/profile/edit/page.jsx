@@ -17,7 +17,7 @@ function EditProfile() {
     const [tempImg, setTempImg] = useState('');
     const [file, setFile] = useState(null);
     const router = useRouter()
-    const {user} = useAuth()
+    const {user, editUser} = useAuth()
     const [update, setUpdate] = useState({
         userId: user?.userId,
         name: user?.name,
@@ -40,55 +40,52 @@ function EditProfile() {
         setTempImg(tempFile);
     };
 
-    const handleUploadImage = async () => {
-        const toastId = pushToast({
-            message: "Mengupload gambar...",
-            isLoading: true,
-        });
-        try {
-            const imagePath = await postImage(file);
-            setUpdate(prev => ({
-                ...prev,
-                image: imagePath.data.data,  
-                date: new Date()
-            }));
+    // const handleUploadImage = async () => {
+    //     const toastId = pushToast({
+    //         message: "Mengupload gambar...",
+    //         isLoading: true,
+    //     });
+    //     try {
+    //         const imagePath = await postImage(file);
+    //         setUpdate(prev => ({
+    //             ...prev,
+    //             image: imagePath.data.data,  
+    //             date: new Date()
+    //         }));
     
-            updateToast({
-                toastId,
-                message: "sukses mengganti gambar",
-            });
-        } catch (error) {
-            console.error(error.message);
-            updateToast({
-                toastId,
-                message: "gagal untuk upload gambar",
-                isError: true,
-            });
-        }
-    };
+    //         updateToast({
+    //             toastId,
+    //             message: "sukses mengganti gambar",
+    //         });
+    //     } catch (error) {
+    //         console.error(error.message);
+    //         updateToast({
+    //             toastId,
+    //             message: "gagal untuk upload gambar",
+    //             isError: true,
+    //         });
+    //     }
+    // };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         const toastId = pushToast({
             isLoading: true,
-            message: "Mohon tunggu...",
+            message: "Ditunggu ya...",
         });
-    
-        try {
-            if (file) {
-            await handleUploadImage();
-        }
 
-    
-            if (!update.userId || Object.keys(update).length === 0) {
-                throw new Error("userId or data not found");
+        try {
+            if (!user.image && !file) {
+                updateToast({
+                    toastId,
+                    message: "Mohon upload gambar!"
+                })
+                return
             }
-    
-            const response = await updateUser(update.userId, update);
-            console.log("Response after update:", response);
-    
+            
+            const response = await editUser(file, update) 
+            console.log(response)
             if (response.data.message === "Success") {
-                console.log("User data updated:", response.data.userData);
                 setUpdate({
                     name: "",
                     username: "",
@@ -103,10 +100,11 @@ function EditProfile() {
                 });
                 router.push("/profile");
             } else {
-                console.log("Update profile failed:", response.data.message);
+                console.error("Update profile failed:", response.data.message);
+                throw new Error(response.data.message)
             }
         } catch (error) {
-            console.error("Error when updating:", error.response ? error.response.data : error);
+            console.error("Error when updating:", error.message);
             updateToast({
                 toastId,
                 message: error.message,
@@ -127,9 +125,9 @@ function EditProfile() {
                         <h2 className="text-grey text-sm mb-4 dark:text-gray-400">Create Profile</h2>
                         <form onSubmit={handleSubmit}>
                         <div className="relative w-[141px] h-[141px] rounded-full mx-auto">
-    {tempImg ? (
+    {user?.image ? (
         <Image
-            src={tempImg}
+            src={tempImg ? tempImg : user?.image}
             alt="Profile Image"
             width={141}
             height={141}
