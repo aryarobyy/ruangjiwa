@@ -92,7 +92,7 @@ export const AuthProvider = ({ children }) => {
         const tempData = {...data};
         try{
             const imagePath = await postImage(file);
-            const newData = {...tempData, image: imagePath.data.data}
+            const newData = {...tempData, profilePic: imagePath.data.data}
             console.log("Sukses update data")
             const response = updateUser(newData.username, newData)
             localStorage.setItem("userData", JSON.stringify(newData))

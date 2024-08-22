@@ -2,7 +2,7 @@ import * as url from '../endpointUrl';
 import axiosInstance from "@/libs/axiosInterface"
 
 export const addPost = (data) => {
-  return axiosInstance.post(`${url.ENDPOINT_FORUM}/forum`, data)
+  return axiosInstance.post(`${url.ENDPOINT_FORUM}`, data)
 }
 
 export const getPost = (forumId) => {

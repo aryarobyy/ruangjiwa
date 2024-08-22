@@ -24,7 +24,7 @@ function EditProfile() {
         username: user?.username,
         age: user?.age,
         medHistory: user?.medHistory,
-        image: user?.image,
+        profilePic: user?.profilePic,
     });
     
 
@@ -125,9 +125,9 @@ function EditProfile() {
                         <h2 className="text-grey text-sm mb-4 dark:text-gray-400">Create Profile</h2>
                         <form onSubmit={handleSubmit}>
                         <div className="relative w-[141px] h-[141px] rounded-full mx-auto">
-    {user?.image ? (
+    {user?.profilePic ? (
         <Image
-            src={tempImg ? tempImg : user?.image}
+            src={tempImg ? tempImg : user?.profilePic}
             alt="Profile Image"
             width={141}
             height={141}

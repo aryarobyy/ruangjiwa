@@ -60,7 +60,7 @@ const ArtikelAdd = () => {
       setNewData((prev) => ({ ...prev, description: finalDesc }))
       setRemainingCharDesc(0);
     } else {
-      setNewData((prev) => ({ ...prev, description: inpuTitle}))
+      setNewData((prev) => ({ ...prev, description: inpuDesc}))
       setRemainingCharDesc(MAX_DESC_CHAR - inpuDesc.length)
     }
   }
