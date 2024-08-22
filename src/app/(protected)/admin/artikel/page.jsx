@@ -1,29 +1,18 @@
 "use client";
 import AdminBreadcrumb from "@/components/adminComponent/AdminBreadcrumb";
 import BlogSection from "@/components/adminComponent/BlogSection";
+import Button from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { getAllArtikel } from "@/helpers/artikel";
+import Link from "next/link";
 import { useEffect, useState } from "react";
-
-const tempData = [
-  {
-    "_id": "66c4291d22705d84426c7e84",
-    "title": "Judul Artikel ke 1",
-    "description": "                Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita ipsam, illo alias ipsum qui dolorum optio reiciendis omnis! Optio quod fugit quam impedit vero labore accusamus? Tenetur ab iste quo?\n                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore iure distinctio enim, obcaecati dicta doloribus numquam vel vitae ducimus mollitia illum nemo rem quos? Quis, deleniti? Voluptatem ducimus vel illo.\n                Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit ad eius quidem fugit sequi fugiat obcaecati harum temporibus, totam in aperiam omnis aut cumque facere! Dolore earum expedita ducimus labore?",
-    "imgUrl": "https://res.cloudinary.com/dcpxbtbaz/image/upload/v1724131611/pw7optfhahfpakuy5phl.png",
-    "creatorId": "7be0906f-9fdf-4aac-9b51-baad17a0c1b8",
-    "name": "Irzi",
-    "date": "2024-08-20T05:26:38.127Z",
-    "artikelId": "6c46c36e-a648-49f3-b713-f3c59465960c"
-}
-]
 
 const AdminArtikel = () => {
   const [ artikels, setArtikels ] = useState([]);
   const [loadingGetData, setLoadingGetData] = useState(false);
 
   useEffect(() => {
-      // getArtikelData();
+      getArtikelData();
   }, []);
   
   const getArtikelData = async () => {
@@ -41,13 +30,21 @@ const AdminArtikel = () => {
   const handleDeletedArtikel = (artikelId) => {
     const newArtikel = artikels.slice('').filter(item => item.artikelId !== artikelId);
     console.log(newArtikel);
+    setArtikels(newArtikel);
   }
 
   return (
-    <div className="text-dark bg-primary border-2 border-white pb-6">
+    <div className="text-dark bg-primary border-2 border-white">
       <AdminBreadcrumb title={"Artikel"} />
-      <div className="px-8">
-        <BlogSection data={tempData} title={"List Artikel"} isGettingData={loadingGetData} type={"artikelPage"} onDeletedItem={handleDeletedArtikel} />
+      <div className="px-8 flex flex-col gap-4">
+        <div className="w-full flex justify-end items-center px-4">
+          <Button>
+            <Link href={"/admin/artikel/add"}>
+              Tambah Artikel
+            </Link>
+          </Button>
+        </div>
+        <BlogSection data={artikels} title={"List Artikel"} isGettingData={loadingGetData} type={"artikelPage"} onDeletedItem={handleDeletedArtikel} />
       </div>
     </div>
   );

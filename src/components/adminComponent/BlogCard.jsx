@@ -19,8 +19,8 @@ const BlogCard = ({data, itemDescription, handleDeletedItem }) => {
       isLoading: true
     })
     try {
-      // const res = await deleteArtikelById(artikelId);
-      // if(res.data.message !== "Success") throw new Error("Gagal Menghapus Artikel!");
+      const res = await deleteArtikelById(data.artikelId);
+      if(res.data.message !== "Success") throw new Error("Gagal Menghapus Artikel!");
 
       handleDeletedItem(data.artikelId);
       updateToast({
@@ -55,7 +55,7 @@ const BlogCard = ({data, itemDescription, handleDeletedItem }) => {
             src={data.imgUrl}
             width={500}
             height={700}
-            unoptimized
+            onLoad={(e) => e.target.className + ' blur-md'}
             className="object-cover rounded-md hover:scale-105 transition-all ease-in-out duration-300 h-52"
             alt={data.title}
           />
@@ -67,7 +67,7 @@ const BlogCard = ({data, itemDescription, handleDeletedItem }) => {
 
               </div>
               <h1 className="w-full text-base text-center text-default-600 font-semibold">
-                {data.title}
+                {` ${data.title.length > 65 ? `${data.title.slice(0, 65)}...` : data.title}`}
               </h1>
               <p className="w-full py-2 text-justify text-sm text-default-600 font-medium">
                 {itemDescription}

@@ -17,6 +17,7 @@ import { getAllArtikel } from "@/helpers/artikel";
 import { useAuth } from "@/context/AuthContext";
 import { useRouter } from "next/navigation";
 
+// coba pindain get data ke masing2 kompo, page ini jadiin use server
 
 const Dashboard = () => {
   const [artikel, setArtikel] = useState([]);
