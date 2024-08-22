@@ -3,7 +3,7 @@ import Image from "next/image";
 
 const CardGrid = () => {
   const Card = ({ number, title, description, imgSrc, imgAlt, personName }) => (
-    <div className="relative bg-white rounded-lg shadow-lg p-6 pt-12 flex flex-col items-center text-center">
+    <div className="relative bg-[var(--compo-color)] rounded-lg shadow-lg p-6 pt-12 flex flex-col items-center text-center">
       <div className="absolute -top-8">
         <Image
           className="rounded-full"
@@ -13,10 +13,10 @@ const CardGrid = () => {
           height={200}
         />
       </div>
-      <span className="text-sm font-semibold text-gray-500 mt-12">{`0${number}`}</span>
-      <h3 className="text-xl font-bold text-gray-900 mt-2 mb-2">{title}</h3>
-      <p className="text-gray-600 mb-4">{description}</p>
-      <span className="text-sm font-medium text-gray-700">{personName}</span>
+      <span className="text-sm font-semibold text-[var(--text-color)] mt-12">{`0${number}`}</span>
+      <h3 className="text-xl font-bold text-[var(--title-color)] mt-2 mb-2">{title}</h3>
+      <p className="text-[var(--text-color)] mb-4">{description}</p>
+      <span className="text-sm font-medium text-[var(--title-color)]">{personName}</span>
     </div>
   );
 
@@ -27,8 +27,8 @@ const CardGrid = () => {
         <Card
           number={1}
           title="FrontEnd Developer"
-          description=""
-          imgSrc={img}
+          description="test"
+          imgSrc=""
           imgAlt="Dikry Ramdani"
           personName="Dikry Ramdani"
         />
