@@ -94,6 +94,9 @@ const Page = () => {
         date: new Date(),
       };
 
+      console.log(forumData);
+      return;
+      
       const response = await addForum(forumData);
       if (response.data.message !== "Success") {
         throw new Error(response.data.message);
