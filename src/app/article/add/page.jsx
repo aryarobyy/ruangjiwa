@@ -8,6 +8,9 @@ import { postImage } from "@/helpers/image";
 import useToast from "@/hooks/useHotToast";
 import { useState } from "react"
 
+const MAX_TITLE_CHAR = 80; 
+const MAX_DESC_CHAR = 600; 
+
 const ArtikelAdd = () => {
   const [tempImg, setTempImg] = useState('');
   const [file, setFile] = useState();
@@ -20,7 +23,9 @@ const ArtikelAdd = () => {
     image: "",
     date: ""
   });
-  const {pushToast, updateToast} = useToast();
+  const {pushToast, updateToast} = useToast(); 
+  const [remainingCharTitle, setRemainingCharTitle] = useState(MAX_TITLE_CHAR);
+  const [remainingCharDesc, setRemainingCharDesc] = useState(MAX_DESC_CHAR);
   
   const handleFileChange = (e) => {
     const selectedFile = e.target.files?.[0];
@@ -37,28 +42,26 @@ const ArtikelAdd = () => {
   }
 
   const handleChangeTitle = (e) => {
-    const MAX_CHAR = 80;
     const inpuTitle = e.target.value;
-    if(inpuTitle.length > MAX_CHAR ) {
-      const finalText = inpuTitle.slice(0, MAX_CHAR)
-      setNewData((prev) => ({ ...prev, title: finalText }))
-      setRemainingChar(0);
+    if(inpuTitle.length > MAX_TITLE_CHAR ) {
+      const finalTitle = inpuTitle.slice(0, MAX_TITLE_CHAR)
+      setNewData((prev) => ({ ...prev, title: finalTitle }))
+      setRemainingCharTitle(0);
     } else {
       setNewData((prev) => ({ ...prev, title: inpuTitle}))
-      setRemainingChar(MAX_CHAR - inpuTitle.length)
+      setRemainingCharTitle(MAX_TITLE_CHAR - inpuTitle.length)
     }
   }
   
   const handleChangeDesc = (e) => {
-    const MAX_CHAR = 80;
     const inpuDesc = e.target.value;
-    if(inpuDesc.length > MAX_CHAR ) {
-      const finalDesc = inpuDesc.slice(0, MAX_CHAR)
+    if(inpuDesc.length > MAX_DESC_CHAR ) {
+      const finalDesc = inpuDesc.slice(0, MAX_DESC_CHAR)
       setNewData((prev) => ({ ...prev, description: finalDesc }))
-      setRemainingChar(0);
+      setRemainingCharDesc(0);
     } else {
       setNewData((prev) => ({ ...prev, description: inpuTitle}))
-      setRemainingChar(MAX_CHAR - inpuDesc.length)
+      setRemainingCharDesc(MAX_DESC_CHAR - inpuDesc.length)
     }
   }
 

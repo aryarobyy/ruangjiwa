@@ -6,11 +6,12 @@ import InputImage from '@/components/system/InputImage'
 import useToast from '@/hooks/useHotToast'
 import Button from '@/components/ui/Button'
 import { useAuth } from '@/context/AuthContext'
+import { addPost } from '@/helpers/forum'
 
 
 const page = () => {
   const [tempImg, setTempImg] = useState(null)
-  const {updateToast} = useToast();
+  const {pushToast,updateToast} = useToast();
   const {user} = useAuth()
   const [post, setPost] = useState({
     userId: '',
@@ -50,9 +51,7 @@ const page = () => {
 
     // }
 
-    const handleSubmit = () => {
 
-    }
   return (
     <>
       <Input onChange={handleTitle} value={post.title}/>
