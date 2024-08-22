@@ -44,13 +44,13 @@ const Hero = () => {
           <div className="mt-8 flex flex-col items-center md:flex-row md:justify-start">
             <Link
               href="/auth/register"
-              className="inline-block rounded bg-[var(--button-bg-color)] px-12 py-3 text-sm font-medium text-[var(--button-text-color)] transition hover:bg-[var(--button-hover-bg-color)] focus:outline-none focus:ring focus:ring-[var(--button-focus-ring-color)]"
+              className="inline-block rounded bg-[var(--button-bg-color)] px-12 py-3 text-sm font-medium text-[var(--button-text-color)] transition hover:bg-[var(--button-hover-bg-color)] focus:outline-none focus:ring"
             >
               Get Started Today
             </Link>
             <Link
               href="/contact"
-              className="mt-4 md:mt-0 md:ml-4 inline-block rounded bg-transparent border border-[var(--button-bg-color)] px-12 py-3 text-sm font-medium text-[var(--button-bg-color)] transition hover:bg-[var(--button-bg-color)] hover:text-white focus:outline-none focus:ring focus:ring-[var(--button-focus-ring-color)]"
+              className="mt-4 md:mt-0 md:ml-4 inline-block rounded bg-transparent border border-[var(--button-bg-color)] px-12 py-3 text-sm font-medium text-[var(--button-bg-color)] transition hover:bg-[var(--button-bg-color)] hover:text-white focus:outline-none focus:ring"
             >
               Contact Us
             </Link>

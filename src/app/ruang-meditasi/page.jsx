@@ -33,7 +33,6 @@ const IntervalMeditationPage = () => {
   return (
     <>
       <Navbar />
-
       <div className="min-h-screen bg-[var(--hero-bg-color)] p-4 flex flex-col items-center">
         <h1 className="text-3xl font-bold mb-6 text-[var(--title-color)]">
           Ruang Meditasi
@@ -52,39 +51,39 @@ const IntervalMeditationPage = () => {
             />
           </div>
           <div className="flex-1 flex flex-col items-center">
-            <SpotifyPlayer playlistId="3n8A5uY1HMwxJBVjKmSSYa" />
+            <SpotifyPlayer playlistId="6lQ65wGEiElILKiDBzY5WS?utm_source=generator" />
           </div>
         </div>
 
-        <div className="mt-6 max-w-md text-center">
-          <p className="text-base text-[var(--title-color)]">
+        <div className="mt-8 max-w-md text-center px-4">
+          <p className="text-base text-[var(--title-color)] mb-6">
             Nikmati musik meditasi yang dirancang khusus untuk membantu Anda
             merasa lebih tenang dan fokus. Playlist ini mencakup berbagai trek
             yang dirancang untuk mendukung pengalaman meditasi Anda.
           </p>
         </div>
 
-        <div className="mt-6 flex flex-col items-center md:flex-row justify-center gap-6">
+        <div className="mt-8 flex flex-col items-center md:flex-row justify-center gap-8">
           <Image
             src="/meditasi.jpg"
             alt="Meditasi"
-            className="w-48 h-32 object-cover rounded-lg shadow-sm"
-            width={192}
-            height={128}
+            className="w-60 h-36 object-cover rounded-lg shadow-lg"
+            width={240}
+            height={144}
           />
 
           <div className="flex-1 max-w-md text-center">
-            <h2 className="text-lg font-semibold mb-4 text-[var(--title-color)]">
+            <h2 className="text-lg font-semibold mb-6 text-[var(--title-color)]">
               Tips Meditasi:
             </h2>
-            <ul className="list-disc list-inside text-[var(--title-color)] text-sm text-left flex flex-wrap">
-              <li className="pl-4 -indent-5">
+            <ul className="list-disc list-inside text-[var(--title-color)] text-sm text-left">
+              <li className="mb-3 pl-6">
                 Temukan tempat yang tenang dan nyaman.
               </li>
-              <li className="pl-4 -indent-5">
+              <li className="mb-3 pl-6">
                 Fokus pada pernapasan Anda dan biarkan pikiran Anda tenang.
               </li>
-              <li className="pl-4 -indent-5">
+              <li className="pl-6">
                 Gunakan musik untuk membantu menciptakan suasana yang damai.
               </li>
             </ul>
