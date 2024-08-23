@@ -49,7 +49,7 @@ const Login = () => {
       console.error(error.message);
       updateToast({
         toastId,
-        message: "Ops! Sepertinya gagal!",
+        message: error.message,
         isError: true
       })
 

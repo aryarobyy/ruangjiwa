@@ -1,3 +1,4 @@
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
@@ -5,8 +6,54 @@ module.exports = {
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
+  darkMode: ['class'],
+  safelist: [
+    {
+      pattern: /border-(sky|pink|purple)-500\/40/,
+    },
+    {
+      pattern: /text-(sky|pink|purple)-500/,
+    },
+    {
+      pattern: /bg-(sky|pink|purple)-500\/20/,
+    },
+    {
+      pattern: /border-(sky|pink|purple)-500\/20/,
+      variants: ['hover'],
+    },
+    {
+      pattern: /bg-(sky|pink|purple)-500\/5/,
+      variants: ['hover'],
+    },
+  ],
   theme: {
+    container: {
+      center: true,
+      padding: {
+        DEFAULT: '1rem',
+        sm: '2rem',
+        lg: '4rem',
+        xl: '5rem',
+        '2xl': '6rem',
+      },
+    },
     extend: {
+      // colors: {
+      //   primary: {
+      //     ...colors.orange,
+      //     DEFAULT: colors.orange['600'],
+      //   },
+      // },
+      zIndex: {
+        60: '60',
+        70: '70',
+      },
+      keyframes: {
+        load: {
+          '0%': { width: '0%' },
+          '100%': { width: '100%' },
+        },
+      },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":

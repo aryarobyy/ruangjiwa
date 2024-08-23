@@ -1,4 +1,10 @@
 'use client';
+const RevenueChart = dynamic(() => import("../../../../components/adminComponent/RevenueChart"), {
+  ssr: false,
+});
+const Statistics = dynamic(() => import("../../../../components/adminComponent/Statistics"), {
+  ssr: false,
+});
 import AdminBreadcrumb from "@/components/adminComponent/AdminBreadcrumb";
 import ProgressCard from "@/components/adminComponent/ProgressCard";
 import RecentOrders from "@/components/adminComponent/RecentOrders";
@@ -10,21 +16,18 @@ import { useEffect, useState } from "react";
 import { getAllArtikel } from "@/helpers/artikel";
 import { useAuth } from "@/context/AuthContext";
 import { useRouter } from "next/navigation";
-import { dokters } from "@/components/adminComponent/data";
 
 // coba pindain get data ke masing2 kompo, page ini jadiin use server
 
-const Dashboard = () => {
+const DokterDashboard = () => {
   const [artikel, setArtikel] = useState([]);
-  const [pendingDokter, setPendingDokter] = useState();
-  const [aprovedDokter, setAprovedDokter] = useState();
-  const {user} = useAuth();
+  const [dokter, setDokter] = useState();
+  const {user, logoutUser} = useAuth();
   const router = useRouter();
   const [loadingGetData, setLoadingGetData] = useState(false);
-
   
   useEffect(() => {
-      if(user.role !== 'admin') {
+      if(user.role !== 'dokter') {
         router.push('/');
         return;
       } else {
@@ -37,9 +40,6 @@ const Dashboard = () => {
     try {
       const artikels = await getAllArtikel();
       setArtikel(artikels.data.data);
-
-      setAprovedDokter(dokters.filter((el) => el.isAproved));
-      setPendingDokter(dokters.filter((el) => !el.isAproved));
     } catch (error) {
       console.error(error.message);
     } finally {
@@ -59,6 +59,7 @@ const Dashboard = () => {
         <div className="px-8">
           <div className="my-6 space-y-6">
             {/* <Statistics /> */}
+            <button onClick={logoutUser}>Logout</button>
 
             <div className="grid gap-6 lg:grid-cols-2">
               <ProgressCard />
@@ -67,9 +68,12 @@ const Dashboard = () => {
 
             <div className="grid gap-6 lg:grid-cols-3">
               <div className="lg:col-span-2">
-                <ListOfDoctor title={"Daftar Dokter Aktif"} type={"active"} data={aprovedDokter} />
+                <ListOfDoctor title={"Daftar Dokter Aktif"} type={"active"} />
               </div>
-              <ListOfDoctor title={"Daftar Regist Dokter"} type={"regist"} data={pendingDokter} />
+              <ListOfDoctor title={"Daftar Regist Dokter"} type={"regist"} />
+              <div className="hidden">
+                <RevenueChart />
+              </div>
             </div>
             <div className="w-full">
               {/* <RecentOrders /> */}
@@ -83,4 +87,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default DokterDashboard;

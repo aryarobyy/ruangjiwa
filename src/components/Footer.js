@@ -1,10 +1,13 @@
+'use client';
+import { useAuth } from "@/context/AuthContext"
 import Image from "next/image"
 import Link from "next/link"
 
 const Footer = () => {
+  const {user} = useAuth();
   return (
     <footer className="bg-[var(--hero-bg-color)]">
-      <div className="mx-auto max-w-screen-xl space-y-8 px-4 py-16 sm:px-6 lg:space-y-16 lg:px-8">
+      <div className="mx-auto max-w-screen-xl space-y-8 px-4 py-6 sm:px-6 lg:space-y-16 lg:px-8">
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
           <div>
             <div className="flex items-center space-x-4">
@@ -94,11 +97,7 @@ const Footer = () => {
             </li>
 
             <li>
-              <Link href="/aichat/guest" className="text-[var(--text-color)] transition hover:opacity-75"> ImuBot </Link>
-            </li>
-
-            <li>
-              <Link href="/" className="text-[var(--text-color)] transition hover:opacity-75"> t </Link>
+              <Link href={`/aichat/${user ? user.username : "guest"}`} className="text-[var(--text-color)] transition hover:opacity-75"> ImuBot </Link>
             </li>
           </ul>
         </div>
