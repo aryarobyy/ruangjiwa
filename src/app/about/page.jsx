@@ -6,7 +6,7 @@ const About = () => {
     <>
     <Navbar />
       <section className="bg-[var(--hero-bg-color)] py-12">
-        <div className="container mx-auto px-6">
+        <div className="container mx-auto px-6 s">
           <h2 className="text-3xl font-semibold text-center text-[var(--title-color)]">
             About Us
           </h2>

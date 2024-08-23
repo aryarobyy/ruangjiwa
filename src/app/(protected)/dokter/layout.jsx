@@ -6,12 +6,11 @@ import { useRouter } from 'next/navigation'
 import { useAuth } from '@/context/AuthContext'
 import useToast from '@/hooks/useHotToast'
 // import NextTopLoader from 'nextjs-toploader'
-// import TopBar from '@/components/adminComponent/TopBar'
 const TopBar = dynamic(() => import('@/components/adminComponent/TopBar'))
 
 const loading = () => <div />
 
-const AdminLayout = ({ children }) => {
+const DokterLayout = ({ children }) => {
 //   const router = useRouter()
 //   const { status } = useSession()
   const {user} = useAuth();
@@ -19,7 +18,7 @@ const AdminLayout = ({ children }) => {
   const {pushToast} = useToast();
 
   useEffect(() => {
-    if(user.role !== 'admin') {
+    if(user.role !== 'dokter') {
       pushToast({
         message: "Anda tidak punya hak untuk mengakses ini",
         isError: true
@@ -55,4 +54,4 @@ const AdminLayout = ({ children }) => {
   )
 }
 
-export default AdminLayout
+export default DokterLayout

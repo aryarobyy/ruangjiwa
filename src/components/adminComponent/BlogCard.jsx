@@ -55,7 +55,7 @@ const BlogCard = ({data, itemDescription, handleDeletedItem }) => {
             src={data.imgUrl}
             width={500}
             height={700}
-            onLoad={(e) => e.target.className + ' blur-md'}
+            onLoad={(e) => e.target.className + ' border-2 blur-md'}
             className="object-cover rounded-md hover:scale-105 transition-all ease-in-out duration-300 h-52"
             alt={data.title}
           />
@@ -63,7 +63,7 @@ const BlogCard = ({data, itemDescription, handleDeletedItem }) => {
             <Link href={`/admin/artikel/${data.artikelId}`}>
               <div className="text-sm flex justify-between pb-2">
                 <p>{date}</p>
-                <p>{`By: ${data.name}`}</p>
+                <p>{`${data.name}`}</p>
 
               </div>
               <h1 className="w-full text-base text-center text-default-600 font-semibold">
