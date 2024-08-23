@@ -1,9 +1,10 @@
-import React from 'react'
+const DokterDetail = ({params}) => {
+    const username = params.username;
+    return (
+        <>
+            <h1>{username}</h1>
+        </>
+    )
+};
 
-const page = () => {
-  return (
-    <div>page</div>
-  )
-}
-
-export default page
+export default DokterDetail;

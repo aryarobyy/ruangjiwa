@@ -90,14 +90,17 @@ const Page = () => {
     try {
       if (file) {
         const imagePath = await postImage(file);
-        if (imagePath.data.message !== "Success") {
-          throw new Error(imagePath.data.message);
-        }
-        forumData.forumImage = imagePath.data.data;
-      } else {
-        throw new Error("Mohon upload gambar");
+        setForum((prev) => ({ ...prev, forumImage: imagePath.data.data }));
       }
 
+      const forumData = {
+        ...forum,
+        date: new Date(),
+      };
+
+      console.log(forumData);
+      return;
+      
       const response = await addForum(forumData);
       if (response.data.message !== "Success") {
         throw new Error(response.data.message);

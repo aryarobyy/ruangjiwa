@@ -42,7 +42,7 @@ const Navbar = () => {
               <div className="flex items-center">
                 <Link className="block text-[var(--button-bg-color)]" href="/">
                   <span className="sr-only">Home</span>
-                  <Image src="/logo.svg" alt="logo" width={64} height={29} />
+                  <Image src="/logo.svg" alt="logo" className="rounded-md" width={64} height={29} />
                 </Link>
                 <div className="ml-4">
                   <ToggleMode />
@@ -117,7 +117,7 @@ const Navbar = () => {
                     Profile
                   </Button>
                   <Button.danger onClick={handleLogout}>
-                    Test Logout
+                    Logout
                   </Button.danger>
                 </div>
               ) : user?.role === "admin" ? (
@@ -126,7 +126,7 @@ const Navbar = () => {
                     Dashboard
                   </Button>
                   <Button.danger onClick={handleLogout}>
-                    Test Logout
+                    Logout
                   </Button.danger>
                 </>
               ) : user?.role === "dokter" ? (

@@ -13,12 +13,8 @@ export const AuthProvider = ({ children }) => {
     const [loading, setLoading ] = useState(true);
     const router = useRouter();
     
-
-
     useEffect(() => {
         const token = localStorage.getItem('token');
-        console.log(token)
-
         const verifyToken = async () => {
             try {
                 const result = await axiosInstance.post(`${url.ENDPOINT_USER}/verifyToken`, {token});
@@ -91,12 +87,26 @@ export const AuthProvider = ({ children }) => {
     const editUser = async (file, data) => {
         const tempData = {...data};
         try{
-            const imagePath = await postImage(file);
-            const newData = {...tempData, profilePic: imagePath.data.data}
-            console.log("Sukses update data")
-            const response = updateUser(newData.username, newData)
-            localStorage.setItem("userData", JSON.stringify(newData))
-            setUser(newData)
+            let imagePath;
+            let newData = {
+                username: tempData.username,
+                name: tempData.name,
+                profilePic: tempData.profilePic,
+                sex: tempData.sex,
+                medHistory: tempData.medHistory,
+                age: tempData.age
+            };
+
+            if(!tempData.profilePic) {
+                imagePath = await postImage(file);
+                newData = {...newData, profilePic: imagePath.data.data};
+            }
+
+            const response = await updateUser(newData);
+            
+            const fixData = {...tempData, ...newData};
+            localStorage.setItem("userData", JSON.stringify(fixData))
+            setUser(fixData);
             return response
         } catch (error){
             console.error("Something error", error.message)

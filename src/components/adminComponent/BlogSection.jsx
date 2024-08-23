@@ -21,7 +21,7 @@ const BlogSection = ({ title, type, data, isGettingData, onDeletedItem }) => {
         <h4 className="text-lg text-dark">{title}</h4>
       </div>
       <div
-        className={`h-[500px] scroll-smooth p-2 overflow-y-auto [&::-webkit-scrollbar-track]:!bg-transparent [&::-webkit-scrollbar]:w-1 ${
+        className={`h-[500px] scroll-smooth p-2 overflow-y-auto  ${
           !data || data?.length < 1
             ? ""
             : "grid sm:grid-cols-2 md:grid-cols-3 gap-2"

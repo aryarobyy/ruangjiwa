@@ -1,11 +1,8 @@
 "use client"
-import { useAuth } from "@/context/AuthContext";
 import Image from "next/image";
 import Link from "next/link";
 
 const Hero = () => {
-  const {user} = useAuth()
-  console.log(user)
   return (
     <section className="relative overflow-hidden bg-[var(--hero-bg-color)] sm:grid sm:grid-cols-2">
       <div className="absolute inset-0 bg-gradient-to-r from-[var(--hero-bg-color)] to-transparent opacity-50"></div>

@@ -29,15 +29,10 @@ const adminMenu = [
     icon: LuBookOpen,
   },
   {
-    name: 'Ui Components',
-    link: '/admin/ui-components',
+    name: 'Daftar Dokter',
+    link: '/admin/dokter',
     icon: LuComponent,
-  },
-  {
-    name: 'Landing',
-    link: '/',
-    icon: LuSnowflake,
-  },
+  }
 ]
 
 const messages = [
@@ -58,33 +53,6 @@ const messages = [
     description: ' There was a problem in your code.',
     variant: 'red-500',
     icon: LuShieldOff,
-  },
-]
-
-const apps= [
-  {
-    name: 'GitHub',
-    image: github,
-  },
-  {
-    name: 'Bitbucket',
-    image: bitbucket,
-  },
-  {
-    name: 'Dropbox',
-    image: dropbox,
-  },
-  {
-    name: 'Slack',
-    image: slack,
-  },
-  {
-    name: 'Dribble',
-    image: dribble,
-  },
-  {
-    name: 'Behance',
-    image: behance,
   },
 ]
 
@@ -190,13 +158,157 @@ export const artikel = [
   },
 ]
 
-export const forum = [
+export const dokters = [
   {
-    forumId: '123',
-    createdBy: 'zaxchaxs',
-    name: "Irzi",
-    createdAt: ''
-  }
+    id: '123',
+    name: 'Irzi',
+    username: 'irzidokter',
+    email: 'dokterirzi@gmail.com',
+    role: 'dokter',
+    umur: '29',
+    specialis: 'drepression control',
+    isAproved: true
+  },
+  {
+    id: '312',
+    name: 'Abraham',
+    username: 'abrahamlilcoln',
+    email: 'abrahamdokter@gmail.com',
+    role: 'dokter',
+    umur: '30',
+    specialis: 'lonelies fixer',
+    isAproved: false
+  },
+  {
+    id: '1122',
+    name: 'MarchIprigoGeostanopel',
+    username: 'zaxch0304',
+    email: 'marhdokter@gmail.com',
+    role: 'dokter',
+    umur: '19',
+    specialis: 'anxienty helper',
+    isAproved: true
+  },
+  {
+    id: '123',
+    name: 'Irzi',
+    username: 'irzidokter',
+    email: 'dokterirzi@gmail.com',
+    role: 'dokter',
+    umur: '29',
+    specialis: 'drepression control',
+    isAproved: true
+  },
+  {
+    id: '312',
+    name: 'Abraham',
+    username: 'abrahamlilcoln',
+    email: 'abrahamdokter@gmail.com',
+    role: 'dokter',
+    umur: '30',
+    specialis: 'lonelies fixer',
+    isAproved: false
+  },
+  {
+    id: '1122',
+    name: 'MarchIprigoGeostanopel',
+    username: 'zaxch0304',
+    email: 'marshdokter@gmail.com',
+    role: 'dokter',
+    umur: '19',
+    specialis: 'anxienty helper',
+    isAproved: true
+  },
+  {
+    id: '123',
+    name: 'Irzi',
+    username: 'irzidokter',
+    email: 'dokterirzi@gmail.com',
+    role: 'dokter',
+    umur: '29',
+    specialis: 'drepression control',
+    isAproved: true
+  },
+  {
+    id: '312',
+    name: 'Abraham',
+    username: 'abrahamlilcoln',
+    email: 'abrahamdokter@gmail.com',
+    role: 'dokter',
+    umur: '30',
+    specialis: 'lonelies fixer',
+    isAproved: false
+  },
+  {
+    id: '1122',
+    name: 'MarchIprigoGeostanopel',
+    username: 'zaxch0304',
+    email: 'marhdokter@gmail.com',
+    role: 'dokter',
+    umur: '19',
+    specialis: 'anxienty helper',
+    isAproved: true
+  },
+  {
+    id: '123',
+    name: 'Irzi',
+    username: 'irzidokter',
+    email: 'dokterirzi@gmail.com',
+    role: 'dokter',
+    umur: '29',
+    specialis: 'drepression control',
+    isAproved: true
+  },
+  {
+    id: '312',
+    name: 'Abraham',
+    username: 'abrahamlilcoln',
+    email: 'abrahamdokter@gmail.com',
+    role: 'dokter',
+    umur: '30',
+    specialis: 'lonelies fixer',
+    isAproved: false
+  },
+  {
+    id: '1122',
+    name: 'MarchIprigoGeostanopel',
+    username: 'zaxch0304',
+    email: 'marhdokter@gmail.com',
+    role: 'dokter',
+    umur: '19',
+    specialis: 'anxienty helper',
+    isAproved: true
+  },
+  {
+    id: '123',
+    name: 'Irzi',
+    username: 'irzidokter',
+    email: 'dokterirzi@gmail.com',
+    role: 'dokter',
+    umur: '29',
+    specialis: 'drepression control',
+    isAproved: true
+  },
+  {
+    id: '312',
+    name: 'Abraham',
+    username: 'abrahamlilcoln',
+    email: 'abrahamdokter@gmail.com',
+    role: 'dokter',
+    umur: '30',
+    specialis: 'lonelies fixer',
+    isAproved: false
+  },
+  {
+    id: '1122',
+    name: 'MarchIprigoGeostanopel',
+    username: 'zaxch0304',
+    email: 'marhdokter@gmail.com',
+    role: 'dokter',
+    umur: '19',
+    specialis: 'anxienty helper',
+    isAproved: true
+  },
 ]
 
-export { adminMenu, messages, apps }
+export { adminMenu, messages}
