@@ -1,4 +1,6 @@
-import { mongoPostForum, mongoGetAllForum} from "@/mongoMethods/forum";
+import { messages } from "@/components/adminComponent/data";
+import connectDb from "@/libs/mongodb";
+import { mongoPostForum, mongoGetAllForum, mongoGetForumById} from "@/mongoMethods/forum";
 import { v4 as uuidv4 } from "uuid";
 
 export const POST = async (req) => {
@@ -22,17 +24,17 @@ export const POST = async (req) => {
 
 export const GET = async () => {
     try {
-        const response = mongoGetAllForum();
+        const data = await mongoGetAllForum();
 
         return Response.json({
             message: "Success",
-            data: response
+            data: data
         })
     } catch (error) {
         console.error(error.message);
         return Response.json({
-            message: "Failed",
+            message: "Failed",  
             data: []
         })
     }
-}   
+}

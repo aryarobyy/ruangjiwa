@@ -1,14 +1,12 @@
-"use client"
-
 import React, { useEffect, useState } from 'react';
-import { MdDeleteOutline } from "react-icons/md";
+import { DeleteIcon } from "@chakra-ui/icons";
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/context/AuthContext';
 import Image from 'next/image';
 import { getAllForum } from '@/helpers/forum';
 
-const Page = () => {
+const Post = () => {
     const { user } = useAuth();
     const navigate = useRouter();
     const [forums, setForums] = useState([]);
@@ -38,34 +36,33 @@ const Page = () => {
                     <div className="flex-1 flex flex-col gap-2">
                         <div className="flex justify-between w-full">
                             <div className="flex items-center w-full">
-                                {/* <Image src={user.profilePic}/> */}
-                                <p //tambahin avatar nanti
+                                <p
                                     className="text-sm font-bold cursor-pointer"
                                     onClick={(e) => {
                                         e.preventDefault();
-                                        // navigate.push(`/${forum.username}`);
+                                        navigate.push(`/${forum.username}`);
                                     }}
                                 >
-                                    {forum.postedBy}
+                                    {forum.username}
                                 </p>
-                                {/* <img src="/verified.png" className="w-4 h-4 ml-1" alt="verified" /> */}
+                                <img src="/verified.png" className="w-4 h-4 ml-1" alt="verified" />
                             </div>
                             <div className="flex gap-4 items-center">
-                                {/* <p className="text-xs w-36 text-right text-gray-400">
+                                <p className="text-xs w-36 text-right text-gray-400">
                                     {new Date(forum.createdAt).toLocaleDateString()} ago
-                                </p> */}
+                                </p>
                                 {user?.userId === forum.userId && (
-                                    <MdDeleteOutline
+                                    <DeleteIcon
                                         className="cursor-pointer"
                                         onClick={() => handleDeletePost(forum.forumId)}
                                     />
                                 )}
                             </div>
                         </div>
-                        <p className="text-sm">{forum.content}</p>
+                        <p className="text-sm">{forum.text}</p>
                         {forum.forumImage && (
                             <div className="rounded overflow-hidden border border-gray-300">
-                                <Image src={forum.forumImage} alt="post" className="h-500 w-200" width={400} height={400} />
+                                <Image src={forum.forumImage} alt="post" className="w-full" width={500} height={500} />
                             </div>
                         )}
                     </div>
@@ -75,4 +72,4 @@ const Page = () => {
     );
 };
 
-export default Page;
+export default Post;
