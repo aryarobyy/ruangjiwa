@@ -1,25 +1,19 @@
-import axiosInstance from "@/libs/axiosInterface";
 import { mongoGetForumById } from "@/mongoMethods/forum";
 
-export const GET = async ({params}) => {
+export const GET = async (req, {params}) => {
     try {
         const forumId = params.id;
 
         const response = await mongoGetForumById(forumId);
-        const {data} = await axiosInstance.get(`/api/chat/forum/${forumId}`)
-        console.log(data);
-
+        console.log(response)
         return Response.json({
             message: "Success",
-            data: {
-                ...response,
-                messages: data.data
-            }
+            data: response
         });
     } catch (error) {
-        console.error(error.message);
+        console.error("Api error",error.message);
         return Response.json({
-            message: "Error",  
+            message: "Api Error",  
             data: []
         })
     }

@@ -15,3 +15,6 @@ export const ENDPOINT_IMAGE = "/api/image";
 
 //forum
 export const ENDPOINT_FORUM = "/api/forum";
+
+//pdf
+export const ENDPOINT_PDF = "/api/dokter/pdf";
