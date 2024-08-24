@@ -3,6 +3,8 @@ import connectDb from "@/libs/mongodb";
 import { mongoPostForum, mongoGetAllForum, mongoGetForumById} from "@/mongoMethods/forum";
 import { v4 as uuidv4 } from "uuid";
 import upload from "@/mongoMethods/gridfs";
+import { NextResponse } from 'next/server';
+import { GridFSBucket, ObjectId } from 'mongodb';
 
 // export const POST = async (req) => {
 //     try {
@@ -19,6 +21,22 @@ import upload from "@/mongoMethods/gridfs";
 //         console.error('Error:', error.message);
 //         return Response.json({
 //             message: "Failed"
+//         })
+//     }
+// }
+// export const GET = async () => {
+//     try {
+//         const data = await mongoGetAllForum();
+
+//         return Response.json({
+//             message: "Success",
+//             data: data
+//         })
+//     } catch (error) {
+//         console.error(error.message);
+//         return Response.json({
+//             message: "Failed",  
+//             data: []
 //         })
 //     }
 // }
@@ -49,19 +67,29 @@ export const POST = async (req) => {
     }
   };
 
-export const GET = async () => {
-    try {
-        const data = await mongoGetAllForum();
 
-        return Response.json({
-            message: "Success",
-            data: data
-        })
-    } catch (error) {
-        console.error(error.message);
-        return Response.json({
-            message: "Failed",  
-            data: []
-        })
+export const GET = async (req) => {
+  try {
+    const { searchParams } = new URL(req.url);
+    const pdfId = searchParams.get('id');
+
+    if (!pdfId) {
+      return NextResponse.json({ error: 'PDF ID not provided' }, { status: 400 });
     }
-}
+
+    const { database } = await connectDb();
+    const bucket = new GridFSBucket(database, { bucketName: 'pdfs' });
+
+    const downloadStream = bucket.openDownloadStream(new ObjectId(pdfId));
+
+    const headers = {
+      'Content-Type': 'application/pdf',
+      'Content-Disposition': `attachment; filename="${pdfId}.pdf"`,
+    };
+
+    return new NextResponse(downloadStream, { headers });
+  } catch (e) {
+    console.error('Error retrieving PDF:', e);
+    return NextResponse.json({ error: 'Error retrieving PDF' }, { status: 500 });
+  }
+};
