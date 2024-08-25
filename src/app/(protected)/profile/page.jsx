@@ -13,9 +13,10 @@ function ProfileCard() {
     <>
       <Navbar />
         <div className="w-full h-full bg-[var(--hero-bg-color)] py-16">
-            <div className="max-w-4xl mx-4 sm:max-w-md md:max-w-md lg:max-w-lg xl:max-w-lg sm:mx-auto md:mx-auto lg:mx-auto xl:mx-auto shadow-xl rounded-lg text-gray-900  bg-primary">
-                <div className="rounded-t-lg h-48 overflow-hidden bg-[url('https://images.unsplash.com/photo-1449844908441-8829872d2607?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NzEyNjZ8MHwxfHNlYXJjaHw2fHxob21lfGVufDB8MHx8fDE3MTA0MDE1NDZ8MA&ixlib=rb-4.0.3&q=80&w=1080')]"></div>
-                <div className="mx-auto w-48 h-48 relative -mt-24 border-4 border-white rounded-full overflow-hidden ">
+        <div className="w-full max-w-full mx-auto p-4 shadow-xl rounded-lg text-gray-900 bg-primary">
+                <div className="rounded-t-lg h-40 overflow-hidden bg-[url('https://images.unsplash.com/photo-1449844908441-8829872d2607?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NzEyNjZ8MHwxfHNlYXJjaHw2fHxob21lfGVufDB8MHx8fDE3MTA0MDE1NDZ8MA&ixlib=rb-4.0.3&q=80&w=1080')]"/>
+                <div className="flex items-center">
+                <div className="flex-shrink-0 mr-4 w-48 h-48 relative -mt-24 border-4 border-white rounded-full overflow-hidden ">
                 {user?.profilePic ? (
                     <Image
                     src={user?.profilePic}
@@ -34,11 +35,13 @@ function ProfileCard() {
                     />
                 )}
                 </div>
-                <div className="text-center mt-4">
-                <p className="text-gray-500">Username: @{user?.username} </p>
-                <h2 className="font-semibold text-2xl">Nama: {user?.name}</h2>
+                    <div className="flex-grow">
+                    <p className="text-gray-500 ml-2">Username: @{user?.username} </p>
+                    <h2 className="font-semibold text-2xl ml-2">Nama: {user?.name}</h2>
+                    </div>
                 </div>
-                <div className="text-center mt-4">
+
+                <div className="text-center mt-4 ml-auto">
                 <p className="text-gray-700">
                     <strong>{`Usia: ${user?.age} tahun`}</strong>
                 </p>

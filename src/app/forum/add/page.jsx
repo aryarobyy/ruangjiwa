@@ -1,4 +1,4 @@
-"use client"
+'use client';
 
 import React, { useRef, useState } from 'react';
 import { Input } from "@/components/ui/Input";
@@ -6,25 +6,22 @@ import InputImage from '@/components/system/InputImage';
 import useToast from '@/hooks/useHotToast';
 import Button from '@/components/ui/Button';
 import { useAuth } from '@/context/AuthContext';
-import { addPost as addForum } from '@/helpers/forum';
+import { addForum } from '@/helpers/forum';
 import { postImage } from '@/helpers/image';
 
 const Page = () => {
   const MAX_TITLE_CHAR = 80;
   const MAX_CONTENT_CHAR = 600;
   
-  const [tempImg, setTempImg] = useState(null);
-  const [file, setFile] = useState(null); 
+  const [tempImg, setTempImg] = useState("");
+  const [file, setFile] = useState(""); 
   const { pushToast, updateToast } = useToast();
   const { user } = useAuth();
-  const imageRef = useRef(null)
 
   const [remainingCharTitle, setRemainingCharTitle] = useState(MAX_TITLE_CHAR);
   const [remainingCharContent, setRemainingCharContent] = useState(MAX_CONTENT_CHAR);
 
   const [forum, setForum] = useState({
-    userId: user?.userId,
-    postedBy: user?.username,
     title: '',
     content: '',
     forumImage: ''
@@ -33,8 +30,8 @@ const Page = () => {
   const handleTitle = (e) => {
     const inputTitle = e.target.value;
     if (inputTitle.length > MAX_TITLE_CHAR) {
-      const finalText = inputTitle.slice(0, MAX_TITLE_CHAR);
-      setForum((prev) => ({ ...prev, title: finalText }));
+      const finalTitle = inputTitle.slice(0, MAX_TITLE_CHAR);
+      setForum((prev) => ({ ...prev, title: finalTitle }));
       setRemainingCharTitle(0);
     } else {
       setForum((prev) => ({ ...prev, title: inputTitle }));
@@ -64,7 +61,7 @@ const Page = () => {
       return;
     }
 
-    setFile(selectedFile)
+    setFile(selectedFile);
     const tempFile = URL.createObjectURL(selectedFile);
     setTempImg(tempFile);
   };
@@ -77,6 +74,13 @@ const Page = () => {
       });
       return;
     }
+
+    const forumData = {
+      ...forum,
+      userId: user?.userId || user?.dokterId,
+      postedBy: user?.username,
+      date: new Date(),
+    };
 
     const toastId = pushToast({
       message: "Membuat post...",
@@ -100,28 +104,26 @@ const Page = () => {
       const response = await addForum(forumData);
       if (response.data.message !== "Success") {
         throw new Error(response.data.message);
-      } else {
-        updateToast({
-          toastId,
-          message: "Sukses bikin post",
-        });
-        setForum({
-          userId: user?.userId,
-          postedBy: user?.username,
-          title: '',
-          content: '',
-          forumImage: '',
-        });
-        console.log("data forum",forum)
-        setRemainingCharTitle(MAX_TITLE_CHAR);
-        setRemainingCharContent(MAX_CONTENT_CHAR);
-        setTempImg(null); 
-        setFile(null); 
       }
+
+      updateToast({
+        toastId,
+        message: "Sukses bikin post",
+      });
+
+      setForum({
+        title: '',
+        content: '',
+        forumImage: '',
+      });
+      setRemainingCharTitle(MAX_TITLE_CHAR);
+      setRemainingCharContent(MAX_CONTENT_CHAR);
+      setTempImg(null); 
+      setFile(null); 
     } catch (error) {
       updateToast({
         toastId,
-        message: "Gagal bikin postingan",
+        message: error.message,
         isError: true,
       });
     }

@@ -19,3 +19,6 @@ export const ENDPOINT_FORUM = "/api/forum";
 // konsul
 export const ENDPOINT_KONSUL = '/api/konsul'
 export const ENDPOINT_KONSUL_MESSAGE = '/api/chat/konsul'
+
+//pdf
+export const ENDPOINT_PDF = "/api/dokter/pdf";
