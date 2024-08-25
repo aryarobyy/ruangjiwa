@@ -4,25 +4,28 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/context/AuthContext';
 import Image from 'next/image';
-import { getAllForum } from '@/helpers/forum';
 
-const Post = () => {
+const forums = (forum) => {
     const { user } = useAuth();
     const navigate = useRouter();
     const [forums, setForums] = useState([]);
 
-    useEffect(() => {
-        getForum();
-    }, []);
+    if (!post || !forum.forumId){
+        return null;
+    }
 
-    const getForum = async () => {
-        try {
-            const response = await getAllForum();
-            setForums(response.data.data);
-        } catch (error) {
-            console.error(error.message);
-        } 
-    };
+    // useEffect(() => {
+    //     getForum();
+    // }, []);
+
+    // const getForum = async () => {
+    //     try {
+    //         const response = await getAllForum();
+    //         setForums(response.data.data);
+    //     } catch (error) {
+    //         console.error(error.message);
+    //     } 
+    // };
 
     const handleDeletePost = (forumId) => {
         const newForums = forums.filter(item => item.forumId !== forumId);
@@ -31,7 +34,6 @@ const Post = () => {
 
     return (
         <div>
-            {forums.map((forum) => (
                 <div key={forum.forumId} className="flex gap-3 mb-4 py-5">
                     <div className="flex-1 flex flex-col gap-2">
                         <div className="flex justify-between w-full">
@@ -67,9 +69,8 @@ const Post = () => {
                         )}
                     </div>
                 </div>
-            ))}
         </div>
     );
 };
 
-export default Post;
+export default forums;

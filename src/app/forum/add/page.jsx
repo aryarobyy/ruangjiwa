@@ -93,10 +93,10 @@ const Page = () => {
         setForum((prev) => ({ ...prev, forumImage: imagePath.data.data }));
       }
 
-      const forumData = {
-        ...forum,
-        date: new Date(),
-      };
+      // const forumData = {
+      //   ...forum,
+      //   date: new Date(),
+      // };
 
       console.log(forumData);
       return;
