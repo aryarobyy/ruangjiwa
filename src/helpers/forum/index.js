@@ -8,3 +8,7 @@ export const addForum = (data) => {
 export const getAllForum = () => {
   return axiosInstance.get(`${url.ENDPOINT_FORUM}`)
 }
+
+export const getForumById = (forumId) => {
+  return axiosInstance.get(`${url.ENDPOINT_FORUM}/${forumId}`)
+}

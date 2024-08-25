@@ -21,7 +21,7 @@ function ProfileCard() {
                 <div className="flex-shrink-0 mr-4 w-48 h-48 relative -mt-24 border-4 border-white rounded-full overflow-hidden ">
                 {user?.profilePic ? (
                     <Image
-                    // src={user?.profilePic}
+                    src={user?.profilePic}
                     alt="Profile Image"
                     width={100}
                     height={100}

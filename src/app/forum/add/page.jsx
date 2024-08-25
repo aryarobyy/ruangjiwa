@@ -75,13 +75,7 @@ const Page = () => {
       return;
     }
 
-    const forumData = {
-      ...forum,
-      userId: user?.userId || user?.dokterId,
-      postedBy: user?.username,
-      date: new Date(),
-    };
-
+    let imagePath = '';
     const toastId = pushToast({
       message: "Membuat post...",
       isLoading: true,
@@ -89,18 +83,18 @@ const Page = () => {
 
     try {
       if (file) {
-        const imagePath = await postImage(file);
-        setForum((prev) => ({ ...prev, forumImage: imagePath.data.data }));
+        const imageResponse = await postImage(file);
+        imagePath = imageResponse.data.data;
+        // console.log("data",imagePath)
+        // setForum((prev) => ({ ...prev, forumImage: imagePath.data.data }));
       }
-
-      // const forumData = {
-      //   ...forum,
-      //   date: new Date(),
-      // };
-
-      console.log(forumData);
-      return;
-      
+      const forumData = {
+      ...forum,
+      forumImage: imagePath,
+      userId: user?.userId || user?.dokterId,
+      postedBy: user?.username,
+      date: new Date(),
+      };
       const response = await addForum(forumData);
       if (response.data.message !== "Success") {
         throw new Error(response.data.message);
