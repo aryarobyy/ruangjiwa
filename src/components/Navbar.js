@@ -125,9 +125,6 @@ const Navbar = () => {
                   <Button onClick={() => router.push("/admin/dashboard")}>
                     Dashboard
                   </Button>
-                  <Button.danger onClick={handleLogout}>
-                    Logout
-                  </Button.danger>
                 </>
               ) : user?.role === "dokter" ? (
                 <Button onClick={() => router.push("/dokter/dashboard")}>

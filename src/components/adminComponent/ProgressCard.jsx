@@ -1,10 +1,14 @@
+'use client';
 import Image from "next/image";
 import Link from "next/link";
 import { LuEye, LuPartyPopper } from "react-icons/lu";
 
 import dashboardHero from "@/assets/images/other/dashboard-hero.png";
+import { useAuth } from "@/context/AuthContext";
 
 const ProgressCard = () => {
+  const {user} = useAuth();
+
   return (
     <div className="overflow-hidden rounded-md border border-default-200 bg-white dark:bg-default-50">
       <div
@@ -12,7 +16,7 @@ const ProgressCard = () => {
         role="alert"
       >
         <LuPartyPopper className="me-2 size-4" />
-        <span>Congratulations John.</span>
+        <span>{`Congratulations ${user.name}`}</span>
       </div>
       <div className="p-5">
         <div className="grid grid-cols-4 items-center justify-between">
@@ -20,10 +24,7 @@ const ProgressCard = () => {
             <div className="flex h-full flex-col items-start">
               <div className="mb-4 grow">
                 <p className="text-lg text-default-900">
-                  You have done <span>68%</span>😎 more sales today
-                </p>
-                <p className="text-base text-default-600">
-                  Check your new badge in your profile.
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit maiores pariatur eaque sint soluta quae illum ut sit suscipit facere quas
                 </p>
               </div>
               <Link

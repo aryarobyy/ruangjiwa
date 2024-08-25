@@ -15,3 +15,7 @@ export const ENDPOINT_IMAGE = "/api/image";
 
 //forum
 export const ENDPOINT_FORUM = "/api/forum";
+
+// konsul
+export const ENDPOINT_KONSUL = '/api/konsul'
+export const ENDPOINT_KONSUL_MESSAGE = '/api/chat/konsul'

@@ -45,8 +45,8 @@ const ProfileDropdown = () => {
           src={avatar1}
         />
         <div className="text-start text-dark">
-          <p className="text-sm font-bold">{user.name}</p>
-          <p className="mt-1 text-xs font-semibold ">Admin</p>
+          <p className="text-sm font-bold">{user?.name}</p>
+          <p className="mt-1 text-xs font-semibold ">{user?.role}</p>
         </div>
       </button>
       <div className={`${isDropDownShow ? '' : 'hidden'} right-0 top-10 duration mt-2 min-w-[12rem] rounded-lg border border-default-200 bg-white p-2 absolute shadow-md transition-[opacity,margin] hs-dropdown-open:opacity-100 dark:bg-default-50`}>

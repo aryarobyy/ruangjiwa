@@ -1,4 +1,3 @@
-
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
@@ -53,7 +52,7 @@ module.exports = {
           '0%': { width: '0%' },
           '100%': { width: '100%' },
         },
-      },
+        },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":

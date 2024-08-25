@@ -1,31 +1,31 @@
 import Link from "next/link";
 import { sources } from "../../app/(protected)/admin/dashboard/data";
 import { LuUpload } from "react-icons/lu";
+import Button from "../ui/Button";
 
 const Sources = () => {
   return (
-    <div className="overflow-hidden rounded-md border border-default-200 bg-white dark:bg-default-50">
+    <div className="overflow-hidden rounded-md border border-default-200 bg-white dark:bg-default-50 text-dark">
       <div className="flex items-center justify-between border-b border-default-200 px-4 py-3">
         <h4 className="text-lg text-default-900">Sources</h4>
-        <Link
-          href=""
-          className="inline-flex items-center gap-x-1.5 rounded-full bg-primary px-3 py-1.5 text-xs font-medium text-white transition-all duration-300 hover:bg-primary-700"
-        >
-          Export <LuUpload className="ms-1.5 size-4" />
-        </Link>
+        <Button >
+          <Link href="#" className="flex justify-center items-center gap-3">
+            Export <LuUpload className="ms-1.5 size-4" />
+          </Link>
+        </Button>
       </div>
       <div>
         <table className="w-full">
           <thead className="border-b border-default-200 bg-default-100">
             <tr>
               <th className="p-2 text-start text-sm font-semibold text-default-900">
-                Types
+                Nama
               </th>
               <th className="p-2 text-start text-sm font-semibold text-default-900">
-                Sessions
+                Total Artikel
               </th>
               <th className="p-2 text-start text-sm font-semibold text-default-900">
-                Views
+                Total Konsultasi
               </th>
             </tr>
           </thead>

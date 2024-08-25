@@ -54,7 +54,6 @@ const Dashboard = () => {
 
   return (
     <div className="text-dark bg-primary border-2 border-white">
-      <AdminBreadcrumb title="Dashboard" />
       <section>
         <div className="px-8">
           <div className="my-6 space-y-6">
@@ -69,7 +68,7 @@ const Dashboard = () => {
               <div className="lg:col-span-2">
                 <ListOfDoctor title={"Daftar Dokter Aktif"} type={"active"} data={aprovedDokter} />
               </div>
-              <ListOfDoctor title={"Daftar Regist Dokter"} type={"regist"} data={pendingDokter} />
+              <ListOfDoctor title={"Daftar Dokter Pending"} type={"pending"} data={pendingDokter} />
             </div>
             <div className="w-full">
               {/* <RecentOrders /> */}

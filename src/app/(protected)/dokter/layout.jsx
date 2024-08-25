@@ -46,7 +46,7 @@ const DokterLayout = ({ children }) => {
   return (
     <>
       <Suspense fallback={loading()}>
-        <TopBar />
+        <TopBar type="dokter" />
       </Suspense>
 
       <Suspense fallback={loading()}>{children}</Suspense>

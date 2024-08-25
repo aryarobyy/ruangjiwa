@@ -60,7 +60,7 @@ const BlogCard = ({data, itemDescription, handleDeletedItem }) => {
             alt={data.title}
           />
           <div className="w-full py-4">
-            <Link href={`/admin/artikel/${data.artikelId}`}>
+            <Link href={`/artikel/${data.artikelId}`}>
               <div className="text-sm flex justify-between pb-2">
                 <p>{date}</p>
                 <p>{`${data.name}`}</p>

@@ -2,9 +2,6 @@
 const RevenueChart = dynamic(() => import("../../../../components/adminComponent/RevenueChart"), {
   ssr: false,
 });
-const Statistics = dynamic(() => import("../../../../components/adminComponent/Statistics"), {
-  ssr: false,
-});
 import AdminBreadcrumb from "@/components/adminComponent/AdminBreadcrumb";
 import ProgressCard from "@/components/adminComponent/ProgressCard";
 import RecentOrders from "@/components/adminComponent/RecentOrders";
@@ -54,31 +51,19 @@ const DokterDashboard = () => {
 
   return (
     <div className="text-dark bg-primary border-2 border-white">
-      <AdminBreadcrumb title="Dashboard" />
+      <AdminBreadcrumb title="Dashboard" type={"Dokter"} />
       <section>
         <div className="px-8">
           <div className="my-6 space-y-6">
             {/* <Statistics /> */}
-            <button onClick={logoutUser}>Logout</button>
 
             <div className="grid gap-6 lg:grid-cols-2">
               <ProgressCard />
               <Sources />
             </div>
 
-            <div className="grid gap-6 lg:grid-cols-3">
-              <div className="lg:col-span-2">
-                <ListOfDoctor title={"Daftar Dokter Aktif"} type={"active"} />
-              </div>
-              <ListOfDoctor title={"Daftar Regist Dokter"} type={"regist"} />
-              <div className="hidden">
-                <RevenueChart />
-              </div>
-            </div>
             <div className="w-full">
-              {/* <RecentOrders /> */}
-              {/* <BlogSection title={"List Forum"} /> */}
-              <BlogSection title={"List Artikel"} data={artikel} type={'dashboard'} isGettingData={loadingGetData} onDeletedItem={handleDeletedArtikel} />
+              <BlogSection title={"Artikel Anda"} data={artikel} type={'dashboard'} isGettingData={loadingGetData} onDeletedItem={handleDeletedArtikel} />
             </div>
           </div>
         </div>

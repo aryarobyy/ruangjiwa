@@ -1,15 +1,15 @@
 'use client'
 import Link from 'next/link'
-import { adminMenu } from './data'
+import { dokterMenu } from './data'
 import { cn } from '@/utils/twMerge' 
 import { usePathname } from 'next/navigation'
 
-const AdminMenu = () => {
+const DokterMenu = () => {
   const pathname = usePathname()
   return (
     <nav className="admin-menu border-b border-default-200 bg-white text-sm font-medium shadow-sm shadow-default-100 dark:bg-default-50">
       <div className="custom-scroll container mx-auto flex w-full snap-x items-center overflow-x-auto py-2.5">
-        {adminMenu.map((item, idx) => {
+        {dokterMenu.map((item, idx) => {
           const Icon = item.icon
           return (
             <div key={idx} className="shrink-0 snap-center px-2">
@@ -31,4 +31,4 @@ const AdminMenu = () => {
   )
 }
 
-export default AdminMenu;
+export default DokterMenu;
