@@ -12,7 +12,7 @@ export const POST = async (req, res) => {
   try {
     const response = await cloudinary.uploader.upload(filePath, {
       resource_type: "raw",
-      folder: "PDF Folder",
+      folder: "File",
     });
     
     return Response.json({ message: "Success", data: response.secure_url });

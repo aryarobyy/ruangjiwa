@@ -26,7 +26,7 @@ const AdminLayout = ({ children }) => {
       });
       router.push('/');
       return;
-    };
+    }
 
     document.body.classList.add('bg-default-50')
     return () => {

@@ -26,6 +26,14 @@ const DokterLayout = ({ children }) => {
       router.push('/');
       return;
     };
+    if(user?.role === 'dokter' && user?.isApproved === false) {
+      pushToast({
+        message: "Maaf, anda belum dapat mengakses ini. \nHubungi administrator dan coba lagi nanti.",
+        isError: true
+      })
+      router.push('/');
+      return;
+    }
 
     document.body.classList.add('bg-default-50')
     return () => {
