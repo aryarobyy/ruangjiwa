@@ -24,7 +24,7 @@ const Dashboard = () => {
 
   
   useEffect(() => {
-      if(user.role !== 'admin') {
+      if(user?.role !== 'admin') {
         router.push('/');
         return;
       } else {

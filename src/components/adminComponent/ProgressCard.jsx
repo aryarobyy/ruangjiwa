@@ -16,7 +16,7 @@ const ProgressCard = () => {
         role="alert"
       >
         <LuPartyPopper className="me-2 size-4" />
-        <span>{`Congratulations ${user.name}`}</span>
+        <span>{`Congratulations ${user?.name}`}</span>
       </div>
       <div className="p-5">
         <div className="grid grid-cols-4 items-center justify-between">

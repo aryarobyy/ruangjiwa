@@ -236,8 +236,6 @@ const Register = () => {
 
               )
             }
-
-            {/* form dokter */}
           </div>
         </main>
       </div>
