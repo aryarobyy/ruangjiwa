@@ -7,7 +7,7 @@ import useToast from '@/hooks/useHotToast';
 import Button from '@/components/ui/Button';
 import { useAuth } from '@/context/AuthContext';
 import { addForum } from '@/helpers/forum';
-import { postImage } from '@/helpers/image';
+import { postFile } from '@/helpers/image';
 
 const Page = () => {
   const MAX_TITLE_CHAR = 80;
@@ -89,7 +89,7 @@ const Page = () => {
 
     try {
       if (file) {
-        const imagePath = await postImage(file);
+        const imagePath = await postFile(file);
         setForum((prev) => ({ ...prev, forumImage: imagePath.data.data }));
       }
 

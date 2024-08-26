@@ -10,8 +10,11 @@ export const ENDPOINT_ARTIKEL = "/api/artikel"
 // user
 export const ENDPOINT_USER = "/api/user"
 
+// dokter
+export const ENDPOINT_DOKTER = '/api/dokter'
+
 // image 
-export const ENDPOINT_IMAGE = "/api/image";
+export const ENDPOINT_FILE = "/api/file";
 
 //forum
 export const ENDPOINT_FORUM = "/api/forum";

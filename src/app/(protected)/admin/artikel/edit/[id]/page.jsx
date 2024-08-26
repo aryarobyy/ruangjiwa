@@ -7,7 +7,7 @@ import { Label } from "@/components/ui/Label";
 import Textarea from "@/components/ui/TextArea";
 import { useAuth } from "@/context/AuthContext";
 import { getArtikelById, postNewArtikel, updateArtikel } from "@/helpers/artikel";
-import { postImage } from "@/helpers/image";
+import { postFile } from "@/helpers/image";
 import useToast from "@/hooks/useHotToast";
 import { useEffect, useState } from "react";
 
@@ -66,7 +66,7 @@ const AdminArtikelEdit = ({params}) => {
     try {
       if (!tempData.imgUrl) throw new Error("Image belum terunggah");
 
-      const result = await postImage(file);
+      const result = await postFile(file);
 
       if (result.data.message !== "Success")
         throw new Error(result.data.message);

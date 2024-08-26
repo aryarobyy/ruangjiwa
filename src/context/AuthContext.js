@@ -3,7 +3,7 @@ import * as url from '@/helpers/endpointUrl';
 import axiosInstance from "@/libs/axiosInterface";
 import { useRouter } from "next/navigation";
 import { createContext, useContext, useEffect, useState } from "react";
-import { postImage } from '@/helpers/image';
+import { postFile } from '@/helpers/image';
 import { updateUser } from '@/helpers/user';
 
 const AuthContext = createContext();
@@ -71,6 +71,25 @@ export const AuthProvider = ({ children }) => {
             throw error;
         }
     };
+
+    const loginDokter = async (data) => {
+        try {
+            const res = await axiosInstance.post(`${url.ENDPOINT_DOKTER}/login`, data);
+
+            if(res.data.message !== "Success") throw new Error(res.data.message);
+            
+            const {token, userData} = res.data;
+
+            // simpen di localstorage token sama data nya;
+            localStorage.setItem('token', token);
+            localStorage.setItem('userData', JSON.stringify(userData));
+            setUser(userData);
+            router.push('/');
+        } catch (error) {
+            console.error(error.message);
+            throw error;
+        }
+    };
     
     const logoutUser = async () => {
         try {
@@ -98,7 +117,7 @@ export const AuthProvider = ({ children }) => {
             };
 
             if(!tempData.profilePic) {
-                imagePath = await postImage(file);
+                imagePath = await postFile(file);
                 newData = {...newData, profilePic: imagePath.data.data};
             }
 
@@ -115,7 +134,7 @@ export const AuthProvider = ({ children }) => {
     }
 
     return(
-        <AuthContext.Provider value={{ user, loginUser, logoutUser, editUser, loading}}>
+        <AuthContext.Provider value={{ user, loginUser, loginDokter, logoutUser, editUser, loading}}>
             {!loading && children}
         </AuthContext.Provider>
     )
