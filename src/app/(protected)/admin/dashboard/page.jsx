@@ -10,7 +10,7 @@ import { useEffect, useState } from "react";
 import { getAllArtikel } from "@/helpers/artikel";
 import { useAuth } from "@/context/AuthContext";
 import { useRouter } from "next/navigation";
-import { dokters } from "@/components/adminComponent/data";
+import { getAllDokter } from "@/helpers/dokter";
 
 // coba pindain get data ke masing2 kompo, page ini jadiin use server
 
@@ -38,8 +38,10 @@ const Dashboard = () => {
       const artikels = await getAllArtikel();
       setArtikel(artikels.data.data);
 
-      setAprovedDokter(dokters.filter((el) => el.isAproved));
-      setPendingDokter(dokters.filter((el) => !el.isAproved));
+      const doktors = await getAllDokter();
+      setAprovedDokter(doktors.data.data.filter(el => el.isApproved));
+      setPendingDokter(doktors.data.data.filter(el => !el.isApproved));
+
     } catch (error) {
       console.error(error.message);
     } finally {
@@ -66,9 +68,9 @@ const Dashboard = () => {
 
             <div className="grid gap-6 lg:grid-cols-3">
               <div className="lg:col-span-2">
-                <ListOfDoctor title={"Daftar Dokter Aktif"} type={"active"} data={aprovedDokter} />
+                <ListOfDoctor isGettingData={loadingGetData} title={"Daftar Dokter Aktif"} type={"active"} data={aprovedDokter} />
               </div>
-              <ListOfDoctor title={"Daftar Dokter Pending"} type={"pending"} data={pendingDokter} />
+              <ListOfDoctor isGettingData={loadingGetData} title={"Daftar Dokter Pending"} type={"pending"} data={pendingDokter} />
             </div>
             <div className="w-full">
               {/* <RecentOrders /> */}

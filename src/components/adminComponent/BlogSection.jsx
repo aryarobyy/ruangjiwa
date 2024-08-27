@@ -8,11 +8,7 @@ import { artikel } from "./data";
 import Button from "../ui/Button";
 import { Suspense } from "react";
 import LoadingSection from "../system/LoadingSection";
-// import BlogCard from "../BlogCard";
 
-// daftar list yg register dokter
-// daftar dokter
-// daftar user
 
 const BlogSection = ({ title, type, data, isGettingData, onDeletedItem }) => {
   return (

@@ -7,14 +7,16 @@ import { useRouter } from "next/navigation";
 // import tempDataDokter from '@/assets/data'
 import { dokters } from "@/components/adminComponent/data";
 import Sources from "@/components/adminComponent/Sources";
+import { getAllDokter } from "@/helpers/dokter";
+import useToast from "@/hooks/useHotToast";
 
 const DokterPage = () => {
-  const [dokter, setDokter] = useState([]);
   const [pendingDokter, setPendingDokter] = useState();
   const [aprovedDokter, setAprovedDokter] = useState();
   const {user} = useAuth();
   const router = useRouter();
   const [loadingGetData, setLoadingGetData] = useState(false);
+  const {pushToast} = useToast();
 
   
   useEffect(() => {
@@ -27,13 +29,22 @@ const DokterPage = () => {
   }, []);
 
   const getDokterData = async () => {
-    setAprovedDokter(dokters.filter((el) => el.isAproved));
-    setPendingDokter(dokters.filter((el) => !el.isAproved));
+    setLoadingGetData(true);
+    try {
+      const doktors = await getAllDokter();
+      setAprovedDokter(doktors.data.data.filter(el => el.isApproved));
+      setPendingDokter(doktors.data.data.filter(el => !el.isApproved));
+    } catch (error) {
+      console.error(error.message);
+      pushToast({
+        message: error.message,
+        isError: true
+      });
+    } finally {
+      setLoadingGetData(false);
+    };
   };
   
-  const handleDeletedArtikel = (artikelId) => {
-    
-  }
 
   return (
     <div className="text-dark bg-primary border-2 border-white">
@@ -45,8 +56,8 @@ const DokterPage = () => {
               <Sources />
             </div>
             <div className="grid gap-6 md:grid-cols-2">
-                <ListOfDoctor title={"Daftar Dokter Aktif"} type={"active"} data={aprovedDokter} />
-              <ListOfDoctor title={"Daftar Regist Dokter"} type={"regist"} data={pendingDokter} />
+                <ListOfDoctor title={"Daftar Dokter Aktif"} type={"active"} data={aprovedDokter} isGettingData={loadingGetData} />
+              <ListOfDoctor title={"Daftar Regist Dokter"} type={"regist"} data={pendingDokter} isGettingData={loadingGetData} />
             </div>
           </div>
         </div>
