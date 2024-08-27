@@ -9,6 +9,7 @@ import Button from "@/components/ui/Button";
 import Image from "next/image";
 import { registerDokter } from "@/helpers/dokter";
 import { postFile } from "@/helpers/image";
+import Textarea from "@/components/ui/TextArea";
 
 const Register = () => {
   const [inputs, setInputs] = useState({
@@ -22,11 +23,14 @@ const Register = () => {
     username: "",
     email: "",
     password: "",
+    bio: "",
+    spesialis: "",
     ijazah: null,
     cv: null,
   })
   const [confirmPass, setConfirmPass] = useState("");
   const [role, setRole] = useState("user");
+  const [isSubmiting, setIsSubmiting] = useState(false);
   const router = useRouter();
   const { updateToast, pushToast } = useToast();
   const { user, loginUser, loginDokter } = useAuth();
@@ -44,6 +48,10 @@ const Register = () => {
   // function handler for registration
   const handleRegisterUser = async (e) => {
     e.preventDefault();
+
+    if(isSubmiting) return;
+
+    setIsSubmiting(true);
 
     const toastId = pushToast({
       isLoading: true,
@@ -81,15 +89,20 @@ const Register = () => {
         message: error.message,
         isError: true,
       });
+    } finally {
+      setIsSubmiting(false);
     }
   };
 
   const handleRegisterDokter = async (e) => {
     e.preventDefault();
 
+    if(isSubmiting) return;
+
+    setIsSubmiting(true);
     const toastId = pushToast({
       isLoading: true,
-      message: "Ditunggu ya!..."
+      message: "Mohon ditunggu!\nIni akan sedikit memakan waktu."
     });
 
     try {
@@ -99,7 +112,10 @@ const Register = () => {
       const newData = {...inputDokter};
 
       const urlCvFile = await postFile(cvFile);
+      if(urlCvFile.data.message !== "Success") throw new Error(urlCvFile.data.message);
+      
       const urlIjazahFile = await postFile(ijazahFile);
+      if(urlIjazahFile.data.message !== "Success") throw new Error(urlCvFile.data.message);
 
       newData.cv = urlCvFile.data.data;
       newData.ijazah = urlIjazahFile.data.data;
@@ -135,6 +151,8 @@ const Register = () => {
         message: error.message,
         isError: true,
       });
+    } finally {
+      setIsSubmiting(false);
     }
   }
   return (
@@ -298,7 +316,7 @@ const Register = () => {
                 </div>
 
                 <div className="col-span-6 sm:flex sm:items-center sm:gap-4">
-                  <Button onClick={handleRegisterUser}>Buat Akun</Button>
+                  <Button disabled={isSubmiting} onClick={handleRegisterUser}>Buat Akun</Button>
                   <p className="mt-4 text-sm text-gray-500 sm:mt-0">
                     Already have an account?
                     <a href="/auth/login" className="text-gray-700 underline p-1">
@@ -402,6 +420,36 @@ const Register = () => {
                   />
                 </div>
 
+                <div className="col-span-6">
+                  <label
+                    htmlFor="Bio"
+                    className="block text-sm font-medium text-gray-700 my-2"
+                  >
+                    Bio
+                  </label>
+
+                    <Textarea value={inputDokter.bio} onchange={(e) => setInputDokter({...inputDokter, bio: e.target.value})} placeholder={"Deskripsikan secara singkat tentang anda (min 250 huruf)"} />
+                      <p className={`text-sm text-red-600 ${inputDokter.bio && inputDokter?.bio.length > 250 ? 'hidden' : ''}`}>Jumlah kata belum memenuhi</p>
+                </div>
+                
+                <div className="col-span-6">
+                  <label
+                    htmlFor="Email"
+                    className="block text-sm font-medium text-gray-700 my-2"
+                  >
+                    Bidang
+                  </label>
+                  <Input
+                    type={"text"}
+                    value={inputDokter.spesialis}
+                    onChange={(e) =>
+                      setInputDokter((prev) => ({ ...prev, spesialis: e.target.value }))
+                    }
+                    placeholder={"Bidang"}
+                    required
+                  />
+                </div>
+
                 <div className="col-span-6 sm:col-span-3">
                   <label
                     htmlFor="Password"
@@ -461,7 +509,7 @@ const Register = () => {
                 </div>
 
                 <div className="col-span-6 sm:flex sm:items-center sm:gap-4">
-                  <Button onClick={handleRegisterDokter}>Buat Akun Dokter</Button>
+                  <Button disabled={isSubmiting} onClick={handleRegisterDokter}>Buat Akun Dokter</Button>
                   <p className="mt-4 text-sm text-gray-500 sm:mt-0">
                     Already have an account?
                     <a href="/auth/login" className="text-gray-700 underline p-1">

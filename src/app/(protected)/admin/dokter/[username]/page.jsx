@@ -139,14 +139,7 @@ const DokterDetail = ({ params }) => {
                 <div className={`w-full text-center py-4 flex flex-col justify-center items-center`}>
                   <p>Bio</p>
                   <p className="sm:w-2/3">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Nulla labore cumque eaque laudantium illo illum ea
-                    voluptatibus et quidem quos quas optio soluta, alias
-                    voluptates tempora numquam iusto consectetur quam! Lorem
-                    ipsum, dolor sit amet consectetur adipisicing elit.
-                    Consectetur veritatis, officiis veniam quidem aperiam sed
-                    iure nam, ipsum fugit tenetur deserunt omnis sunt accusamus
-                    doloribus hic quos ratione. Odio, enim.
+                    {`${dataDokter?.bio}`}
                   </p>
                 </div>
               </div>
@@ -165,7 +158,7 @@ const DokterDetail = ({ params }) => {
                         className={`h-[500px] scroll-smooth p-2 overflow-y-auto  ${
                           !artikelDokter || artikelDokter?.length < 1
                             ? ""
-                            : "grid sm:grid-cols-2 md:grid-cols-3 gap-2"
+                            : "grid sm:grid-cols-2 gap-2"
                         }`}
                       >
                         {loadingGetData ? (
@@ -182,7 +175,7 @@ const DokterDetail = ({ params }) => {
                               <BlogCard
                                 key={idx}
                                 data={item}
-                                handleDeletedItem={onDeletedItem}
+                                // handleDeletedItem={onDeletedItem}
                                 itemDescription={`${item.description.slice(0, 200)}...`}
                               />
                             );
@@ -200,7 +193,7 @@ const DokterDetail = ({ params }) => {
                         className={`h-[500px] scroll-smooth p-2 overflow-y-auto  ${
                           !artikelDokter || artikelDokter?.length < 1
                             ? ""
-                            : "grid sm:grid-cols-2 md:grid-cols-3 gap-2"
+                            : "grid sm:grid-cols-2  gap-2"
                         }`}
                       >
                         {loadingGetData ? (
@@ -217,7 +210,7 @@ const DokterDetail = ({ params }) => {
                               <BlogCard
                                 key={idx}
                                 data={item}
-                                handleDeletedItem={onDeletedItem}
+                                // handleDeletedItem={onDeletedItem}
                                 itemDescription={`${item.description.slice(0, 200)}...`}
                               />
                             );

@@ -73,12 +73,12 @@ export const mongoDeleteDokterByUsername = async (username) => {
     }
 }
 
-export const mongoGetArtikelByDokter = async (creatodId) => {
+export const mongoGetArtikelByDokter = async (creatorId) => {
     try {
         const {client, database} = await connectDb();
-        const col = database.collection(collectionName);   
+        const col = database.collection("artikel");   
     
-        const res = await col.find({creatodId}).toArray();
+        const res = await col.find({creatorId}).toArray();
         await client.close();
         
         return res;

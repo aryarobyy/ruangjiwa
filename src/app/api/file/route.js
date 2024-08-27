@@ -20,7 +20,7 @@ export const POST = async (req, res) => {
     console.error("Error uploading image: ", error.message);
     // throw new Error(error.message);
     
-    return Response.json({ message: error.message, data: null });
+    return Response.json({ message: error.message || "Gagal upload file!", data: null });
 
   }
 };

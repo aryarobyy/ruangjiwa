@@ -14,6 +14,7 @@ const Login = () => {
   });
   const [role, setRole] = useState('user');
   const router = useRouter();
+  const [isSubmiting, setIsSubmiting] = useState(false);
   const {loginUser, user, loginDokter} = useAuth();
   const {pushToast, updateToast} = useToast();
 
@@ -24,6 +25,10 @@ const Login = () => {
   // handler funtion
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if(isSubmiting) return;
+
+    setIsSubmiting(true);
 
     const toastId = pushToast({
       message: "Ditunggu ya!...",
@@ -50,7 +55,8 @@ const Login = () => {
         message: error.message,
         isError: true
       })
-
+    } finally {
+      setIsSubmiting(false);
     }
   }
 
@@ -119,7 +125,7 @@ const Login = () => {
               </div>
 
               <div className="col-span-6 sm:flex sm:items-center sm:gap-4">
-                <Button onClick={handleSubmit}>
+                <Button disabled={isSubmiting} onClick={handleSubmit}>
                   Login
                 </Button>
 

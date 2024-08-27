@@ -22,6 +22,6 @@ export const updateApprovedDokter = async (username) => {
 }
 
 export const getArtikelByDokter = async (creatorId) => {
-    return axiosInstance.get(`${url.ENDPOINT_ARTIKEL}/${creatorId}`)
+    return axiosInstance.get(`${url.ENDPOINT_DOKTER}/artikel/${creatorId}`)
 
 }

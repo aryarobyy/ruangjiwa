@@ -1,10 +1,11 @@
-import { mongoGetArtikelByDokter, mongoGetDokterByUsername, mongoUpdateApproved } from "@/mongoMethods/dokter";
+import { mongoGetActivie } from "@/mongoMethods/activitie";
+import { mongoGetArtikelById } from "@/mongoMethods/artikel";
 
 export const GET = async (req, {params}) => {
     try {
-        const creatorId = params.creatorId;
+        const activitieId = params.id;
 
-        const response = await mongoGetArtikelByDokter(creatorId);
+        const response = await mongoGetActivie(activitieId);
 
         return Response.json({
             message: "Success",
@@ -13,7 +14,7 @@ export const GET = async (req, {params}) => {
     } catch (error) {
         console.error(error.message);
         return Response.json({
-            message: error.message,  
+            message: "Error",  
             data: []
         })
     }

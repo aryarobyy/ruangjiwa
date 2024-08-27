@@ -21,7 +21,7 @@ const AdminArtikel = () => {
   const getArtikelData = async () => {
     setLoadingGetData(true);
     try {
-      const response = await getArtikelByDokter(user.dokterId);
+      const response = await getArtikelByDokter(user.userId);
       setArtikels(response.data.data);
     } catch (error) {
       console.error(error.message);
@@ -42,12 +42,12 @@ const AdminArtikel = () => {
       <div className="px-8 flex flex-col gap-4">
         <div className="w-full flex justify-end items-center px-4">
           <Button>
-            <Link href={"/admin/artikel/add"}>
+            <Link href={"/dokter/artikel/add"}>
               Tambah Artikel
             </Link>
           </Button>
         </div>
-        <BlogSection data={artikels} title={"List Artikel Anda"} isGettingData={loadingGetData} type={"artikelPage"} onDeletedItem={handleDeletedArtikel} />
+        <BlogSection href={"dokter/artikel/add"} data={artikels} title={"List Artikel Anda"} isGettingData={loadingGetData} type={"artikelPage"} onDeletedItem={handleDeletedArtikel} />
       </div>
     </div>
   );

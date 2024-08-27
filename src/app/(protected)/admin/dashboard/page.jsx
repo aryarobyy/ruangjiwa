@@ -11,11 +11,13 @@ import { getAllArtikel } from "@/helpers/artikel";
 import { useAuth } from "@/context/AuthContext";
 import { useRouter } from "next/navigation";
 import { getAllDokter } from "@/helpers/dokter";
+import { getActivities, getAllActivitie } from "@/helpers/activities";
 
 // coba pindain get data ke masing2 kompo, page ini jadiin use server
 
 const Dashboard = () => {
   const [artikel, setArtikel] = useState([]);
+  const [activities, setActivities] = useState();
   const [pendingDokter, setPendingDokter] = useState();
   const [aprovedDokter, setAprovedDokter] = useState();
   const {user} = useAuth();
@@ -36,7 +38,13 @@ const Dashboard = () => {
     setLoadingGetData(true);
     try {
       const artikels = await getAllArtikel();
+      if(artikels.data.message !== "Success") throw new Error("Sepertinya gagal memuat artikel!");
       setArtikel(artikels.data.data);
+
+      const activitieRes = await getAllActivitie();
+      if(activitieRes.data.message !== "Success") throw new Error("Sepertinya gagal memuat \nreport aktifitas dokter");
+      setActivities(activitieRes.data.data);
+      
 
       const doktors = await getAllDokter();
       setAprovedDokter(doktors.data.data.filter(el => el.isApproved));
@@ -63,7 +71,7 @@ const Dashboard = () => {
 
             <div className="grid gap-6 lg:grid-cols-2">
               <ProgressCard />
-              <Sources />
+              <Sources data={activities} />
             </div>
 
             <div className="grid gap-6 lg:grid-cols-3">
@@ -75,7 +83,7 @@ const Dashboard = () => {
             <div className="w-full">
               {/* <RecentOrders /> */}
               {/* <BlogSection title={"List Forum"} /> */}
-              <BlogSection title={"List Artikel"} data={artikel} type={'dashboard'} isGettingData={loadingGetData} onDeletedItem={handleDeletedArtikel} />
+              <BlogSection href={"admin/artikel/add"} title={"List Artikel"} data={artikel} type={'dashboard'} isGettingData={loadingGetData} onDeletedItem={handleDeletedArtikel} />
             </div>
           </div>
         </div>

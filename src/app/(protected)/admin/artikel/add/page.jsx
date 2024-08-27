@@ -19,6 +19,8 @@ const AdminArtikelAdd = () => {
     });
     const [file, setFile] = useState();
     const [tempImg, setTempImg] = useState('');
+    const [isSubmiting, setIsSubmiting] = useState(false);
+
     const {pushToast, updateToast} = useToast();
     const {user} = useAuth();
 
@@ -37,6 +39,11 @@ const AdminArtikelAdd = () => {
     };
 
     const handleSubmit = async () => {
+        
+        if(isSubmiting) return;
+
+        setIsSubmiting(true);
+
         const newData = {
             ...tempData,
             creatorId: user.userId || user.dokterId,
@@ -106,7 +113,7 @@ const AdminArtikelAdd = () => {
                 </div>
             </div>
             <div className="w-full px-4 my-6">
-                <Button onClick={handleSubmit} className={"w-full"}>Submit</Button>
+                <Button disabled={isSubmiting} onClick={handleSubmit} className={"w-full"}>Submit</Button>
             </div>
           </div>
         </div>
