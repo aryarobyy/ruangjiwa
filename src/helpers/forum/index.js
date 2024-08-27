@@ -12,3 +12,11 @@ export const getAllForum = () => {
 export const getForumById = (forumId) => {
   return axiosInstance.get(`${url.ENDPOINT_FORUM}/${forumId}`)
 }
+
+export const addComment = (forumId, data) => {
+  return axiosInstance.post(`${url.ENDPOINT_FORUM}/${forumId}/comment`, data)
+}
+
+export const getComment = (forumId,commentId) => {
+  return axiosInstance.get(`${url.ENDPOINT_FORUM}/${forumId}/comment=${commentId}`)
+}

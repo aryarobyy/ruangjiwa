@@ -13,9 +13,9 @@ const Forum = ({ forum, user }) => {
             onClick={() => router.push(`/forum/${forum.forumId}`)}
         >
             <div className="flex-1 flex flex-col gap-2">
-                <div className="flex justify-between w-full">
+                <div className="flex w-full">
 
-                    <Link href={`/profile/${username}`}>
+                    <Link href={`/profile/${forum.postedBy}`}>
                     <div className="flex items-center w-full">
                     <Image src={user.profilePic || "/avatar.jpg"} className="w-8 h-8 rounded-full mr-2" alt="verified" width={400} height={400}
                     />
@@ -41,7 +41,7 @@ const Forum = ({ forum, user }) => {
                 <p className="text-sm">{forum.content}</p>
                 {forum.forumImage && (
                     <div className="rounded overflow-hidden border border-gray-300">
-                        <Image src={forum.forumImage} alt="post" className="w-full" width={500} height={500} />
+                        <Image src={forum.forumImage} alt="post" className="w-22" width={300} height={300} />
                     </div>
                 )}
             </div>
