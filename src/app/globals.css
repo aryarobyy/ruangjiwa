@@ -1,8 +1,3 @@
-/* @import "../assets/css/custom/_reboot.css";
-@import "../assets/css/custom/_swiper.css";
-@import "../assets/css/custom/_gallery.css";
-@import "../assets/css/custom/_apexcharts.css"; */
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -88,6 +83,8 @@ body {
   -ms-overflow-style: none; /* Menghilangkan scrollbar di Internet Explorer dan Edge Legacy */
   scrollbar-width: none; /* Menghilangkan scrollbar di Firefox */
 }
+
+
 
 
 /* HTML: <div class="loader"></div> */

@@ -24,13 +24,13 @@ const CardGrid = () => {
     <div className="max-w-screen-xl mx-auto py-12">
       <h2 className="text-center text-gray-500 text-2xl font-semibold mb-8">Creators.</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-        <Card
+      <Card
           number={1}
           title="FrontEnd Developer"
-          description="test"
-          imgSrc=""
-          imgAlt="Dikry Ramdani"
-          personName="Dikry Ramdani"
+          description="kaoasasojiasjoiasjio"
+          imgSrc="/images/person3.jpg"
+          imgAlt="Rolis Liu"
+          personName="Rolis Liu"
         />
         <Card
           number={2}
@@ -42,14 +42,6 @@ const CardGrid = () => {
         />
         <Card
           number={3}
-          title="FrontEnd Developer"
-          description="kaoasasojiasjoiasjio"
-          imgSrc="/images/person3.jpg"
-          imgAlt="Rolis Liu"
-          personName="Rolis Liu"
-        />
-        <Card
-          number={4}
           title="SEO Consulting"
           description="aajoasjiji"
           imgSrc="/images/person3.jpg"

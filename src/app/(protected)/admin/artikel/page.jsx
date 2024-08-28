@@ -44,7 +44,7 @@ const AdminArtikel = () => {
             </Link>
           </Button>
         </div>
-        <BlogSection data={artikels} title={"List Artikel"} isGettingData={loadingGetData} type={"artikelPage"} onDeletedItem={handleDeletedArtikel} />
+        <BlogSection href={"admin/artikel/add"} data={artikels} title={"List Artikel"} isGettingData={loadingGetData} type={"artikelPage"} onDeletedItem={handleDeletedArtikel} />
       </div>
     </div>
   );

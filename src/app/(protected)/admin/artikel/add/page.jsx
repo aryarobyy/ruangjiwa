@@ -7,7 +7,7 @@ import { Label } from "@/components/ui/Label";
 import Textarea from "@/components/ui/TextArea";
 import { useAuth } from "@/context/AuthContext";
 import { postNewArtikel } from "@/helpers/artikel";
-import { postImage } from "@/helpers/image";
+import { postFile } from "@/helpers/image";
 import useToast from "@/hooks/useHotToast";
 import { useState } from "react";
 
@@ -19,6 +19,8 @@ const AdminArtikelAdd = () => {
     });
     const [file, setFile] = useState();
     const [tempImg, setTempImg] = useState('');
+    const [isSubmiting, setIsSubmiting] = useState(false);
+
     const {pushToast, updateToast} = useToast();
     const {user} = useAuth();
 
@@ -37,6 +39,11 @@ const AdminArtikelAdd = () => {
     };
 
     const handleSubmit = async () => {
+        
+        if(isSubmiting) return;
+
+        setIsSubmiting(true);
+
         const newData = {
             ...tempData,
             creatorId: user.userId || user.dokterId,
@@ -51,7 +58,8 @@ const AdminArtikelAdd = () => {
         try {
             if(!file) throw new Error("Image belum terunggah");
             
-            const result = await postImage(file);
+            const result = await postFile(file);
+            console.log(result);
             
             if(result.data.message !== "Success") throw new Error(result.data.message);
 
@@ -105,7 +113,7 @@ const AdminArtikelAdd = () => {
                 </div>
             </div>
             <div className="w-full px-4 my-6">
-                <Button onClick={handleSubmit} className={"w-full"}>Submit</Button>
+                <Button disabled={isSubmiting} onClick={handleSubmit} className={"w-full"}>Submit</Button>
             </div>
           </div>
         </div>

@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/Input";
 import React, { useState, useRef } from "react";
 import useToast from "@/hooks/useHotToast";
 import { updateUser } from "@/helpers/user";
-import { postImage } from "@/helpers/image";
+import { postFile } from "@/helpers/image";
 import { CiCamera } from "react-icons/ci";
 import { useRouter } from "next/navigation";
 import Image from "next/image";

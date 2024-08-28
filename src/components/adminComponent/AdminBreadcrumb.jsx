@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { LuChevronsRight } from "react-icons/lu";
 
-const AdminBreadcrumb = ({ title }) => {
+const AdminBreadcrumb = ({ title, type }) => {
   return (
     <section className="hidden md:block">
       <div className="px-8">
@@ -14,7 +14,7 @@ const AdminBreadcrumb = ({ title }) => {
                   href="/admin/dashboard"
                   className="text-base font-medium text-default-900 transition-all duration-200 hover:text-primary"
                 >
-                  Admin
+                  {type}
                 </Link>
               </div>
               <div className="flex items-center gap-2">
