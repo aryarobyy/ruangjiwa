@@ -1,8 +1,5 @@
-import { messages } from "@/components/adminComponent/data";
-import connectDb from "@/libs/mongodb";
 import { mongoPostForum, mongoGetAllForum, mongoGetForumById} from "@/mongoMethods/forum";
 import { v4 as uuidv4 } from "uuid";
-
 
 export const POST = async (req) => {
     try {

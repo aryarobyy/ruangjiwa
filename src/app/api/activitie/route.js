@@ -2,7 +2,6 @@ import { mongoGetActivie, mongoGetAllActivitie } from "@/mongoMethods/activitie"
 
 export const GET = async (req) => {
     try {
-
         const response = await mongoGetAllActivitie();
 
         return Response.json({

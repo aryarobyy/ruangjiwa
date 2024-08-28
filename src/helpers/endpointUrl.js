@@ -26,5 +26,8 @@ export const ENDPOINT_KONSUL_MESSAGE = '/api/chat/konsul'
 //pdf
 export const ENDPOINT_PDF = "/api/dokter/pdf";
 
-// activitie
+// activitie dokt
 export const ENDPOINT_ACTIVITIE = "/api/activitie"
+
+//quotes
+export const ENDPOINT_QUOTE = "api/quote"
