@@ -23,6 +23,9 @@ const DokterDashboard = () => {
       if(user.role !== 'dokter') {
         router.push('/');
         return;
+      } else if(!user.isApproved) {
+        router.push('/');
+        return;
       } else {
         getAllData()
       };
@@ -35,7 +38,7 @@ const DokterDashboard = () => {
       if(artikels.data.message !== "Success") throw new Error(artikels.data.message);
       setArtikel(artikels.data.data);
       
-      const activitiesRes = await getActivities(user.userId);
+      const activitiesRes = await getActivities(user.username);
       if(activitiesRes.data.message !== "Success") throw new Error(activitiesRes.data.message);
       console.log(activitiesRes.data);
       setActivities(activitiesRes.data.data);

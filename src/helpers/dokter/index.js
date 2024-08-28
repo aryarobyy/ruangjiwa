@@ -6,7 +6,7 @@ export const registerDokter = async (data) => {
 }
 
 export const deleteDokter = async (username) => {
-    return axiosInstance.get(`${url.ENDPOINT_DOKTER}/${username}`);
+    return axiosInstance.delete(`${url.ENDPOINT_DOKTER}/${username}`);
 }
 
 export const getAllDokter = async () => {

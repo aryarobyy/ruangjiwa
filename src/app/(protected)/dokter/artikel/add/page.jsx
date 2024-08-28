@@ -58,13 +58,12 @@ const AdminArtikelAdd = () => {
             if(!file) throw new Error("Image belum terunggah");
             
             const result = await postFile(file);
-            console.log(result);
             
             if(result.data.message !== "Success") throw new Error(result.data.message);
 
             newData.imgUrl = result.data.data;
 
-            const response = await postNewArtikel(newData);
+            const response = await postNewArtikel(newData, user.username);
             if(response.data.message !== 'Success') throw new Error(response.data.message);
             
             

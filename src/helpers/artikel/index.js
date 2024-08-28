@@ -5,9 +5,11 @@ export const getAllArtikel = async () => {
     return axiosInstance.get(`${url.ENDPOINT_ARTIKEL}`);
 };
 
-export const postNewArtikel = async (data) => {
-    return axiosInstance.post(`${url.ENDPOINT_ARTIKEL}`,
-        data
+export const postNewArtikel = async (data, username) => {
+    return axiosInstance.post(`${url.ENDPOINT_ARTIKEL}`, {
+        data,
+        username
+    }
     );
 };
 

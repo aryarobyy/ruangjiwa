@@ -62,6 +62,11 @@ const DokterDetail = ({ params }) => {
   };
 
   const handleReject = async () => {
+    const toastId = pushToast({
+      message: "Loading...",
+      isLoading: true
+    });
+    
     try {
       await deleteDokter(username);
 
@@ -74,7 +79,8 @@ const DokterDetail = ({ params }) => {
       console.error(error.message)
       updateToast({
         toastId,
-        message: "Failed!"
+        message: "Failed!",
+        isError: true
       })
     }
   }
@@ -100,8 +106,8 @@ const DokterDetail = ({ params }) => {
                 <div className="flex-shrink-0 mr-4 w-48 h-48 relative -mt-24 border-4 border-white rounded-full overflow-hidden ">
                   {dataDokter?.profilePic ? (
                     <Image
-                      // src={user?.profilePic}
-                      alt="Profile Image"
+                      src={dataDokter.profilePic}
+                      alt={dataDokter.username}
                       width={100}
                       height={100}
                       className="w-full h-full rounded-full object-cover"
