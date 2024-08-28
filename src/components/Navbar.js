@@ -105,7 +105,7 @@ const Navbar = () => {
                 </Link>
                 <Link
                   className="text-[var(--text-color)] text-base transition hover:text-[var(--button-hover-bg-color)]"
-                  href="/journals"
+                  href="/faq"
                 >
                   FAQ
                 </Link>
@@ -212,7 +212,7 @@ const Navbar = () => {
                 </Link>
                 <Link
                   className="block px-4 py-2 text-[var(--text-color)] hover:bg-gray-200 rounded-md"
-                  href="/journals"
+                  href="/faq"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   FAQ
