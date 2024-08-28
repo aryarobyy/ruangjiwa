@@ -8,13 +8,9 @@ import { artikel } from "./data";
 import Button from "../ui/Button";
 import { Suspense } from "react";
 import LoadingSection from "../system/LoadingSection";
-// import BlogCard from "../BlogCard";
 
-// daftar list yg register dokter
-// daftar dokter
-// daftar user
 
-const BlogSection = ({ title, type, data, isGettingData, onDeletedItem }) => {
+const BlogSection = ({ title, type, data, isGettingData, onDeletedItem, href }) => {
   return (
     <div className="rounded-md border border-default-200 bg-white dark:bg-default-50 w-full text-dark">
       <div className="border-b border-default-200 px-6 py-3 text-center">
@@ -27,7 +23,7 @@ const BlogSection = ({ title, type, data, isGettingData, onDeletedItem }) => {
             : "grid sm:grid-cols-2 md:grid-cols-3 gap-2"
         }`}
       >
-          {isGettingData ? (
+          {isGettingData && (!data || data.length <= 1) ? (
             <div className="w-full h-full flex items-center justify-center">
               <LoadingSection />
             </div>
@@ -35,7 +31,7 @@ const BlogSection = ({ title, type, data, isGettingData, onDeletedItem }) => {
             <div className="w-full h-full flex flex-col gap-3 justify-center items-center text-center">
               <h1>Sepertinya belum terdapat artikel</h1>
               <Button>
-                <Link href={"/admin/artikel/add"}>Buat Artikel Baru</Link>
+                <Link href={href}>Buat Artikel Baru</Link>
               </Button>
             </div>
           ) : (
@@ -47,8 +43,8 @@ const BlogSection = ({ title, type, data, isGettingData, onDeletedItem }) => {
                   handleDeletedItem={onDeletedItem}
                   itemDescription={
                     type === "dashboard"
-                      ? `${item.description.slice(0, 200)}...`
-                      : `${item.description.slice(0, 500)}...`
+                      ? `${item.description?.slice(0, 200)}...`
+                      : `${item.description?.slice(0, 500)}...`
                   }
                 />
               );

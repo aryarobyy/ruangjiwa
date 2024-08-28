@@ -19,14 +19,14 @@ const AdminLayout = ({ children }) => {
   const {pushToast} = useToast();
 
   useEffect(() => {
-    if(user.role !== 'admin') {
+    if(user?.role !== 'admin') {
       pushToast({
         message: "Anda tidak punya hak untuk mengakses ini",
         isError: true
       });
       router.push('/');
       return;
-    };
+    }
 
     document.body.classList.add('bg-default-50')
     return () => {
@@ -47,7 +47,7 @@ const AdminLayout = ({ children }) => {
   return (
     <>
       <Suspense fallback={loading()}>
-        <TopBar />
+        <TopBar type="admin" />
       </Suspense>
 
       <Suspense fallback={loading()}>{children}</Suspense>

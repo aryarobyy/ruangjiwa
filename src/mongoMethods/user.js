@@ -53,6 +53,7 @@ export const mongoGetUserByUsername = async (username) => {
 
     return res;
 }
+
 export const mongoUpdateUser = async (data) => {
     try {
         const { client, database } = await connectDb();

@@ -125,14 +125,21 @@ const Navbar = () => {
                   <Button onClick={() => router.push("/admin/dashboard")}>
                     Dashboard
                   </Button>
-                  <Button.danger onClick={handleLogout}>
-                    Logout
-                  </Button.danger>
                 </>
               ) : user?.role === "dokter" ? (
-                <Button onClick={() => router.push("/dokter/dashboard")}>
-                  Dashboard
-                </Button>
+                <>
+                  <Button onClick={() => router.push("/dokter/dashboard")}>
+                    Dashboard
+                  </Button>
+                  {
+                    !user?.isApproved && (
+                      <Button.danger onClick={handleLogout}>
+                        Logout
+                      </Button.danger>
+                      
+                    )
+                  }
+                </>
               ) : (
                 <div className={`flex gap-3 items-center justify-center`}>
                   <Button onClick={() => router.push("/auth/login")}>

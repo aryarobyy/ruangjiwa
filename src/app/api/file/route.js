@@ -10,14 +10,17 @@ export const POST = async (req, res) => {
   const filePath = await req.json();
 
   try {
-    const response = await cloudinary.uploader.upload(filePath);
-
+    const response = await cloudinary.uploader.upload(filePath, {
+      resource_type: "raw",
+      folder: "File",
+    });
+    
     return Response.json({ message: "Success", data: response.secure_url });
   } catch (error) {
     console.error("Error uploading image: ", error.message);
     // throw new Error(error.message);
     
-    return Response.json({ message: error.message, data: null });
+    return Response.json({ message: error.message || "Gagal upload file!", data: null });
 
   }
 };

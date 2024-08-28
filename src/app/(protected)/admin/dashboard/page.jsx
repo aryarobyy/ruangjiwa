@@ -1,21 +1,20 @@
 'use client';
-import AdminBreadcrumb from "@/components/adminComponent/AdminBreadcrumb";
 import ProgressCard from "@/components/adminComponent/ProgressCard";
-import RecentOrders from "@/components/adminComponent/RecentOrders";
 import Sources from "@/components/adminComponent/Sources";
 import ListOfDoctor from "@/components/adminComponent/ListOfDoctor";
-import dynamic from "next/dynamic";
 import BlogSection from "@/components/adminComponent/BlogSection";
 import { useEffect, useState } from "react";
 import { getAllArtikel } from "@/helpers/artikel";
 import { useAuth } from "@/context/AuthContext";
 import { useRouter } from "next/navigation";
-import { dokters } from "@/components/adminComponent/data";
+import { getAllDokter } from "@/helpers/dokter";
+import { getAllActivitie } from "@/helpers/activities";
 
 // coba pindain get data ke masing2 kompo, page ini jadiin use server
 
 const Dashboard = () => {
   const [artikel, setArtikel] = useState([]);
+  const [activities, setActivities] = useState();
   const [pendingDokter, setPendingDokter] = useState();
   const [aprovedDokter, setAprovedDokter] = useState();
   const {user} = useAuth();
@@ -24,7 +23,7 @@ const Dashboard = () => {
 
   
   useEffect(() => {
-      if(user.role !== 'admin') {
+      if(user?.role !== 'admin') {
         router.push('/');
         return;
       } else {
@@ -36,10 +35,18 @@ const Dashboard = () => {
     setLoadingGetData(true);
     try {
       const artikels = await getAllArtikel();
+      if(artikels.data.message !== "Success") throw new Error("Sepertinya gagal memuat artikel!");
       setArtikel(artikels.data.data);
 
-      setAprovedDokter(dokters.filter((el) => el.isAproved));
-      setPendingDokter(dokters.filter((el) => !el.isAproved));
+      const activitieRes = await getAllActivitie();
+      if(activitieRes.data.message !== "Success") throw new Error("Sepertinya gagal memuat \nreport aktifitas dokter");
+      setActivities(activitieRes.data.data);
+      
+
+      const doktors = await getAllDokter();
+      setAprovedDokter(doktors.data.data.filter(el => el.isApproved));
+      setPendingDokter(doktors.data.data.filter(el => !el.isApproved));
+
     } catch (error) {
       console.error(error.message);
     } finally {
@@ -54,27 +61,24 @@ const Dashboard = () => {
 
   return (
     <div className="text-dark bg-primary border-2 border-white">
-      <AdminBreadcrumb title="Dashboard" />
       <section>
         <div className="px-8">
           <div className="my-6 space-y-6">
-            {/* <Statistics /> */}
 
             <div className="grid gap-6 lg:grid-cols-2">
               <ProgressCard />
-              <Sources />
+              <Sources data={activities} isGettingData={loadingGetData} />
             </div>
 
             <div className="grid gap-6 lg:grid-cols-3">
               <div className="lg:col-span-2">
-                <ListOfDoctor title={"Daftar Dokter Aktif"} type={"active"} data={aprovedDokter} />
+                <ListOfDoctor isGettingData={loadingGetData} title={"Daftar Dokter Aktif"} type={"active"} data={aprovedDokter} />
               </div>
-              <ListOfDoctor title={"Daftar Regist Dokter"} type={"regist"} data={pendingDokter} />
+              <ListOfDoctor isGettingData={loadingGetData} title={"Daftar Dokter Pending"} type={"pending"} data={pendingDokter} />
             </div>
             <div className="w-full">
               {/* <RecentOrders /> */}
-              {/* <BlogSection title={"List Forum"} /> */}
-              <BlogSection title={"List Artikel"} data={artikel} type={'dashboard'} isGettingData={loadingGetData} onDeletedItem={handleDeletedArtikel} />
+              <BlogSection href={"admin/artikel/add"} title={"List Artikel"} data={artikel} type={'dashboard'} isGettingData={loadingGetData} onDeletedItem={handleDeletedArtikel} />
             </div>
           </div>
         </div>
