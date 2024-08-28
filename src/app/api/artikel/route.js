@@ -1,4 +1,5 @@
 import { messages } from "@/components/adminComponent/data";
+import { mongoUpdateArtikelActivitie } from "@/mongoMethods/activitie";
 import { mongoDeleteAllArtikel, mongoGetAllArtikel, mongoPostArtikel} from "@/mongoMethods/artikel";
 import Joi from "joi";
 import { v4 as uuidv4 } from "uuid";
@@ -18,6 +19,7 @@ export const POST = async (req, res) => {
         const newData = {...data, artikelId:uuid}
 
         await mongoPostArtikel(newData);
+        await mongoUpdateArtikelActivitie(newData.creatorId);
 
         return Response.json({message: "Success"});
     } catch (error) {

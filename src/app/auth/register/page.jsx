@@ -7,6 +7,9 @@ import { Input } from "@/components/ui/Input";
 import { useAuth } from "@/context/AuthContext";
 import Button from "@/components/ui/Button";
 import Image from "next/image";
+import { registerDokter } from "@/helpers/dokter";
+import { postFile } from "@/helpers/image";
+import Textarea from "@/components/ui/TextArea";
 
 const Register = () => {
   const [inputs, setInputs] = useState({
@@ -14,14 +17,26 @@ const Register = () => {
     username: "",
     email: "",
     password: "",
+  });
+  const [inputDokter, setInputDokter] = useState({
+    name: "",
+    username: "",
+    email: "",
+    password: "",
+    bio: "",
+    spesialis: "",
     ijazah: null,
     cv: null,
-  });
+  })
   const [confirmPass, setConfirmPass] = useState("");
   const [role, setRole] = useState("user");
+  const [isSubmiting, setIsSubmiting] = useState(false);
   const router = useRouter();
   const { updateToast, pushToast } = useToast();
-  const { user, loginUser, logoutUser } = useAuth();
+  const { user, loginUser, loginDokter } = useAuth();
+  const [cvFile, setCvFile] = useState();
+  const [ijazahFile, setIjazahFile] = useState();
+
 
   // checking if user is already logged in
   useEffect(() => {
@@ -30,15 +45,13 @@ const Register = () => {
     }
   }, []);
 
-  // function to handle file change
-  const handleFileChange = (e, type) => {
-    const file = e.target.files[0];
-    setInputs((prev) => ({ ...prev, [type]: file }));
-  };
-
   // function handler for registration
-  const handleRegister = async (e) => {
+  const handleRegisterUser = async (e) => {
     e.preventDefault();
+
+    if(isSubmiting) return;
+
+    setIsSubmiting(true);
 
     const toastId = pushToast({
       isLoading: true,
@@ -67,8 +80,6 @@ const Register = () => {
           username: "",
           email: "",
           password: "",
-          ijazah: null,
-          cv: null,
         });
       }
     } catch (error) {
@@ -78,15 +89,77 @@ const Register = () => {
         message: error.message,
         isError: true,
       });
+    } finally {
+      setIsSubmiting(false);
     }
   };
 
+  const handleRegisterDokter = async (e) => {
+    e.preventDefault();
+
+    if(isSubmiting) return;
+
+    setIsSubmiting(true);
+    const toastId = pushToast({
+      isLoading: true,
+      message: "Mohon ditunggu!\nIni akan sedikit memakan waktu."
+    });
+
+    try {
+      if(!cvFile || !ijazahFile) throw new Error("Tolong masukkan berkas dengan sesuai!");
+      if(inputDokter.password !== confirmPass) throw new Error("Tolong konfirmasi password");
+
+      const newData = {...inputDokter};
+
+      const urlCvFile = await postFile(cvFile);
+      if(urlCvFile.data.message !== "Success") throw new Error(urlCvFile.data.message);
+      
+      const urlIjazahFile = await postFile(ijazahFile);
+      if(urlIjazahFile.data.message !== "Success") throw new Error(urlCvFile.data.message);
+
+      newData.cv = urlCvFile.data.data;
+      newData.ijazah = urlIjazahFile.data.data;
+
+      const response = await registerDokter(newData);
+      if (response.data.message !== 'Success') {
+        throw Error(response.data.message);
+      }
+
+      loginDokter({
+        username: inputDokter.username,
+        password: inputDokter.password
+      });
+
+      updateToast({
+        toastId,
+        message: "Berhasil!",
+      });
+      setInputs({
+        name: "",
+        username: "",
+        email: "",
+        password: "",
+        ijazah: null,
+        cv: null,
+      });
+      setConfirmPass("");
+
+    } catch (error) {
+      console.error(error);
+      updateToast({
+        toastId,
+        message: error.message,
+        isError: true,
+      });
+    } finally {
+      setIsSubmiting(false);
+    }
+  }
   return (
     <section className="bg-white">
       <div className="lg:grid lg:min-h-screen align-middle">
         <main className="flex items-center justify-center px-8 py-8 sm:px-12 lg:col-span-7 lg:px-16 lg:py-12 xl:col-span-6">
           <div className="max-w-xl lg:max-w-3xl p-7 shadow-md">
-            <span className="sr-only">Home</span>
             <Image src="/logo.svg" alt="logo" className="rounded-md" width={64} height={29} />
 
             <h1 className="mt-6 text-2xl font-bold text-gray-900 sm:text-3xl md:text-4xl">
@@ -127,7 +200,7 @@ const Register = () => {
             {role === "user" ? (
               // user form
               <form
-                onSubmit={handleRegister}
+                onSubmit={handleRegisterUser}
                 className={`mt-4 grid grid-cols-6 gap-4`}
               >
                 <div className="col-span-6">
@@ -243,7 +316,7 @@ const Register = () => {
                 </div>
 
                 <div className="col-span-6 sm:flex sm:items-center sm:gap-4">
-                  <Button onClick={handleRegister}>Buat Akun</Button>
+                  <Button disabled={isSubmiting} onClick={handleRegisterUser}>Buat Akun</Button>
                   <p className="mt-4 text-sm text-gray-500 sm:mt-0">
                     Already have an account?
                     <a href="/auth/login" className="text-gray-700 underline p-1">
@@ -255,7 +328,7 @@ const Register = () => {
             ) : (
               // dokter form
               <form
-                onSubmit={handleRegister}
+                onSubmit={handleRegisterDokter}
                 className={`mt-4 grid grid-cols-6 gap-4`}
               >
                 <div className="col-span-6">
@@ -267,9 +340,9 @@ const Register = () => {
                   </label>
                   <Input
                     type={"text"}
-                    value={inputs.name}
+                    value={inputDokter.name}
                     onChange={(e) =>
-                      setInputs((prev) => ({ ...prev, name: e.target.value }))
+                      setInputDokter((prev) => ({ ...prev, name: e.target.value }))
                     }
                     placeholder={"Nama Lengkap"}
                     required
@@ -285,9 +358,9 @@ const Register = () => {
                   </label>
                   <Input
                     type={"text"}
-                    value={inputs.username}
+                    value={inputDokter.username}
                     onChange={(e) =>
-                      setInputs((prev) => ({ ...prev, username: e.target.value }))
+                      setInputDokter((prev) => ({ ...prev, username: e.target.value }))
                     }
                     placeholder={"Username"}
                     required
@@ -303,9 +376,9 @@ const Register = () => {
                   </label>
                   <Input
                     type={"email"}
-                    value={inputs.email}
+                    value={inputDokter.email}
                     onChange={(e) =>
-                      setInputs((prev) => ({ ...prev, email: e.target.value }))
+                      setInputDokter((prev) => ({ ...prev, email: e.target.value }))
                     }
                     placeholder={"Email"}
                     required
@@ -321,7 +394,9 @@ const Register = () => {
                   </label>
                   <Input
                     type="file"
-                    onChange={(e) => handleFileChange(e, "ijazah")}
+                    accept=".pdf"
+                    className="cursor-pointer"
+                    onChange={(e) => setIjazahFile(e.target.files[0])}
                     placeholder={"Ijazah"}
                     required
                   />
@@ -336,8 +411,41 @@ const Register = () => {
                   </label>
                   <Input
                     type="file"
-                    onChange={(e) => handleFileChange(e, "cv")}
+                    accept=".pdf"
+                    className="cursor-pointer"
+                    // onChange={(e) => handleFileChange(e, "cv")}
+                    onChange={(e) => setCvFile(e.target.files[0])}
                     placeholder={"CV"}
+                    required
+                  />
+                </div>
+
+                <div className="col-span-6">
+                  <label
+                    htmlFor="Bio"
+                    className="block text-sm font-medium text-gray-700 my-2"
+                  >
+                    Bio
+                  </label>
+
+                    <Textarea value={inputDokter.bio} onchange={(e) => setInputDokter({...inputDokter, bio: e.target.value})} placeholder={"Deskripsikan secara singkat tentang anda (min 250 huruf)"} />
+                      <p className={`text-sm text-red-600 ${inputDokter.bio && inputDokter?.bio.length > 250 ? 'hidden' : ''}`}>Jumlah kata belum memenuhi</p>
+                </div>
+                
+                <div className="col-span-6">
+                  <label
+                    htmlFor="Email"
+                    className="block text-sm font-medium text-gray-700 my-2"
+                  >
+                    Bidang
+                  </label>
+                  <Input
+                    type={"text"}
+                    value={inputDokter.spesialis}
+                    onChange={(e) =>
+                      setInputDokter((prev) => ({ ...prev, spesialis: e.target.value }))
+                    }
+                    placeholder={"Bidang"}
                     required
                   />
                 </div>
@@ -351,9 +459,9 @@ const Register = () => {
                   </label>
                   <Input
                     type={"password"}
-                    value={inputs.password}
+                    value={inputDokter.password}
                     onChange={(e) =>
-                      setInputs((prev) => ({
+                      setInputDokter((prev) => ({
                         ...prev,
                         password: e.target.value,
                       }))
@@ -381,7 +489,7 @@ const Register = () => {
 
                 <div
                   className={`${
-                    confirmPass && inputs.password !== confirmPass ? "" : "hidden"
+                    confirmPass && inputDokter.password !== confirmPass ? "" : "hidden"
                   } w-full text-center text-sm font-medium text-red-500 col-span-6`}
                 >
                   <p>{"Password didn't match"}</p>
@@ -401,7 +509,7 @@ const Register = () => {
                 </div>
 
                 <div className="col-span-6 sm:flex sm:items-center sm:gap-4">
-                  <Button onClick={handleRegister}>Buat Akun Dokter</Button>
+                  <Button disabled={isSubmiting} onClick={handleRegisterDokter}>Buat Akun Dokter</Button>
                   <p className="mt-4 text-sm text-gray-500 sm:mt-0">
                     Already have an account?
                     <a href="/auth/login" className="text-gray-700 underline p-1">

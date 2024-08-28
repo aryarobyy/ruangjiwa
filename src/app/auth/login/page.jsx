@@ -14,7 +14,8 @@ const Login = () => {
   });
   const [role, setRole] = useState('user');
   const router = useRouter();
-  const {loginUser, user} = useAuth();
+  const [isSubmiting, setIsSubmiting] = useState(false);
+  const {loginUser, user, loginDokter} = useAuth();
   const {pushToast, updateToast} = useToast();
 
   useEffect(() => {
@@ -25,6 +26,10 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    if(isSubmiting) return;
+
+    setIsSubmiting(true);
+
     const toastId = pushToast({
       message: "Ditunggu ya!...",
       isLoading: true
@@ -33,14 +38,11 @@ const Login = () => {
     try {
       if(role === 'user') {
         await loginUser(data);
+      } else if(role === 'dokter') {
+        await loginDokter(data);
       } else {
-        // await ...
-        updateToast({
-          toastId,
-          message: "Belum gua atur buat dokter. Obrolin lagi aja persyaratan register dokter",
-          isError: true
-        })
-        return;
+        throw new Error("Ops! Sepertinya ada masalah! Coba lagi nanti!");
+        
       }
       updateToast({
         toastId,
@@ -53,7 +55,8 @@ const Login = () => {
         message: error.message,
         isError: true
       })
-
+    } finally {
+      setIsSubmiting(false);
     }
   }
 
@@ -122,7 +125,7 @@ const Login = () => {
               </div>
 
               <div className="col-span-6 sm:flex sm:items-center sm:gap-4">
-                <Button onClick={handleSubmit}>
+                <Button disabled={isSubmiting} onClick={handleSubmit}>
                   Login
                 </Button>
 

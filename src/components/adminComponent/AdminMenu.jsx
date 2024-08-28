@@ -31,4 +31,4 @@ const AdminMenu = () => {
   )
 }
 
-export default AdminMenu
+export default AdminMenu;

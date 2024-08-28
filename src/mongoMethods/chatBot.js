@@ -61,7 +61,7 @@ export const mongoPostMessageChatBot = async (data, messageId) => {
                 $push: {message: data}
             }
         )
-        client.close();
+        await client.close();
         return {message: "Success"}
     } catch (error) {
         throw new Error(error.message);
