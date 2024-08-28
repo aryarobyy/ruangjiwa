@@ -20,28 +20,30 @@ const Forum = ({ forum, user }) => {
                     <Image src={user.profilePic || "/avatar.jpg"} className="w-8 h-8 rounded-full mr-2" alt="verified" width={400} height={400}
                     />
                         <p
-                            className="text-sm font-bold cursor-pointer"
+                            className="text-sm font-bold cursor-pointer "
                             onClick={(e) => {
                                 e.stopPropagation();
-                                router.push(`/profile/${user.username}`);
+                                router.push(`/profile/${forum.username}`);
                             }}
                         >
-                            {user.username}
+                            {forum.username}
                         </p>
                     </div>
                     </Link>
 
                     <div className="flex gap-4 items-center">
                         <p className="text-xs w-36 text-right text-gray-400">
-                            {new Date(forum.createdAt).toLocaleDateString()} ago
+                            {new Date(forum.date).toLocaleDateString()} ago
                         </p>
                     </div>
                 </div>
-                <h1>{forum.title}</h1>
-                <p className="text-sm">{forum.content}</p>
+                <div>
+                    <h1>{forum.title}</h1>
+                    <p className="text-sm">{forum.content}</p>
+                </div>
                 {forum.forumImage && (
                     <div className="rounded overflow-hidden border border-gray-300">
-                        <Image src={forum.forumImage} alt="post" className="w-22" width={300} height={300} />
+                        <Image src={forum.forumImage} alt="post" className="w-fit" width={300} height={300} />
                     </div>
                 )}
             </div>

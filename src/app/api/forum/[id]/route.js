@@ -5,7 +5,6 @@ export const GET = async (req, {params}) => {
         const forumId = params.id;
 
         const response = await mongoGetForumById(forumId);
-        console.log(response)
         return Response.json({
             message: "Success",
             data: response
