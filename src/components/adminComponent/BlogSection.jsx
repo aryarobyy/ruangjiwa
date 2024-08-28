@@ -23,7 +23,7 @@ const BlogSection = ({ title, type, data, isGettingData, onDeletedItem, href }) 
             : "grid sm:grid-cols-2 md:grid-cols-3 gap-2"
         }`}
       >
-          {isGettingData ? (
+          {isGettingData && (!data || data.length <= 1) ? (
             <div className="w-full h-full flex items-center justify-center">
               <LoadingSection />
             </div>

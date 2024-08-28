@@ -79,6 +79,10 @@ const DokterDetail = ({ params }) => {
     }
   }
 
+  const handleDeleteArtikel = (artikelId) => {
+    setChangedData(!changedData);
+  }
+
   return (
     <>
       <div className="w-full h-full bg-[var(--hero-bg-color)]">
@@ -161,7 +165,7 @@ const DokterDetail = ({ params }) => {
                             : "grid sm:grid-cols-2 gap-2"
                         }`}
                       >
-                        {loadingGetData ? (
+                        {loadingGetData && (artikelDokter || artikelDokter <= 1) ? (
                           <div className="w-full h-full flex items-center justify-center">
                             <LoadingSection />
                           </div>
@@ -175,7 +179,7 @@ const DokterDetail = ({ params }) => {
                               <BlogCard
                                 key={idx}
                                 data={item}
-                                // handleDeletedItem={onDeletedItem}
+                                handleDeletedItem={handleDeleteArtikel}
                                 itemDescription={`${item.description.slice(0, 200)}...`}
                               />
                             );
@@ -191,12 +195,12 @@ const DokterDetail = ({ params }) => {
                       </div>
                       <div
                         className={`h-[500px] scroll-smooth p-2 overflow-y-auto  ${
-                          !artikelDokter || artikelDokter?.length < 1
-                            ? ""
-                            : "grid sm:grid-cols-2  gap-2"
-                        }`}
+                          true ? "" : "grid sm:grid-cols-2  gap-2"}`}
                       >
-                        {loadingGetData ? (
+                        <div className="w-full h-full flex items-center justify-center text-center">
+                          <p className="w-full text-lg">In Development 😉</p>
+                        </div>
+                        {/* {loadingGetData ? (
                           <div className="w-full h-full flex items-center justify-center">
                             <LoadingSection />
                           </div>
@@ -215,7 +219,7 @@ const DokterDetail = ({ params }) => {
                               />
                             );
                           })
-                        )}
+                        )} */}
                       </div>
                     </div>
                   </div>

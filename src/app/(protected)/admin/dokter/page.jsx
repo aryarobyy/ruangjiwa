@@ -61,7 +61,7 @@ const DokterPage = () => {
         <div className="px-8">
           <div className="my-6 space-y-6">
             <div className="w-full">
-              <Sources data={activities} />
+              <Sources data={activities} isGettingData={loadingGetData} />
             </div>
             <div className="grid gap-6 md:grid-cols-2">
                 <ListOfDoctor title={"Daftar Dokter Aktif"} type={"active"} data={aprovedDokter} isGettingData={loadingGetData} />

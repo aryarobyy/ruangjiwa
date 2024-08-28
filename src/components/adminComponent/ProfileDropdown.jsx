@@ -5,9 +5,9 @@ import useToast from '@/hooks/useHotToast';
 import Image from 'next/image'
 import Link from 'next/link'
 import { useState } from 'react'
-import { LuBookOpen, LuLogOut, LuNewspaper, LuRadar, LuSettings, LuUser } from 'react-icons/lu'
+import { LuBookOpen, LuLogOut, LuRadar, LuUser } from 'react-icons/lu'
 
-const ProfileDropdown = () => {
+const ProfileDropdown = ({type}) => {
   const {user, logoutUser} = useAuth();
   const [isDropDownShow, setIsDropDownShow] = useState(false);
   const {pushToast, updateToast} = useToast();
@@ -52,14 +52,14 @@ const ProfileDropdown = () => {
       <div className={`${isDropDownShow ? '' : 'hidden'} right-0 top-10 duration mt-2 min-w-[12rem] rounded-lg border border-default-200 bg-white p-2 absolute shadow-md transition-[opacity,margin] hs-dropdown-open:opacity-100 dark:bg-default-50`}>
         <Link
           className="flex items-center gap-x-3.5 rounded-md px-3 py-2 text-sm text-default-800 transition-all hover:bg-default-100"
-          href="#"
+          href={type === 'dokter' ? "#" : '#'}
         >
           <LuUser className="size-4" />
           Profil Anda
         </Link>
         <Link
           className="flex items-center gap-x-3.5 rounded-md px-3 py-2 text-sm text-default-800 transition-all hover:bg-default-100"
-          href="/"
+          href={`dashboard`}
           target="_blank"
         >
           <LuRadar className="size-4" />
@@ -67,10 +67,12 @@ const ProfileDropdown = () => {
         </Link>
         <Link
           className="flex items-center gap-x-3.5 rounded-md px-3 py-2 text-sm text-default-800 transition-all hover:bg-default-100"
-          href="/dokter/artikel"
+          href={`artikel`}
         >
         <LuBookOpen className="size-4" />
-          Artikel Anda
+        {
+          type === 'admin' ? "Semua Artikel" : "Artikel Anda"
+        }
         </Link>
         <hr className="-mx-2 my-2 border-default-200" />
         <button className="flex items-center gap-x-3.5 rounded-md px-3 py-2 text-sm text-red-500 hover:bg-red-500/10" onClick={handleLogout}>

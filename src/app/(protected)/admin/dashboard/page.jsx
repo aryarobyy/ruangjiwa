@@ -1,17 +1,14 @@
 'use client';
-import AdminBreadcrumb from "@/components/adminComponent/AdminBreadcrumb";
 import ProgressCard from "@/components/adminComponent/ProgressCard";
-import RecentOrders from "@/components/adminComponent/RecentOrders";
 import Sources from "@/components/adminComponent/Sources";
 import ListOfDoctor from "@/components/adminComponent/ListOfDoctor";
-import dynamic from "next/dynamic";
 import BlogSection from "@/components/adminComponent/BlogSection";
 import { useEffect, useState } from "react";
 import { getAllArtikel } from "@/helpers/artikel";
 import { useAuth } from "@/context/AuthContext";
 import { useRouter } from "next/navigation";
 import { getAllDokter } from "@/helpers/dokter";
-import { getActivities, getAllActivitie } from "@/helpers/activities";
+import { getAllActivitie } from "@/helpers/activities";
 
 // coba pindain get data ke masing2 kompo, page ini jadiin use server
 
@@ -67,11 +64,10 @@ const Dashboard = () => {
       <section>
         <div className="px-8">
           <div className="my-6 space-y-6">
-            {/* <Statistics /> */}
 
             <div className="grid gap-6 lg:grid-cols-2">
               <ProgressCard />
-              <Sources data={activities} />
+              <Sources data={activities} isGettingData={loadingGetData} />
             </div>
 
             <div className="grid gap-6 lg:grid-cols-3">
@@ -82,7 +78,6 @@ const Dashboard = () => {
             </div>
             <div className="w-full">
               {/* <RecentOrders /> */}
-              {/* <BlogSection title={"List Forum"} /> */}
               <BlogSection href={"admin/artikel/add"} title={"List Artikel"} data={artikel} type={'dashboard'} isGettingData={loadingGetData} onDeletedItem={handleDeletedArtikel} />
             </div>
           </div>

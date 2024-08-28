@@ -1,5 +1,4 @@
 import AdminMenu from '@/components/adminComponent/AdminMenu'
-import Image from 'next/image'
 import Link from 'next/link'
 import ProfileDropdown from './ProfileDropdown'
 import NotifDropDown from './EmailDropdown'
@@ -12,22 +11,18 @@ const TopBar = ({type}) => {
         <nav className="px-8 flex w-full items-center justify-between gap-6">
           <div className='text-dark font-semibold text-xl'>
             <Link href="/" className="block">
-              Sahabat Medis
+              Ruang Jiwa
             </Link>
           </div>
           <div className="flex items-center gap-3">
             <div className="hidden sm:flex text-dark">
-              {/* <MaximizeScreen /> */}
             </div>
 
             <div className="hidden sm:flex text-dark">
               <NotifDropDown />
             </div>
-            {/* <div className="hidden sm:flex">
-              <AppsDropdown />
-            </div> */}
             <div className="flex">
-              <ProfileDropdown />
+              <ProfileDropdown type={type} />
             </div>
           </div>
         </nav>

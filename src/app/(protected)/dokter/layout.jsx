@@ -1,18 +1,14 @@
 'use client'
 import { ReactNode, Suspense, useEffect } from 'react'
 import dynamic from 'next/dynamic'
-// import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import { useAuth } from '@/context/AuthContext'
 import useToast from '@/hooks/useHotToast'
-// import NextTopLoader from 'nextjs-toploader'
 const TopBar = dynamic(() => import('@/components/adminComponent/TopBar'))
 
 const loading = () => <div />
 
 const DokterLayout = ({ children }) => {
-//   const router = useRouter()
-//   const { status } = useSession()
   const {user} = useAuth();
   const router = useRouter();
   const {pushToast} = useToast();
@@ -41,15 +37,6 @@ const DokterLayout = ({ children }) => {
     }
 
   }, [])
-
-//   if (status == 'unauthenticated') {
-//     router.replace('/auth/sign-in')
-//     return null
-//   }
-
-//   if (status == 'loading') {
-//     return <NextTopLoader color="#ea580c" showSpinner={false} />
-//   }
 
   return (
     <>
