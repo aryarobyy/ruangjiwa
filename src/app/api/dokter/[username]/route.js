@@ -1,3 +1,4 @@
+import { mongoDeleteActivitie } from "@/mongoMethods/activitie";
 import { mongoDeleteDokterByUsername, mongoGetDokterByUsername, mongoUpdateApproved } from "@/mongoMethods/dokter";
 import { mongoGetUserById } from "@/mongoMethods/user";
 
@@ -42,6 +43,10 @@ export const DELETE = async (req, {params}) => {
     try {
         const username = params.username;
         await mongoDeleteDokterByUsername(username);
+        await mongoDeleteActivitie(username);
+        return Response.json({
+            message: "Success",  
+        })
     } catch (error) {
         console.error(error.message);
         return Response.json({

@@ -9,12 +9,14 @@ import { useAuth } from "@/context/AuthContext";
 import { useRouter } from "next/navigation";
 import { getAllDokter } from "@/helpers/dokter";
 import { getAllActivitie } from "@/helpers/activities";
+import { quotes } from "@/app/assets/data/quotesData";
 
 // coba pindain get data ke masing2 kompo, page ini jadiin use server
 
 const Dashboard = () => {
   const [artikel, setArtikel] = useState([]);
   const [activities, setActivities] = useState();
+  const [quote, setQuote] = useState('');
   const [pendingDokter, setPendingDokter] = useState();
   const [aprovedDokter, setAprovedDokter] = useState();
   const {user} = useAuth();
@@ -27,6 +29,9 @@ const Dashboard = () => {
         router.push('/');
         return;
       } else {
+        const randomIndex = Math.floor(Math.random() * quotes.length);
+        const randomQuote = quotes[randomIndex];
+        setQuote(randomQuote.quote);
         getAllData()
       };
   }, []);
@@ -66,7 +71,7 @@ const Dashboard = () => {
           <div className="my-6 space-y-6">
 
             <div className="grid gap-6 lg:grid-cols-2">
-              <ProgressCard />
+              <ProgressCard quotes={quote} />
               <Sources data={activities} isGettingData={loadingGetData} />
             </div>
 

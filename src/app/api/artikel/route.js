@@ -11,7 +11,8 @@ const schema = Joi.object({
 
 export const POST = async (req, res) => {
     try {
-        const data = await req.json();
+        const {data, username} = await req.json();
+
         const {error, value} = schema.validate(data);
         if(error) throw new Error(error.details[0].message);
         
@@ -19,7 +20,7 @@ export const POST = async (req, res) => {
         const newData = {...data, artikelId:uuid}
 
         await mongoPostArtikel(newData);
-        await mongoUpdateArtikelActivitie(newData.creatorId);
+        await mongoUpdateArtikelActivitie(username);
 
         return Response.json({message: "Success"});
     } catch (error) {

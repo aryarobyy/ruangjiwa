@@ -1,7 +1,6 @@
 'use client';
 import AdminBreadcrumb from "@/components/adminComponent/AdminBreadcrumb";
 import ProgressCard from "@/components/adminComponent/ProgressCard";
-import dynamic from "next/dynamic";
 import BlogSection from "@/components/adminComponent/BlogSection";
 import { useEffect, useState } from "react";
 import { useAuth } from "@/context/AuthContext";
@@ -9,21 +8,28 @@ import { useRouter } from "next/navigation";
 import { getArtikelByDokter } from "@/helpers/dokter";
 import { getActivities } from "@/helpers/activities";
 import LoadingSection from "@/components/system/LoadingSection";
+import { quotes } from "@/app/assets/data/quotesData";
 
-// coba pindain get data ke masing2 kompo, page ini jadiin use server
 
 const DokterDashboard = () => {
   const [artikel, setArtikel] = useState([]);
   const [activities, setActivities] = useState();
+  const [quote, setQuote] = useState('');
   const {user} = useAuth();
   const router = useRouter();
   const [loadingGetData, setLoadingGetData] = useState(false);
   
   useEffect(() => {
-      if(user.role !== 'dokter') {
+      if(user?.role !== 'dokter') {
+        router.push('/');
+        return;
+      } else if(!user?.isApproved) {
         router.push('/');
         return;
       } else {
+        const randomIndex = Math.floor(Math.random() * quotes.length);
+        const randomQuote = quotes[randomIndex];
+        setQuote(randomQuote.quote);
         getAllData()
       };
   }, []);
@@ -35,7 +41,7 @@ const DokterDashboard = () => {
       if(artikels.data.message !== "Success") throw new Error(artikels.data.message);
       setArtikel(artikels.data.data);
       
-      const activitiesRes = await getActivities(user.userId);
+      const activitiesRes = await getActivities(user.username);
       if(activitiesRes.data.message !== "Success") throw new Error(activitiesRes.data.message);
       console.log(activitiesRes.data);
       setActivities(activitiesRes.data.data);
@@ -60,7 +66,7 @@ const DokterDashboard = () => {
           <div className="my-6 space-y-6">
 
             <div className="grid gap-6 lg:grid-cols-2">
-              <ProgressCard />
+              <ProgressCard quotes={quote} />
 
               <div className="overflow-hidden rounded-md border border-default-200 bg-white dark:bg-default-50 text-dark">
                 <div className="flex items-center w-full font-semibold border-b border-default-200 px-4 py-3 justify-center">
