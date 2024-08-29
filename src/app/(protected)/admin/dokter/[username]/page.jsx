@@ -123,9 +123,11 @@ const DokterDetail = ({ params }) => {
                   )}
                 </div>
                 <div className="ml-auto mr-28">
+                  {username &&
                   <Button.secondary className={""}>
                     <Link href={`/admin/dokter/${username}/edit`}>Edit</Link>
                   </Button.secondary>
+                  }
                 </div>
               </div>
               <div className="flex-grow p-4">

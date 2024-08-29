@@ -1,6 +1,5 @@
 import { mongoDeleteActivitie } from "@/mongoMethods/activitie";
 import { mongoDeleteDokterByUsername, mongoGetDokterByUsername, mongoUpdateApproved } from "@/mongoMethods/dokter";
-import { mongoGetUserById } from "@/mongoMethods/user";
 
 export const GET = async (req, {params}) => {
     try {
