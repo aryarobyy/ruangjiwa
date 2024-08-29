@@ -15,19 +15,24 @@ const Forum = ({ forum, user }) => {
                 <div className="flex w-full">
 
                     <Link href={`/profile/${forum.postedBy}`}>
-                    <div className="flex items-center w-full">
-                    <Image src={user.profilePic || "/avatar.jpg"} className="w-8 h-8 rounded-full mr-2" alt="verified" width={400} height={400}
-                    />
-                        <p
-                            className="text-sm font-bold cursor-pointer "
-                            onClick={(e) => {
-                                e.stopPropagation();
-                                router.push(`/profile/${forum.postedBy}`);
-                            }}
-                        >
-                            {forum.postedBy}
-                        </p>
-                    </div>
+                        <div className="flex items-center w-full">
+                            <Image
+                                src={user.profilePic || "/avatar.jpg"}
+                                className="w-8 h-8 rounded-full mr-2"
+                                alt="verified"
+                                width={400}
+                                height={400}
+                            />
+                            <p
+                                className="text-sm font-bold cursor-pointer "
+                                onClick={(e) => {
+                                    e.stopPropagation();
+                                    router.push(`/profile/${forum.postedBy}`);
+                                }}
+                            >
+                                {forum.postedBy}
+                            </p>
+                        </div>
                     </Link>
 
                     <div className="flex gap-4 items-center">
@@ -41,8 +46,13 @@ const Forum = ({ forum, user }) => {
                     <p className="text-sm ">{forum.content}</p>
                 </div>
                 {forum.forumImage && (
-                    <div className="rounded overflow-hidden border border-gray-300 w-full">
-                        <Image src={forum.forumImage} alt="post" className="w-fit" width={300} height={300} />
+                    <div className="rounded overflow-hidden border border-gray-300 w-full h-64 relative">
+                        <Image
+                            src={forum.forumImage}
+                            alt="post"
+                            layout="fill"
+                            objectFit="cover"
+                        />
                     </div>
                 )}
             </div>
@@ -50,4 +60,4 @@ const Forum = ({ forum, user }) => {
     );
 };
 
-export default Forum
+export default Forum;

@@ -7,6 +7,7 @@ import { useParams } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 import AddComment from '@/app/forum/[id]/AddComment';
 import GetComment from './GetComment';
+import Link from 'next/link';
 
 const Page = () => {
   const { user } = useAuth();
@@ -34,6 +35,7 @@ const Page = () => {
   return (
     <div className="p-4 max-w-xl mx-auto">
       <div className="border border-gray-300 p-4 rounded-lg mb-4 shadow-sm">
+      <Link href={`/profile/${forum.postedBy}`}>
         <div className="flex items-center gap-3 mb-4">
           <Image
             src={user?.profilePic || "/avatar.jpg"}
@@ -49,24 +51,26 @@ const Page = () => {
             </div>
           </div>
         </div>
+      </Link>
         <h1 className="text-lg font-semibold mb-2">{forum.title}</h1>
         <p className="mb-4 text-gray-700">{forum.content}</p>
         {forum.forumImage && (
-          <Image
-            src={forum.forumImage}
-            alt="Forum Image"
-            className="mb-4 rounded-md"
-            width={400}
-            height={400}
-          />
+          <div className="rounded overflow-hidden border border-gray-300 w-full h-64 relative mb-4">
+            <Image
+              src={forum.forumImage}
+              alt="Forum Image"
+              layout="fill"
+              objectFit="cover"
+            />
+          </div>
         )}
         <div className="text-sm text-gray-500 mb-4">
           Posted by: {forum.postedBy}
         </div>
       </div>
       <div className="border-t border-gray-300 pt-4">
-      <GetComment forumId={forum.forumId} lastReply={false}/>
-      <AddComment forumId={forum.forumId} />
+        <GetComment forumId={forum.forumId} lastReply={false}/>
+        <AddComment forumId={forum.forumId} />
       </div>
     </div>
   );
