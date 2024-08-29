@@ -55,7 +55,7 @@ function ProfileCard() {
                 </div>
                 <div className="ml-auto mr-2"> 
                     <Button.secondary className={''}>
-                        <Link href={`${user.username}/edit`}>
+                        <Link href={`/admin/profile/${user.username}/edit`}>
                             Edit
                         </Link>
                     </Button.secondary>

@@ -116,9 +116,9 @@ const DokterDetail = ({ params }) => {
                     />
                   )}
                 </div>
-                <div className="ml-auto mr-28 hidden">
+                <div className="ml-auto mr-28">
                   <Button.secondary className={""}>
-                    <Link href="admin/dokter/edit">Edit</Link>
+                    <Link href={`/admin/dokter/${username}/edit`}>Edit</Link>
                   </Button.secondary>
                 </div>
               </div>
@@ -130,8 +130,8 @@ const DokterDetail = ({ params }) => {
                     <h3 className="font-medium text-xl ml-2">{`Spesialis: ${
                       dataDokter?.spesialis ? dataDokter.spesialis : "-"
                     }`}</h3>
-                    <h3 className="font-medium text-xl ml-2">{`Spesialis: ${
-                      dataDokter?.afe ? dataDokter.age : "-"
+                    <h3 className="font-medium text-xl ml-2">{`Umur: ${
+                      dataDokter?.age ? dataDokter.age : "-"
                     }`}</h3>
                   </div>
                   <div
