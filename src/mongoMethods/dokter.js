@@ -86,3 +86,19 @@ export const mongoGetArtikelByDokter = async (creatorId) => {
         throw new Error(error.message);
     }
 }
+
+export const mongoUpdateDokter = async (data) => {
+    try {
+        const { client, database } = await connectDb();
+        const col = database.collection(collectionName);
+
+        await col.updateOne(
+            { username: data.username }, 
+            { $set: data }
+        );
+        await client.close();
+    } catch (e) {
+        console.error("Error updating user:", e);
+        throw new Error("Gagal memperbarui data!");
+    }
+};

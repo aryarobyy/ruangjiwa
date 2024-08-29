@@ -64,19 +64,21 @@ export const mongoPostComment = async (data, commentId) => {
     }
 }
 
-export const mongoGetComment = async () => {
+export const mongoGetComment = async (forumId) => {
     try {
-        const {client, database} = await connectDb();
-        const col = database.collection(collectionName);
-
-        const res = await col.find({}).toArray();
-        await client.close();
-
-        return res;
+      const { client, database } = await connectDb();
+      const col = database.collection(collectionName);
+  
+      const res = await col.findOne({ forumId })
+      await client.close();
+  
+      console.log("Comments fetched:", res); // Log the fetched comments
+      return res;
     } catch (error) {
-        throw new Error(error.message);
+      throw new Error(error.message);
     }
-}
+  };
+
 
 // export const mongoGetComment = async () => {
 //     try {

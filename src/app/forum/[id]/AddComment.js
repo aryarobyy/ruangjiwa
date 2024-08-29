@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { Input } from '../../../components/ui/Input';
-import Button from '../../../components/ui/Button';
+import { CiPaperplane } from 'react-icons/ci';
 import { useAuth } from '@/context/AuthContext';
 import useToast from '@/hooks/useHotToast';
 import { addComment } from '@/helpers/forum';
@@ -37,10 +37,14 @@ const AddComment = ({ forumId }) => {
       date: new Date(),
     };
 
+    if(!comment){
+      return;
+    }
     console.log(newComment)
     const toastId = pushToast({
       message: "Uploading comment...",
     });
+
 
     try {
       const res = await addComment(forumId,newComment);
@@ -61,19 +65,19 @@ const AddComment = ({ forumId }) => {
   };
 
   return (
-    <>
-      <Input 
-        placeholder="Drop your comment below"
-        value={comment} 
-        onChange={handleComment}
-      />
-      <Button 
-        onClick={handleSubmit}
-        className="w-full"
-      >
-        Submit
-      </Button>
-    </>
+    <div className="flex items-center space-x-2">
+  <Input 
+    placeholder="Drop your comment below"
+    value={comment} 
+    onChange={handleComment}
+    className="flex-1 px-4 py-2 border border-gray-300 rounded-md"
+  />
+  <CiPaperplane 
+    onClick={handleSubmit}
+    className="w-6 h-6 text-gray-500 cursor-pointer hover:text-gray-700"
+  />
+</div>
+
   );
 };
 

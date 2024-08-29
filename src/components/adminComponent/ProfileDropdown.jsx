@@ -64,7 +64,7 @@ const ProfileDropdown = ({type}) => {
       <div className={`${isDropDownShow ? '' : 'hidden'} right-0 top-10 duration mt-2 min-w-[12rem] rounded-lg border border-default-200 bg-white p-2 absolute shadow-md transition-[opacity,margin] hs-dropdown-open:opacity-100 dark:bg-default-50`}>
         <Link
           className="flex items-center gap-x-3.5 rounded-md px-3 py-2 text-sm text-default-800 transition-all hover:bg-default-100"
-          href={type === 'dokter' ? "#" : '#'}
+          href={`/profile/${user?.username}`}
         >
           <LuUser className="size-4" />
           Profil Anda

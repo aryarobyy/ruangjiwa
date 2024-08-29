@@ -1,81 +1,47 @@
-// "use client";
-
-// // import { getCommentByForumId } from '@/helpers/comment';
-// import React, { useEffect, useState } from 'react';
-// import Comment from '@/components/Comments';
-
-// const GetComment = ({ forumIds }) => {
-//   const [comments, setComments] = useState([]);
-//   const [loading, setLoading] = useState(true);
-//   const [error, setError] = useState(null);
-
-//   useEffect(() => {
-//     // Re-fetch comments if forumIds change
-//     if (forumIds) {
-//       getComment();
-//     }
-//   }, [forumIds]);
-
-//   const getComment = async () => {
-//     try {
-//       const res = await getCommentByForumId(forumIds);
-//       console.log("Fetched comments:", res.data.data);
-//       setComments(res.data.data);
-//     } catch (error) {
-//       console.error("Error fetching comments:", error.message);
-//       setError(error.message);
-//     } finally {
-//       setLoading(false);
-//     }
-//   };
-
-//   if (loading) {
-//     return <div>Loading comments...</div>;
-//   }
-
-//   if (error) {
-//     return <div>Error: {error}</div>;
-//   }
-
-//   return (
-//     <div>
-//       {comments.length > 0 ? (
-//         <Comment comments={comments} lastReply={false} /> 
-//       ) : (
-//         <p>No comments found.</p>
-//       )}
-//     </div>
-//   );
-// };
-
-// export default GetComment;
 "use client";
 
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import Image from "next/image";
 import { getComment } from "@/helpers/forum";
+import { useAuth } from "@/context/AuthContext";
 
-const CommentsSection = ({ lastReply }) => {
+const GetComment = ({ forumId, lastReply }) => {
+  const { user } = useAuth();
   const [comments, setComments] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchComments = async () => {
+      if (!forumId) {
+        console.error("Formnya gaada");
+        return;
+      }
+
       try {
-        const res = await getComment(); // Assuming getComment is an async function
-        setComments(res.data.data);
+        console.log("forumId", forumId); 
+        const res = await getComment(forumId); 
+        console.log("data:", res.data.data.comments);
+
+        if (Array.isArray(res.data.data.comments)) {
+          setComments(res.data.data.comments);
+        } else {
+          console.error("Error Bang", error.message)
+          setError(error.message)
+          setComments([]);  
+        }
       } catch (error) {
-        console.error("Error fetching comments:", error.message);
+        console.error("error:", forumId, error.message);
         setError(error.message);
+        setComments([]); 
       } finally {
         setLoading(false);
       }
     };
 
     fetchComments();
-  }, []);
+  }, [forumId]); 
 
   if (loading) {
     return <div>Loading comments...</div>;
@@ -90,17 +56,17 @@ const CommentsSection = ({ lastReply }) => {
       {comments.map((comment, index) => (
         <div key={comment.commentId || index} className="flex gap-4 py-2 my-2 w-full">
           <Image
-            src={comment.user.profilePic || "/default-profile-pic.png"} // Fallback profile pic
-            alt={`${comment.user.username}'s profile`}
+            src={comment.createdBy?.profilePic || "/default-profile-pic.png"}
+            alt={`${comment.createdBy}'s profile`}
             width={32}
             height={32}
             className="rounded-full"
           />
           <div className="flex flex-col gap-1 w-full">
             <div className="flex justify-between items-center w-full">
-              <span className="text-sm font-bold">{comment.user.username}</span>
+              <span className="text-sm font-bold">{comment.createdBy}</span>
             </div>
-            <p>{comment.text}</p>
+            <p>{comment.comment}</p>
           </div>
         </div>
       ))}
@@ -109,8 +75,9 @@ const CommentsSection = ({ lastReply }) => {
   );
 };
 
-CommentsSection.propTypes = {
+GetComment.propTypes = {
+  forumId: PropTypes.string.isRequired,
   lastReply: PropTypes.bool,
 };
 
-export default CommentsSection;
+export default GetComment;
