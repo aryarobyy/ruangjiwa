@@ -14,7 +14,7 @@ const DokterLayout = ({ children }) => {
   const {pushToast} = useToast();
 
   useEffect(() => {
-    if(user.role !== 'dokter') {
+    if(user?.role !== 'dokter') {
       pushToast({
         message: "Anda tidak punya hak untuk mengakses ini",
         isError: true

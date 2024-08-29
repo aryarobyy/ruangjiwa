@@ -6,7 +6,7 @@ import { LuEye, LuPartyPopper } from "react-icons/lu";
 import dashboardHero from "@/assets/images/other/dashboard-hero.png";
 import { useAuth } from "@/context/AuthContext";
 
-const ProgressCard = () => {
+const ProgressCard = ({quotes}) => {
   const {user} = useAuth();
 
   return (
@@ -23,9 +23,7 @@ const ProgressCard = () => {
           <div className="col-span-3 h-full">
             <div className="flex h-full flex-col items-start">
               <div className="mb-4 grow">
-                <p className="text-lg text-default-900">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit maiores pariatur eaque sint soluta quae illum ut sit suscipit facere quas
-                </p>
+                <p className="text-lg text-default-900">{quotes}</p>
               </div>
               <Link
                 href=""

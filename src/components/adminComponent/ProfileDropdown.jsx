@@ -40,7 +40,7 @@ const ProfileDropdown = ({type}) => {
         className="inline-flex flex-shrink-0 items-center justify-center gap-2 align-middle text-xs font-medium transition-all"
       >
         {
-          user.profilePic ? (
+          user?.profilePic ? (
             <Image 
             src={user.profilePic}
             width={48}

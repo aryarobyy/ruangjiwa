@@ -1,4 +1,4 @@
-const quotes = [
+export const quotes = [
       {
         "id": 1,
         "quote": "Hidup adalah perjuangan, tetapi setiap langkah kecil adalah kemenangan."
@@ -400,5 +400,3 @@ const quotes = [
         "quote": "Kamu tidak sendirian dalam perjalanan ini, banyak yang mendukungmu."
       }
     ]
-
-export default quotes

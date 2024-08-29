@@ -1,12 +1,6 @@
-import Image from "next/image";
 import Link from "next/link";
-import { topPerformers } from "../../app/(protected)/admin/dashboard/data";
-import { LuLogOut, LuMoreVertical, LuPencil, LuTrash2 } from "react-icons/lu";
-import { Eye, SquarePen, UserCog } from "lucide-react";
 import BlogCard from "@/components/adminComponent/BlogCard";
-import { artikel } from "./data";
 import Button from "../ui/Button";
-import { Suspense } from "react";
 import LoadingSection from "../system/LoadingSection";
 
 

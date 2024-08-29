@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { topPerformers } from "../../app/(protected)/admin/dashboard/data";
-import { LuLogOut, LuMoreVertical, LuPencil, LuTrash2, LuUser, LuUserCircle } from "react-icons/lu";
+import { LuUserCircle } from "react-icons/lu";
 import { Eye, SquarePen, UserCog } from "lucide-react";
 import LoadingSection from "../system/LoadingSection";
 
