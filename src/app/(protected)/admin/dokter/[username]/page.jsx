@@ -3,7 +3,7 @@ import Image from "next/image";
 import Button from "@/components/ui/Button";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { deleteDokter, getAllDokter, getArtikelByDokter, getDokterByUsername, updateApprovedDokter } from "@/helpers/dokter";
+import { deleteDokter, getAllDokter, getArtikelByDokter, getDokterByUsername, updateApprovedDokter, updateDokter } from "@/helpers/dokter";
 import LoadingSection from "@/components/system/LoadingSection";
 import useToast from "@/hooks/useHotToast";
 import { useRouter } from "next/navigation";
@@ -100,7 +100,7 @@ const DokterDetail = ({ params }) => {
                 <div className="flex-shrink-0 mr-4 w-48 h-48 relative -mt-24 border-4 border-white rounded-full overflow-hidden ">
                   {dataDokter?.profilePic ? (
                     <Image
-                      // src={user?.profilePic}
+                      src={dataDokter?.profilePic}
                       alt="Profile Image"
                       width={100}
                       height={100}
@@ -116,7 +116,7 @@ const DokterDetail = ({ params }) => {
                     />
                   )}
                 </div>
-                <div className="ml-auto mr-2 hidden">
+                <div className="ml-auto mr-28 hidden">
                   <Button.secondary className={""}>
                     <Link href="admin/dokter/edit">Edit</Link>
                   </Button.secondary>
@@ -129,6 +129,9 @@ const DokterDetail = ({ params }) => {
                     <h2 className="font-medium text-xl ml-2">{`Nama: ${dataDokter?.name}`}</h2>
                     <h3 className="font-medium text-xl ml-2">{`Spesialis: ${
                       dataDokter?.spesialis ? dataDokter.spesialis : "-"
+                    }`}</h3>
+                    <h3 className="font-medium text-xl ml-2">{`Spesialis: ${
+                      dataDokter?.afe ? dataDokter.age : "-"
                     }`}</h3>
                   </div>
                   <div

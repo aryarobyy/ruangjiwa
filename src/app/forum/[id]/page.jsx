@@ -6,7 +6,7 @@ import Image from 'next/image';
 import { useParams } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 import AddComment from '@/app/forum/[id]/AddComment';
-import CommentsSection from './GetComment';
+import GetComment from './GetComment';
 
 const Page = () => {
   const { user } = useAuth();
@@ -49,10 +49,8 @@ const Page = () => {
             </div>
           </div>
         </div>
-        <div className='flex justify-center align-center'>
-          <h1 className="text-lg font-bold mb-2 ml-6">{forum.title}</h1>
-          <p className="mb-4 text-gray-700">{forum.content}</p>
-        </div>
+        <h1 className="text-lg font-semibold mb-2">{forum.title}</h1>
+        <p className="mb-4 text-gray-700">{forum.content}</p>
         {forum.forumImage && (
           <Image
             src={forum.forumImage}
@@ -67,8 +65,8 @@ const Page = () => {
         </div>
       </div>
       <div className="border-t border-gray-300 pt-4">
-      <CommentsSection forumId={forum.forumId} />
-      <AddComment forumId={id} />
+      <GetComment forumId={forum.forumId} lastReply={false}/>
+      <AddComment forumId={forum.forumId} />
       </div>
     </div>
   );

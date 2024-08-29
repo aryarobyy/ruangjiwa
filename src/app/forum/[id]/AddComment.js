@@ -1,81 +1,84 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-import PropTypes from "prop-types";
-import Image from "next/image";
-import { getComment } from "@/helpers/forum";
-import { useAuth } from "@/context/AuthContext";
+import React, { useState } from 'react';
+import { Input } from '../../../components/ui/Input';
+import { CiPaperplane } from 'react-icons/ci';
+import { useAuth } from '@/context/AuthContext';
+import useToast from '@/hooks/useHotToast';
+import { addComment } from '@/helpers/forum';
 
-const CommentsSection = ({ forumId, lastReply }) => {
+const AddComment = ({ forumId }) => { 
+  const MAX_COMMENT_CHAR = 600;
+
+  const [comment, setComment] = useState(""); 
   const { user } = useAuth();
-  const [comments, setComments] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const { pushToast, updateToast } = useToast();
 
-  useEffect(() => {
-    const fetchComments = async () => {
-      if (!forumId) {
-        console.error("No forumId provided");
-        return;
-      }
+  const handleComment = (e) => {
+    const inputComment = e.target.value;
+    if (inputComment.length > MAX_COMMENT_CHAR) {
+      const finalComment = inputComment.slice(0, MAX_COMMENT_CHAR);
+      setComment(finalComment); 
+    } else {
+      setComment(inputComment);
+    }
+  };
 
-      try {
-        console.log("forumId", forumId); 
-        const res = await getComment(forumId); 
-        console.log("data:", res.data.data.comments);
+  const handleSubmit = async () => {
+    if (!forumId) {
+      console.error("forumId is not defined");
+      return;
+    }
 
-        if (Array.isArray(res.data.data.comments)) {
-          setComments(res.data.data.comments);
-        } else {
-          setComments([]);  
-        }
-      } catch (error) {
-        console.error("error:", forumId, error.message);
-        setError(error.message);
-        setComments([]); 
-      } finally {
-        setLoading(false);
-      }
+    const newComment = {
+      comment: comment,
+      createdBy: user.username || user.dokterId,
+      name: user.name,
+      date: new Date(),
     };
 
-    fetchComments();
-  }, [forumId]); 
+    if(!comment){
+      return;
+    }
+    console.log(newComment)
+    const toastId = pushToast({
+      message: "Uploading comment...",
+    });
 
-  if (loading) {
-    return <div>Loading comments...</div>;
-  }
 
-  if (error) {
-    return <div>Error: {error}</div>;
-  }
+    try {
+      const res = await addComment(forumId,newComment);
+      if (res.data.message !== 'Success') throw new Error(res.data.message);
+
+      updateToast({
+        message: "Successfully uploaded comment!",
+        toastId,
+      });
+      setComment(""); 
+    } catch (error) {
+      updateToast({
+        toastId,
+        message: error.message,
+        isError: true,
+      });
+    }
+  };
 
   return (
-    <>
-      {comments.map((comment, index) => (
-        <div key={comment.commentId || index} className="flex gap-4 py-2 my-2 w-full">
-          <Image
-            src={user.profilePic || "/default-profile-pic.png"}
-            alt={`${comment.createdBy || 'User'}'s profile`}
-            width={32}
-            height={32}
-            className="rounded-full"
-          />
-          <div className="flex flex-col gap-1 w-full">
-            <div className="flex justify-between items-center w-full">
-              <span className="text-sm font-bold">{comment.createdBy || 'Unknown User'}</span>
-            </div>
-            <p>{comment.comment}</p>
-          </div>
-        </div>
-      ))}
-      {!lastReply && <hr className="border-t my-2" />}
-    </>
+    <div className="flex items-center space-x-2">
+  <Input 
+    placeholder="Drop your comment below"
+    value={comment} 
+    onChange={handleComment}
+    className="flex-1 px-4 py-2 border border-gray-300 rounded-md"
+  />
+  <CiPaperplane 
+    onClick={handleSubmit}
+    className="w-6 h-6 text-gray-500 cursor-pointer hover:text-gray-700"
+  />
+</div>
+
   );
 };
 
-CommentsSection.propTypes = {
-  forumId: PropTypes.string.isRequired,
-  lastReply: PropTypes.bool,
-};
-
-export default CommentsSection;
+export default AddComment;

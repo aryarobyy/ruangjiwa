@@ -25,3 +25,7 @@ export const getArtikelByDokter = async (creatorId) => {
     return axiosInstance.get(`${url.ENDPOINT_DOKTER}/artikel/${creatorId}`)
 
 }
+
+export const updateDokter = async (data) => {
+    return axiosInstance.put(`${url.ENDPOINT_DOKTER}/update`, data);
+}

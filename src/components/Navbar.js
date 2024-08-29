@@ -127,7 +127,7 @@ const Navbar = () => {
             <div className="flex items-center gap-3 ml-4">
               {user?.role === "user" ? (
                 <>
-                  <Button onClick={() => router.push("/profile")}>
+                  <Button onClick={() => router.push(`profile/${user.username}`)}>
                     Profile
                   </Button>
                   <Button.danger onClick={handleLogout}>Logout</Button.danger>

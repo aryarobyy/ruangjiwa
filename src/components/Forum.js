@@ -5,7 +5,6 @@ import Link from 'next/link';
 
 const Forum = ({ forum, user }) => {
     const router = useRouter();
-
     return (
         <div
             key={forum.forumId}
@@ -23,10 +22,10 @@ const Forum = ({ forum, user }) => {
                             className="text-sm font-bold cursor-pointer "
                             onClick={(e) => {
                                 e.stopPropagation();
-                                router.push(`/profile/${forum.username}`);
+                                router.push(`/profile/${forum.postedBy}`);
                             }}
                         >
-                            {forum.username}
+                            {forum.postedBy}
                         </p>
                     </div>
                     </Link>
@@ -38,11 +37,11 @@ const Forum = ({ forum, user }) => {
                     </div>
                 </div>
                 <div>
-                    <h1>{forum.title}</h1>
-                    <p className="text-sm">{forum.content}</p>
+                    <h1 className='font-bold text-lg mb-2'>{forum.title}</h1>
+                    <p className="text-sm ">{forum.content}</p>
                 </div>
                 {forum.forumImage && (
-                    <div className="rounded overflow-hidden border border-gray-300">
+                    <div className="rounded overflow-hidden border border-gray-300 w-full">
                         <Image src={forum.forumImage} alt="post" className="w-fit" width={300} height={300} />
                     </div>
                 )}

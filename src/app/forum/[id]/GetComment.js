@@ -6,7 +6,7 @@ import Image from "next/image";
 import { getComment } from "@/helpers/forum";
 import { useAuth } from "@/context/AuthContext";
 
-const CommentsSection = ({ forumId, lastReply }) => {
+const GetComment = ({ forumId, lastReply }) => {
   const { user } = useAuth();
   const [comments, setComments] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -15,7 +15,7 @@ const CommentsSection = ({ forumId, lastReply }) => {
   useEffect(() => {
     const fetchComments = async () => {
       if (!forumId) {
-        console.error("No forumId provided");
+        console.error("Formnya gaada");
         return;
       }
 
@@ -24,9 +24,11 @@ const CommentsSection = ({ forumId, lastReply }) => {
         const res = await getComment(forumId); 
         console.log("data:", res.data.data.comments);
 
-        if (Array.isArray(res.data.data)) {
-          setComments(res.data.data);
+        if (Array.isArray(res.data.data.comments)) {
+          setComments(res.data.data.comments);
         } else {
+          console.error("Error Bang", error.message)
+          setError(error.message)
           setComments([]);  
         }
       } catch (error) {
@@ -54,7 +56,7 @@ const CommentsSection = ({ forumId, lastReply }) => {
       {comments.map((comment, index) => (
         <div key={comment.commentId || index} className="flex gap-4 py-2 my-2 w-full">
           <Image
-            src={comment.profilePic || "/default-profile-pic.png"}
+            src={comment.createdBy?.profilePic || "/default-profile-pic.png"}
             alt={`${comment.createdBy}'s profile`}
             width={32}
             height={32}
@@ -73,9 +75,9 @@ const CommentsSection = ({ forumId, lastReply }) => {
   );
 };
 
-CommentsSection.propTypes = {
+GetComment.propTypes = {
   forumId: PropTypes.string.isRequired,
   lastReply: PropTypes.bool,
 };
 
-export default CommentsSection;
+export default GetComment;
