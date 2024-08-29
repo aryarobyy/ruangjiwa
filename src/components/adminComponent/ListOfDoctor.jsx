@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { topPerformers } from "../../app/(protected)/admin/dashboard/data";
-import { LuLogOut, LuMoreVertical, LuPencil, LuTrash2, LuUser, LuUserCircle } from "react-icons/lu";
+import { LuUserCircle } from "react-icons/lu";
 import { Eye, SquarePen, UserCog } from "lucide-react";
 import LoadingSection from "../system/LoadingSection";
 
@@ -28,12 +27,12 @@ const ListOfDoctor = ({data, title, type, isGettingData}) => {
             return (
               <div key={idx} className="flex items-center p-2.5 px-4 gap-2">
                 {
-                  dokter.image ? (
+                  dokter.profilePic ? (
                     <Image
-                      src={dokter.image}
+                      src={dokter.profilePic}
                       width={48}
                       height={48}
-                      className="me-3 h-12 rounded-full"
+                      className="me-3 w-10 h-10 rounded-full"
                       alt="dokter"
                     />
                   ) : (

@@ -39,11 +39,23 @@ const ProfileDropdown = ({type}) => {
         type="button"
         className="inline-flex flex-shrink-0 items-center justify-center gap-2 align-middle text-xs font-medium transition-all"
       >
-        <Image
-          alt="avatar"
-          className="inline-block w-11 size-9 rounded-full"
-          src={avatar1}
-        />
+        {
+          user?.profilePic ? (
+            <Image 
+            src={user.profilePic}
+            width={48}
+            height={48}
+            className="me-3 w-10 h-10 rounded-full"
+            alt="dokter"
+          />
+          ) : (
+              <Image
+                alt="avatar"
+                className="inline-block w-11 size-9 rounded-full"
+                src={avatar1}
+              />
+          )  
+        }
         <div className="text-start text-dark">
           <p className="text-sm font-bold">{user?.name}</p>
           <p className="mt-1 text-xs font-semibold ">{user?.role}</p>
@@ -52,7 +64,7 @@ const ProfileDropdown = ({type}) => {
       <div className={`${isDropDownShow ? '' : 'hidden'} right-0 top-10 duration mt-2 min-w-[12rem] rounded-lg border border-default-200 bg-white p-2 absolute shadow-md transition-[opacity,margin] hs-dropdown-open:opacity-100 dark:bg-default-50`}>
         <Link
           className="flex items-center gap-x-3.5 rounded-md px-3 py-2 text-sm text-default-800 transition-all hover:bg-default-100"
-          href={type === 'dokter' ? "#" : '#'}
+          href={`/profile/${user?.username}`}
         >
           <LuUser className="size-4" />
           Profil Anda

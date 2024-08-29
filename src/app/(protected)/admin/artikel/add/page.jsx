@@ -65,7 +65,7 @@ const AdminArtikelAdd = () => {
 
             newData.imgUrl = result.data.data;
 
-            const response = await postNewArtikel(newData);
+            const response = await postNewArtikel(newData, user.username);
             if(response.data.message !== 'Success') throw new Error(response.data.message);
             
             

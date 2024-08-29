@@ -1,6 +1,6 @@
 "use client"
 import Button from "@/components/ui/Button";
-import quotes from "../assets/data/quotesData";
+import { quotes } from "../assets/data/quotesData";
 import React, { useState } from 'react'
 
 const page = () => {

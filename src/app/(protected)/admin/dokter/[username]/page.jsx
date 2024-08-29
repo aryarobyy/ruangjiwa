@@ -62,6 +62,11 @@ const DokterDetail = ({ params }) => {
   };
 
   const handleReject = async () => {
+    const toastId = pushToast({
+      message: "Loading...",
+      isLoading: true
+    });
+    
     try {
       await deleteDokter(username);
 
@@ -74,7 +79,8 @@ const DokterDetail = ({ params }) => {
       console.error(error.message)
       updateToast({
         toastId,
-        message: "Failed!"
+        message: "Failed!",
+        isError: true
       })
     }
   }

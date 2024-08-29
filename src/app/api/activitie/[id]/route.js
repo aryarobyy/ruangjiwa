@@ -3,9 +3,9 @@ import { mongoGetArtikelById } from "@/mongoMethods/artikel";
 
 export const GET = async (req, {params}) => {
     try {
-        const activitieId = params.id;
+        const creator = params.id;
 
-        const response = await mongoGetActivie(activitieId);
+        const response = await mongoGetActivie(creator);
 
         return Response.json({
             message: "Success",
@@ -19,3 +19,4 @@ export const GET = async (req, {params}) => {
         })
     }
 }
+

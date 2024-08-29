@@ -13,6 +13,9 @@ const schema = Joi.object({
     password: Joi.string().min(8).required(),
     bio: Joi.string().min(250).required(),
     spesialis: Joi.string().required(),
+    profilePic: Joi.string().required(),
+    ijazah: Joi.string().required(),
+    cv: Joi.string().required(),
 }).unknown();
 
 export const POST = async (req, res) => {
@@ -38,7 +41,7 @@ export const POST = async (req, res) => {
         await mongoPostDokter(newData);
 
         const activitieData = {
-            activitieId: newData.userId,
+            creator: newData.username,
             sumArtikel: 0,
             sumKonsul: 0,
             author: newData.name

@@ -3,13 +3,14 @@ import connectDb from "@/libs/mongodb";
 const collectionName = 'activities';
 
 
-export const mongoUpdateArtikelActivitie = async (userId) => {
+export const mongoUpdateArtikelActivitie = async (username) => {
     try {
         const {client, database} = await connectDb();
         const col = database.collection(collectionName);
+        console.log(username);
         
         const res = await col.updateOne(
-            {activitieId: userId},
+            {creator: username},
             {
                 $inc: {sumArtikel: 1}
             }
@@ -35,12 +36,12 @@ export const mongoPostActivieDoc = async (data) => {
     }
 }
 
-export const mongoGetActivie = async (activitieId) => {
+export const mongoGetActivie = async (creator) => {
     try {
         const {client, database} = await connectDb();
         const col = database.collection(collectionName);
         
-        const res = await col.findOne({activitieId});
+        const res = await col.findOne({creator});
         await client.close();
 
         return res;
@@ -61,4 +62,19 @@ export const mongoGetAllActivitie = async () => {
     } catch (error) {    
         throw new Error(error.message);
     }
+}
+
+export const mongoDeleteActivitie = async (creator) => {
+    try {
+        const {client, database} = await connectDb();
+        const col = database.collection(collectionName);
+        
+        await col.deleteOne({creator});
+        await client.close();
+    
+        return "Success";
+    } catch (error) {    
+        throw new Error(error.message);
+    }
+
 }
