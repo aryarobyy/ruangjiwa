@@ -1,89 +1,113 @@
 "use client";
 
-import { useAuth } from '@/context/AuthContext';
-import { getForumById } from '@/helpers/forum';
-import Image from 'next/image';
-import { useParams } from 'next/navigation';
-import React, { useEffect, useState } from 'react';
-import AddComment from '@/app/forum/[id]/AddComment';
-import GetComment from './GetComment';
-import Link from 'next/link';
-import Navbar from '@/components/Navbar';
+import { useAuth } from "@/context/AuthContext";
+import { getForumById } from "@/helpers/forum";
+import Image from "next/image";
+import { useParams } from "next/navigation";
+import React, { useEffect, useState } from "react";
+import AddComment from "@/app/forum/[id]/AddComment";
+import GetComment from "./GetComment";
+import Link from "next/link";
+import Navbar from "@/components/Navbar";
+import LoadingSection from "@/components/system/LoadingSection";
+import Button from "@/components/ui/Button";
 
 const Page = () => {
-  const { user } = useAuth();
   const { id } = useParams();
   const [forum, setForum] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     getForum();
   }, []);
 
   const getForum = async () => {
+    setLoading(true);
     try {
       const res = await getForumById(id);
       const data = res.data.data;
-      console.log(data);
       setForum(data);
     } catch (error) {
       console.error("Error fetching forum:", error.message);
+    } finally {
+      setLoading(false);
     }
   };
 
-  if (!forum) {
-    return <div className="text-center text-gray-500 mt-4">Loading...</div>;
-  }
-
   return (
-  <>
-  <Navbar />
-  <div className="w-full h-screen flex flex-col md:flex-row">
-      <div className="w-full md:w-1/2 border border-gray-300 p-4 rounded-lg mb-4 md:mb-0 shadow-sm overflow-auto">
-      <Link href={`/profile/${forum.postedBy}`}>
-        <div className="flex items-center gap-3 mb-4">
-          <Image
-            src={forum?.profilePic || "/avatar.jpg"}
-            alt="Profile"
-            className="w-10 h-10 rounded-full"
-            width={40}
-            height={40}
-          />
-          <div>
-            <span className="font-bold text-gray-900">{forum.postedBy}</span>
-            <div className="text-gray-500 text-sm">
-              {new Date(forum.date).toLocaleDateString()}
+    <>
+      <Navbar />
+      {loading ? (
+        <div className="w-full h-screen flex items-center justify-center bg-[var(--hero-bg-color)] text-[var(--title-color)]">
+          <LoadingSection />
+        </div>
+      ) : !loading && (!forum || forum.length <= 1) ? (
+        <div className="w-full h-screen justify-center items-center flex flex-col gap-4 bg-[var(--hero-bg-color)] text-[var(--title-color)]">
+          <p className="w-full font-semibold text-center">
+            Ops! Sepertinya forum yang anda pilih tidak ditemukan.
+          </p>
+          <Button>
+            <Link href={"/forum"}>
+              Kembali
+            </Link>
+          </Button>
+        </div>
+      ) : (
+        <div className="w-full bg-[var(--hero-bg-color)] grid md:grid-cols-2 gap-4 p-4 min-h-screen">
+          <div className="w-full p-4 shadow-sm overflow-auto text-[var(--title-color)] border border-[var(--border-color)] h-fit">
+            <div>
+              <div className=" mb-4 w-fit">
+                <Link
+                  href={`/profile/${forum.postedBy}`}
+                  className="w-fit flex items-center gap-3"
+                >
+                  <Image
+                    src={forum?.profilePic || "/avatar.jpg"}
+                    alt="Profile"
+                    className="w-10 h-10 rounded-full"
+                    width={40}
+                    height={40}
+                  />
+                  <div>
+                    <span className="font-bold">{forum.postedBy}</span>
+                    <div className="text-sm">
+                      {new Date(forum.date).toLocaleDateString()}
+                    </div>
+                  </div>
+                </Link>
+              </div>
+              {forum.forumImage && (
+                <div className="rounded overflow-hidden border w-full h-64 relative mb-4">
+                  <Image
+                    src={forum.forumImage}
+                    alt="Forum Image"
+                    layout="fill"
+                    objectFit="cover"
+                  />
+                </div>
+              )}
+            </div>
+            <div>
+              <h1 className="text-lg font-semibold mb-2">{forum.title}</h1>
+              <p className="mb-4">{forum.content}</p>
+            </div>
+          </div>
+          <div className="w-full border border-[var(--border-color)] max-h-[70dvh] relative mb-[5rem] md:mb-0">
+            <div className="flex flex-col gap-2 h-full overflow-y-scroll">
+              <GetComment
+                comments={forum.comments}
+                forumId={forum.forumId}
+                lastReply={false}
+              />
+            </div>
+            <div className="-bottom-1 p-4 bg-[var(--hero-bg-color)] border border-[var(--border-color)]">
+              <AddComment forumId={forum.forumId} setComments={setForum} />
             </div>
           </div>
         </div>
-      </Link>
-        <h1 className="text-lg font-semibold mb-2">{forum.title}</h1>
-        <p className="mb-4 text-gray-700">{forum.content}</p>
-        {forum.forumImage && (
-          <div className="rounded overflow-hidden border border-gray-300 w-full h-64 relative mb-4">
-            <Image
-              src={forum.forumImage}
-              alt="Forum Image"
-              layout="fill"
-              objectFit="cover"
-            />
-          </div>
-        )}
-        <div className="text-sm text-gray-500 mb-4">
-          Posted by: {forum.postedBy}
-        </div>
-      </div>
-      <div className="w-full md:w-1/2 border-t md:border-t-0 md:border-l border-gray-300 p-4 md:pl-4 overflow-auto">
-      <div className="flex-1 overflow-auto">
-        <GetComment comments={forum.comments} forumId={forum.forumId} lastReply={false} />
-      </div>
-        <div className="sticky bottom-0 bg-white p-4 mt-10 border-t border-gray-300">
-        <AddComment forumId={forum.forumId} setComments={setForum} />
-        </div>
-      </div>
-    </div>
-  </>
-
+      )}
+    </>
   );
-}
+};
 
 export default Page;
