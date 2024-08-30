@@ -13,11 +13,10 @@ const Forum = ({ forum, user }) => {
         >
             <div className="flex-1 flex flex-col gap-2">
                 <div className="flex w-full">
-
                     <Link href={`/profile/${forum.postedBy}`}>
                         <div className="flex items-center w-full">
                             <Image
-                                src={user.profilePic || "/avatar.jpg"}
+                                src={forum.profilePic || "/avatar.jpg"}
                                 className="w-8 h-8 rounded-full mr-2"
                                 alt="verified"
                                 width={400}
@@ -37,7 +36,7 @@ const Forum = ({ forum, user }) => {
 
                     <div className="flex gap-4 items-center">
                         <p className="text-xs w-36 text-right text-gray-400">
-                            {new Date(forum.date).toLocaleDateString()} ago
+                            {new Date(forum.date).toLocaleDateString()}
                         </p>
                     </div>
                 </div>

@@ -8,6 +8,7 @@ import React, { useEffect, useState } from 'react';
 import AddComment from '@/app/forum/[id]/AddComment';
 import GetComment from './GetComment';
 import Link from 'next/link';
+import Navbar from '@/components/Navbar';
 
 const Page = () => {
   const { user } = useAuth();
@@ -22,6 +23,7 @@ const Page = () => {
     try {
       const res = await getForumById(id);
       const data = res.data.data;
+      console.log(data);
       setForum(data);
     } catch (error) {
       console.error("Error fetching forum:", error.message);
@@ -33,12 +35,14 @@ const Page = () => {
   }
 
   return (
-    <div className="p-4 max-w-xl mx-auto">
-      <div className="border border-gray-300 p-4 rounded-lg mb-4 shadow-sm">
+  <>
+  <Navbar />
+  <div className="w-full h-screen flex flex-col md:flex-row">
+      <div className="w-full md:w-1/2 border border-gray-300 p-4 rounded-lg mb-4 md:mb-0 shadow-sm overflow-auto">
       <Link href={`/profile/${forum.postedBy}`}>
         <div className="flex items-center gap-3 mb-4">
           <Image
-            src={user?.profilePic || "/avatar.jpg"}
+            src={forum?.profilePic || "/avatar.jpg"}
             alt="Profile"
             className="w-10 h-10 rounded-full"
             width={40}
@@ -68,11 +72,17 @@ const Page = () => {
           Posted by: {forum.postedBy}
         </div>
       </div>
-      <div className="border-t border-gray-300 pt-4">
-        <GetComment forumId={forum.forumId} lastReply={false}/>
-        <AddComment forumId={forum.forumId} />
+      <div className="w-full md:w-1/2 border-t md:border-t-0 md:border-l border-gray-300 p-4 md:pl-4 overflow-auto">
+      <div className="flex-1 overflow-auto">
+        <GetComment comments={forum.comments} forumId={forum.forumId} lastReply={false} />
+      </div>
+        <div className="sticky bottom-0 bg-white p-4 mt-10 border-t border-gray-300">
+        <AddComment forumId={forum.forumId} setComments={setForum} />
+        </div>
       </div>
     </div>
+  </>
+
   );
 }
 
