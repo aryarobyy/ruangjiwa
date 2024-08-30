@@ -7,7 +7,7 @@ import { useAuth } from '@/context/AuthContext';
 import useToast from '@/hooks/useHotToast';
 import { addComment } from '@/helpers/forum';
 
-const AddComment = ({ forumId }) => { 
+const AddComment = ({ forumId, setComments }) => { 
   const MAX_COMMENT_CHAR = 600;
 
   const [comment, setComment] = useState(""); 
@@ -24,7 +24,8 @@ const AddComment = ({ forumId }) => {
     }
   };
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     if (!forumId) {
       console.error("forumId is not defined");
       return;
@@ -34,15 +35,16 @@ const AddComment = ({ forumId }) => {
       comment: comment,
       createdBy: user.username || user.dokterId,
       name: user.name,
+      profilePic: user.profilePic,
       date: new Date(),
     };
 
     if(!comment){
       return;
     }
-    console.log(newComment)
     const toastId = pushToast({
       message: "Uploading comment...",
+      isLoading: true,
     });
 
 
@@ -54,6 +56,10 @@ const AddComment = ({ forumId }) => {
         message: "Successfully uploaded comment!",
         toastId,
       });
+      setComments((prevComments) => ({
+        ...prevComments,
+        comments: [...prevComments.comments, newComment],
+      }));
       setComment(""); 
     } catch (error) {
       updateToast({
@@ -65,7 +71,7 @@ const AddComment = ({ forumId }) => {
   };
 
   return (
-    <div className="flex items-center space-x-2">
+    <form onSubmit={handleSubmit} className="flex items-center space-x-2">
   <Input 
     placeholder="Drop your comment below"
     value={comment} 
@@ -76,7 +82,7 @@ const AddComment = ({ forumId }) => {
     onClick={handleSubmit}
     className="w-6 h-6 text-gray-500 cursor-pointer hover:text-gray-700"
   />
-</div>
+</form>
 
   );
 };
