@@ -1,6 +1,4 @@
 "use client";
-import { LuTrendingDown, LuTrendingUp } from "react-icons/lu";
-import ReactApexChart from "react-apexcharts";
 import Image from "next/image";
 import Button from "../ui/Button";
 import { SquarePen, Trash2 } from "lucide-react";
