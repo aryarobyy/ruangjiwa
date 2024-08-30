@@ -20,6 +20,26 @@ const DokterDashboard = () => {
   const [loadingGetData, setLoadingGetData] = useState(false);
   
   useEffect(() => {
+    
+    const getAllData = async () => {
+      setLoadingGetData(true);
+      try {
+        const artikels = await getArtikelByDokter(user.userId);
+        if(artikels.data.message !== "Success") throw new Error(artikels.data.message);
+        setArtikel(artikels.data.data);
+        
+        const activitiesRes = await getActivities(user.username);
+        if(activitiesRes.data.message !== "Success") throw new Error(activitiesRes.data.message);
+        console.log(activitiesRes.data);
+        setActivities(activitiesRes.data.data);
+        
+      } catch (error) {
+        console.error(error.message);
+      } finally {
+        setLoadingGetData(false);
+      }
+    };
+
       if(user?.role !== 'dokter') {
         router.push('/');
         return;
@@ -33,25 +53,6 @@ const DokterDashboard = () => {
         getAllData()
       };
   }, []);
-
-  const getAllData = async () => {
-    setLoadingGetData(true);
-    try {
-      const artikels = await getArtikelByDokter(user.userId);
-      if(artikels.data.message !== "Success") throw new Error(artikels.data.message);
-      setArtikel(artikels.data.data);
-      
-      const activitiesRes = await getActivities(user.username);
-      if(activitiesRes.data.message !== "Success") throw new Error(activitiesRes.data.message);
-      console.log(activitiesRes.data);
-      setActivities(activitiesRes.data.data);
-      
-    } catch (error) {
-      console.error(error.message);
-    } finally {
-      setLoadingGetData(false);
-    }
-  };
   
   const handleDeletedArtikel = (artikelId) => {
     const newArtikel = artikel.slice('').filter(item => item.artikelId !== artikelId);

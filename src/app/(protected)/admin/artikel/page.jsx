@@ -2,30 +2,37 @@
 import AdminBreadcrumb from "@/components/adminComponent/AdminBreadcrumb";
 import BlogSection from "@/components/adminComponent/BlogSection";
 import Button from "@/components/ui/Button";
-import { Input } from "@/components/ui/Input";
+import { useAuth } from "@/context/AuthContext";
 import { getAllArtikel } from "@/helpers/artikel";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
 const AdminArtikel = () => {
-  const [ artikels, setArtikels ] = useState([]);
+  const [ artikels, setArtikels ] = useState([null]);
   const [loadingGetData, setLoadingGetData] = useState(false);
+  const {user} = useAuth();
 
   useEffect(() => {
+
+    const getArtikelData = async () => {
+      setLoadingGetData(true);
+      try {
+        const response = await getAllArtikel();
+        setArtikels(response.data.data);
+      } catch (error) {
+        console.error(error.message);
+      } finally {
+        setLoadingGetData(false);
+      }
+    };
+
+    if (user.role !== "admin") {
+      router.push("/");
+      return;
+    } else {
       getArtikelData();
-  }, []);
-  
-  const getArtikelData = async () => {
-    setLoadingGetData(true);
-    try {
-      const response = await getAllArtikel();
-      setArtikels(response.data.data);
-    } catch (error) {
-      console.error(error.message);
-    } finally {
-      setLoadingGetData(false);
     }
-  };
+  }, []);
 
   const handleDeletedArtikel = (artikelId) => {
     const newArtikel = artikels.slice('').filter(item => item.artikelId !== artikelId);
