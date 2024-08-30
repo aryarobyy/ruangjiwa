@@ -18,6 +18,8 @@ const AdminArtikel = () => {
       setLoadingGetData(true);
       try {
         const response = await getAllArtikel();
+        if(response.data.message !== "Success") throw new Error("Sepertinya gagal memuat\nArtikel.");
+        
         setArtikels(response.data.data);
       } catch (error) {
         console.error(error.message);

@@ -1,6 +1,5 @@
 import { Poppins } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import BaseToaster from "@/components/system/BaseToaster";
 import { AuthProvider } from "@/context/AuthContext";
@@ -20,7 +19,6 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={`text-dark ${poppins.className}`}>
         <AuthProvider>
-          {/* <Navbar /> */}
           <BaseToaster />
           {children}
           <Footer />
