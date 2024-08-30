@@ -1,3 +1,4 @@
+'use client';
 import Link from "next/link";
 import BlogCard from "@/components/adminComponent/BlogCard";
 import Button from "../ui/Button";

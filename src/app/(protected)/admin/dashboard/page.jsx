@@ -14,17 +14,17 @@ import { quotes } from "@/app/assets/data/quotesData";
 // coba pindain get data ke masing2 kompo, page ini jadiin use server
 
 const Dashboard = () => {
-  const [artikel, setArtikel] = useState([]);
-  const [activities, setActivities] = useState();
+  const [artikel, setArtikel] = useState([null]);
+  const [activities, setActivities] = useState(null);
   const [quote, setQuote] = useState("");
-  const [pendingDokter, setPendingDokter] = useState();
-  const [aprovedDokter, setAprovedDokter] = useState();
+  const [pendingDokter, setPendingDokter] = useState(null);
+  const [aprovedDokter, setAprovedDokter] = useState(null);
   const { user } = useAuth();
   const router = useRouter();
   const [loadingGetData, setLoadingGetData] = useState(false);
 
   useEffect(() => {
-    
+
     const getAllData = async () => {
       setLoadingGetData(true);
       try {
