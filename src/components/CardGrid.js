@@ -23,8 +23,8 @@ const CardGrid = () => {
   return (
     <div className="max-w-screen-xl mx-auto py-12">
       <h2 className="text-center text-gray-500 text-2xl font-semibold mb-8">Creators.</h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-      <Card
+      <div className="flex flex-wrap justify-center gap-8">
+        <Card
           number={1}
           title="FrontEnd Developer"
           description="kaoasasojiasjoiasjio"

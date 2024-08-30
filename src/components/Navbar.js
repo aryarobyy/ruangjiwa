@@ -111,6 +111,12 @@ const Navbar = () => {
                 </Link>
                 <Link
                   className="text-[var(--text-color)] text-base transition hover:text-[var(--button-hover-bg-color)]"
+                  href="/forum"
+                >
+                  Forum
+                </Link>
+                <Link
+                  className="text-[var(--text-color)] text-base transition hover:text-[var(--button-hover-bg-color)]"
                   href="/ruang-meditasi"
                 >
                   Ruang Meditasi

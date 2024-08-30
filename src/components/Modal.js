@@ -40,6 +40,7 @@ const Modal = ({ isOpen, onClose, user, onClickOutside }) => {
           <Link href="/services" className="block px-4 py-2 text-gray-600 hover:bg-gray-200 rounded-md" onClick={onClose}>Services</Link>
           <Link href="/article" className="block px-4 py-2 text-gray-600 hover:bg-gray-200 rounded-md" onClick={onClose}>Article</Link>
           <Link href="/faq" className="block px-4 py-2 text-gray-600 hover:bg-gray-200 rounded-md" onClick={onClose}>FAQ</Link>
+          <Link href="/forum" className="block px-4 py-2 text-gray-600 hover:bg-gray-200 rounded-md" onClick={onClose}>Forum</Link>
           <Link href="/ruang-meditasi" className="block px-4 py-2 text-gray-600 hover:bg-gray-200 rounded-md" onClick={onClose}>Ruang Meditasi</Link>
           <Link href={`/aichat/${user ? user.username : "guest"}`} className="block px-4 py-2 text-gray-600 hover:bg-gray-200 rounded-md" onClick={onClose}>IMU ChatBot</Link>
         </div>
