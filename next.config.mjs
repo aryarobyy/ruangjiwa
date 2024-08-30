@@ -22,13 +22,6 @@ const nextConfig = {
       }
   ]
   },
-  webpack: (config) => {
-    config.experiments = {
-      topLevelAwait: true,
-      layers: true // <-- add this to enable layers experiment
-    };
-    return config;
-  },
-};
+}
 
 export default nextConfig;
