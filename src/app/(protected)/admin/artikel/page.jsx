@@ -12,20 +12,21 @@ const AdminArtikel = () => {
   const [loadingGetData, setLoadingGetData] = useState(false);
 
   useEffect(() => {
+    
+    const getArtikelData = async () => {
+      setLoadingGetData(true);
+      try {
+        const response = await getAllArtikel();
+        setArtikels(response.data.data);
+      } catch (error) {
+        console.error(error.message);
+      } finally {
+        setLoadingGetData(false);
+      }
+    };
+
       getArtikelData();
   }, []);
-  
-  const getArtikelData = async () => {
-    setLoadingGetData(true);
-    try {
-      const response = await getAllArtikel();
-      setArtikels(response.data.data);
-    } catch (error) {
-      console.error(error.message);
-    } finally {
-      setLoadingGetData(false);
-    }
-  };
 
   const handleDeletedArtikel = (artikelId) => {
     const newArtikel = artikels.slice('').filter(item => item.artikelId !== artikelId);
