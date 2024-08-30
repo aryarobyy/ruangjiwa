@@ -232,6 +232,13 @@ const Navbar = () => {
                 </Link>
                 <Link
                   className="block px-4 py-2 text-[var(--text-color)] hover:bg-gray-200 rounded-md"
+                  href="/forum"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Forum
+                </Link>
+                <Link
+                  className="block px-4 py-2 text-[var(--text-color)] hover:bg-gray-200 rounded-md"
                   href={`/aichat/${user ? user.username : "guest"}`}
                   onClick={() => setIsMenuOpen(false)}
                 >

@@ -8,6 +8,7 @@ import Button from '@/components/ui/Button';
 import { useAuth } from '@/context/AuthContext';
 import { addForum } from '@/helpers/forum';
 import { postFile } from '@/helpers/image';
+import Navbar from '@/components/Navbar';
 
 const Page = () => {
   const MAX_TITLE_CHAR = 80;
@@ -125,21 +126,29 @@ const Page = () => {
 
   return (
     <>
-      <Input 
-        placeholder={`Judul (maks ${MAX_TITLE_CHAR} karakter)`}
-        onChange={handleTitle} 
-        value={forum.title}
-      />
-      
-      <Input 
-        placeholder={`Konten (maks ${MAX_CONTENT_CHAR} karakter)`}
-        onChange={handleContent} 
-        value={forum.content}
-      />
+      <Navbar />
 
-      <InputImage title={"Post"} tempImg={tempImg} handleAddFileChange={handleImage} /> 
+      <div className="p-8">
+        <Input
+          placeholder={`Judul (maks ${MAX_TITLE_CHAR} karakter)`}
+          onChange={handleTitle}
+          value={forum.title}
+        />
 
-      <Button onClick={handleSubmit}>Submit</Button>
+        <Input
+          placeholder={`Konten (maks ${MAX_CONTENT_CHAR} karakter)`}
+          onChange={handleContent}
+          value={forum.content}
+        />
+
+        <InputImage
+          title={"Post"}
+          tempImg={tempImg}
+          handleAddFileChange={handleImage}
+        />
+
+        <Button onClick={handleSubmit}>Submit</Button>
+      </div>
     </>
   );
 };
