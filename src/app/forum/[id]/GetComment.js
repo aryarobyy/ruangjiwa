@@ -10,7 +10,7 @@ const GetComment = ({ lastReply, comments }) => {
     <>
       {
         !comments || comments.length < 1 ? (
-          <div className="w-full h-full flex items-center justify-center">
+          <div className="w-full h-full flex items-center justify-center text-center px-4">
             <Label className="text-[var(--title-color)]">
               Sepertinya belum terdapat komentar, yuk mulai komentar pada temanmu!
             </Label>
