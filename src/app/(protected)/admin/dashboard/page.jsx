@@ -34,20 +34,24 @@ const Dashboard = () => {
       getAllData();
     }
   }, []);
+  
   const getAllData = async () => {
     setLoadingGetData(true);
     try {
-      const artikels = await getAllArtikel();
+      const [artikels, activitieRes, doktors] = await Promise.all([
+        getAllArtikel(),
+        getAllActivitie(),
+        getAllDokter(),
+      ]);
+  
       if (artikels.data.message !== "Success")
         throw new Error("Sepertinya gagal memuat artikel!");
-      setArtikel(artikels.data.data);
-
-      const activitieRes = await getAllActivitie();
+  
       if (activitieRes.data.message !== "Success")
         throw new Error("Sepertinya gagal memuat \nreport aktifitas dokter");
+  
+      setArtikel(artikels.data.data);
       setActivities(activitieRes.data.data);
-
-      const doktors = await getAllDokter();
       setAprovedDokter(doktors.data.data.filter((el) => el.isApproved));
       setPendingDokter(doktors.data.data.filter((el) => !el.isApproved));
     } catch (error) {
@@ -56,6 +60,7 @@ const Dashboard = () => {
       setLoadingGetData(false);
     }
   };
+  
 
   const handleDeletedArtikel = (artikelId) => {
     const newArtikel = artikel
