@@ -1,4 +1,4 @@
-import { messages } from "@/components/adminComponent/data";
+import { messages } from "@/app/assets/data/data";
 import { mongoUpdateArtikelActivitie } from "@/mongoMethods/activitie";
 import { mongoDeleteAllArtikel, mongoGetAllArtikel, mongoPostArtikel} from "@/mongoMethods/artikel";
 import Joi from "joi";
