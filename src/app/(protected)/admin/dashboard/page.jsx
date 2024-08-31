@@ -24,29 +24,6 @@ const Dashboard = () => {
   const [loadingGetData, setLoadingGetData] = useState(false);
 
   useEffect(() => {
-
-    const getAllData = async () => {
-      setLoadingGetData(true);
-      try {
-        const artikels = await getAllArtikel();
-        if (artikels.data.message !== "Success")
-          throw new Error("Sepertinya gagal memuat artikel!");
-        setArtikel(artikels.data.data);
-
-        const activitieRes = await getAllActivitie();
-        if (activitieRes.data.message !== "Success")
-          throw new Error("Sepertinya gagal memuat \nreport aktifitas dokter");
-        setActivities(activitieRes.data.data);
-
-        const doktors = await getAllDokter();
-        setAprovedDokter(doktors.data.data.filter((el) => el.isApproved));
-        setPendingDokter(doktors.data.data.filter((el) => !el.isApproved));
-      } catch (error) {
-        console.error(error.message);
-      } finally {
-        setLoadingGetData(false);
-      }
-    };
     if (user?.role !== "admin") {
       router.push("/");
       return;
@@ -57,6 +34,28 @@ const Dashboard = () => {
       getAllData();
     }
   }, []);
+  const getAllData = async () => {
+    setLoadingGetData(true);
+    try {
+      const artikels = await getAllArtikel();
+      if (artikels.data.message !== "Success")
+        throw new Error("Sepertinya gagal memuat artikel!");
+      setArtikel(artikels.data.data);
+
+      const activitieRes = await getAllActivitie();
+      if (activitieRes.data.message !== "Success")
+        throw new Error("Sepertinya gagal memuat \nreport aktifitas dokter");
+      setActivities(activitieRes.data.data);
+
+      const doktors = await getAllDokter();
+      setAprovedDokter(doktors.data.data.filter((el) => el.isApproved));
+      setPendingDokter(doktors.data.data.filter((el) => !el.isApproved));
+    } catch (error) {
+      console.error(error.message);
+    } finally {
+      setLoadingGetData(false);
+    }
+  };
 
   const handleDeletedArtikel = (artikelId) => {
     const newArtikel = artikel
