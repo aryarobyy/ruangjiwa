@@ -11,6 +11,7 @@ import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import LoadingSection from "@/components/system/LoadingSection";
 import Button from "@/components/ui/Button";
+import { dateConvert } from "@/utils/dateConvert";
 
 const Page = () => {
   const { id } = useParams();
@@ -71,7 +72,9 @@ const Page = () => {
                   <div>
                     <span className="font-bold">{forum.postedBy}</span>
                     <div className="text-sm">
-                      {new Date(forum.date).toLocaleDateString()}
+                      {
+                        dateConvert(forum.date)
+                      }
                     </div>
                   </div>
                 </Link>

@@ -62,6 +62,32 @@ const Dashboard = () => {
   };
   
 
+  const getAllData = async () => {
+    setLoadingGetData(true);
+    try {
+      const artikels = await getAllArtikel();
+      console.log("artikels", artikels)
+      if (artikels.data.message !== "Success")
+        throw new Error("Sepertinya gagal memuat artikel!");
+      setArtikel(artikels.data.data);
+      
+      const activitieRes = await getAllActivitie();
+      console.log("activitie", activitieRes);
+      if (activitieRes.data.message !== "Success")
+        throw new Error("Sepertinya gagal memuat \nreport aktifitas dokter");
+      setActivities(activitieRes.data.data);
+      
+      const doktors = await getAllDokter();
+      console.log("dokter", doktors);
+      setAprovedDokter(doktors.data.data.filter((el) => el.isApproved));
+      setPendingDokter(doktors.data.data.filter((el) => !el.isApproved));
+    } catch (error) {
+      console.error(error.message);
+    } finally {
+      setLoadingGetData(false);
+    }
+  };
+
   const handleDeletedArtikel = (artikelId) => {
     const newArtikel = artikel
       .slice("")
@@ -96,7 +122,6 @@ const Dashboard = () => {
               />
             </div>
             <div className="w-full">
-              {/* <RecentOrders /> */}
               <BlogSection
                 href={"admin/artikel/add"}
                 title={"List Artikel"}

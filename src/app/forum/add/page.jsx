@@ -92,7 +92,7 @@ const Page = () => {
       ...forum,
       forumImage: imagePath,
       userId: user?.userId || user?.dokterId,
-      postedBy: user?.username,
+      postedBy: user?.name,
       date: new Date(),
       };
       const response = await addForum(forumData);
