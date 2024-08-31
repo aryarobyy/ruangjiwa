@@ -3,6 +3,7 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import { useAuth } from "@/context/AuthContext";
+import { dateConvert } from "@/utils/dateConvert";
 
 const Forum = ({ forum }) => {
   const {user} = useAuth();
@@ -37,7 +38,9 @@ const Forum = ({ forum }) => {
 
           <div className="flex gap-4 items-center">
             <p className="text-xs w-36 text-right text-gray-400">
-              {new Date(forum.date).toLocaleDateString()}
+              {
+                dateConvert(forum.date)
+              }
             </p>
           </div>
         </div>

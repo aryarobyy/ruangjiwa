@@ -57,7 +57,7 @@ const PostPage = () => {
             <div>
               <Link href={`${user ? "/forum/add" : "/auth/login"}`}>
                 <button
-                  className="fixed bottom-7 right-7 bg-[var(--button-bg-color)] hover:bg-[var(--button-hover-bg-color)] text-[var(--title-color)] font-semibold py-2 px-4 rounded shadow-lg transition duration-300"
+                  className="fixed bottom-7 right-7 bg-[var(--button-bg-color)] hover:bg-[var(--button-hover-bg-color)] text-slate-100 font-semibold py-2 px-4 rounded shadow-lg transition duration-300"
                   aria-label="Add Post"
                 >
                   Tambah Forum

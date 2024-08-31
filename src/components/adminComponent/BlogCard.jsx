@@ -51,15 +51,15 @@ const BlogCard = ({ data, itemDescription, handleDeletedItem }) => {
         </div>
         <div className="rounded-md overflow-hidden">
           <Image
-            src={data?.imgUrl}
+            src={data?.imgUrl || ""}
             width={500}
             height={700}
             onLoad={(e) => e.target.className + " border-2 blur-md"}
             className="object-cover rounded-md hover:scale-105 transition-all ease-in-out duration-300 h-52"
-            alt={data?.title}
+            alt={data?.title || ""}
           />
           <div className="w-full py-4">
-            <Link href={`/artikel/${data?.artikelId}`}>
+            <Link href={`/article/${data?.artikelId}`}>
               <div className="text-sm flex justify-between pb-2">
                 <p>{date}</p>
                 <p>{`${data?.name}`}</p>
