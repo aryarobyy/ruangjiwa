@@ -7,7 +7,6 @@ import { deleteDokter, getAllDokter, getArtikelByDokter, getDokterByUsername, up
 import LoadingSection from "@/components/system/LoadingSection";
 import useToast from "@/hooks/useHotToast";
 import { useRouter } from "next/navigation";
-import BlogSection from "@/components/adminComponent/BlogSection";
 import BlogCard from "@/components/adminComponent/BlogCard";
 
 const DokterDetail = ({ params }) => {
