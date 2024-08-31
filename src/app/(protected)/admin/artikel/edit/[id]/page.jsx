@@ -77,7 +77,6 @@ const AdminArtikelEdit = ({params}) => {
       if (response.data.message !== "Success")
         throw new Error(response.data.message);
 
-      // console.log(newData);
       updateToast({
         message: "Sukses Memperbarui Artikel!",
         toastId,
@@ -93,8 +92,6 @@ const AdminArtikelEdit = ({params}) => {
         isError: true,
       });
     }
-
-    // console.log(newData);
   };
 
   return (

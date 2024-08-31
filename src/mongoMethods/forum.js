@@ -49,13 +49,10 @@ export const mongoPostComment = async (data, commentId) => {
         const { client, database } = await connectDb();
         const col = database.collection(collectionName);
 
-        console.log("Comment Id:",commentId)
         const result = await col.updateOne(
             { forumId: commentId },
             { $push: { comments: data } }
         );
-        console.log("Result: ", result)
-        console.log("Update Result:", result);
         client.close();
         return { message: "Success" };
     } catch (error) {
@@ -72,7 +69,6 @@ export const mongoGetComment = async (forumId) => {
       const res = await col.findOne({ forumId })
       await client.close();
   
-      console.log("Comments fetched:", res); // Log the fetched comments
       return res;
     } catch (error) {
       throw new Error(error.message);

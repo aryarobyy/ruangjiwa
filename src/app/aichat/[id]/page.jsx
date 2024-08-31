@@ -51,10 +51,17 @@ const AIChat = ({params}) => {
     // handler function
     const handleShowMessage = async () => {
       if(loadingGetMessage) {
-        pushToast({
+        const toastId = pushToast({
           isLoading: true,
-          message: "Lagi memuat obrolan... Coba lagi nanti ya!"
+          message: "Imubot sedang memuat obrolan kamu nih! Coba lagi nanti ya!"
         })
+
+        setTimeout(() => {
+          updateToast({
+            toastId,
+            message: "Yuk Coba lagi!"
+          });
+        }, 3000);
         return;
       };
 

@@ -66,8 +66,6 @@ const AdminArtikelAdd = () => {
             const response = await postNewArtikel(newData, user.username);
             if(response.data.message !== 'Success') throw new Error(response.data.message);
             
-            
-            // console.log(newData);
             updateToast({
                 message: "Sukses Mengunggah Artikel!",
                 toastId
@@ -86,8 +84,6 @@ const AdminArtikelAdd = () => {
             setIsSubmiting(false);
         }
 
-
-        // console.log(newData);
     }
 
     return (

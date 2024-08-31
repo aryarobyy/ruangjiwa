@@ -87,8 +87,6 @@ const Page = () => {
       if (file) {
         const imageResponse = await postFile(file);
         imagePath = imageResponse.data.data;
-        // console.log("data",imagePath)
-        // setForum((prev) => ({ ...prev, forumImage: imagePath.data.data }));
       }
       const forumData = {
       ...forum,
