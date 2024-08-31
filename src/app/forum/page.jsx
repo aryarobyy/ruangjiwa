@@ -43,7 +43,7 @@ const PostPage = () => {
             Ops! Sepertinya belum terdapat forum untuk saat ini.
           </p>
           <Button>
-            <Link href={"/"}>Kembali</Link>
+            <Link href={`${user ? "/forum/add" : "/auth/login"}`}>Tambah Forum</Link>
           </Button>
         </div>
       ) : (

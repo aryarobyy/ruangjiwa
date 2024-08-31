@@ -23,7 +23,7 @@ const GetComment = ({ lastReply, comments }) => {
                 alt={`${comment?.createdBy}'s profile`}
                 width={50}
                 height={50}
-                className="rounded-full"
+                className="rounded-full w-12 h-12"
               />
               <div className="flex flex-col gap-1 w-full">
                 <div className="flex justify-between items-center w-full">
