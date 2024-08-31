@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { messages } from './data'
+import { messages } from '../../app/assets/data/data'
 import { LuMail } from 'react-icons/lu'
 import { BellDot } from 'lucide-react'
 

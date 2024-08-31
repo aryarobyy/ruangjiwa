@@ -1,6 +1,6 @@
 'use client'
 import Link from 'next/link'
-import { adminMenu } from './data'
+import { adminMenu } from '../../app/assets/data/data'
 import { cn } from '@/utils/twMerge' 
 import { usePathname } from 'next/navigation'
 

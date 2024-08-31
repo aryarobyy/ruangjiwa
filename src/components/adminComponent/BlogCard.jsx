@@ -1,6 +1,4 @@
 "use client";
-import { LuTrendingDown, LuTrendingUp } from "react-icons/lu";
-import ReactApexChart from "react-apexcharts";
 import Image from "next/image";
 import Button from "../ui/Button";
 import { SquarePen, Trash2 } from "lucide-react";
@@ -9,34 +7,35 @@ import { dateConvert } from "@/utils/dateConvert";
 import { deleteArtikelById } from "@/helpers/artikel";
 import useToast from "@/hooks/useHotToast";
 
-const BlogCard = ({data, itemDescription, handleDeletedItem }) => {
+const BlogCard = ({ data, itemDescription, handleDeletedItem }) => {
   const date = dateConvert(data.date);
-  const {pushToast, updateToast} = useToast()
+  const { pushToast, updateToast } = useToast();
 
   const handleDeleteArtikel = async () => {
     const toastId = pushToast({
       message: "Menghapus artikel...",
-      isLoading: true
-    })
+      isLoading: true,
+    });
     try {
       const res = await deleteArtikelById(data.artikelId);
-      if(res.data.message !== "Success") throw new Error("Gagal Menghapus Artikel!");
+      if (res.data.message !== "Success")
+        throw new Error("Gagal Menghapus Artikel!");
 
       handleDeletedItem(data.artikelId);
       updateToast({
         toastId,
         message: "Berhasil Menghapus Artikel!",
-      })
-      
+      });
     } catch (error) {
       console.error(error.message);
       updateToast({
         toastId,
         message: error.message,
-        isError: true
+        isError: true,
       });
     }
-  }
+  };
+  
   return (
     <div className="rounded-md border h-fit border-default-200 bg-white p-2">
       <div className="p-2 relative">
@@ -51,11 +50,11 @@ const BlogCard = ({data, itemDescription, handleDeletedItem }) => {
           </Button.danger>
         </div>
         <div className="rounded-md overflow-hidden">
-          <Image 
+          <Image
             src={data.imgUrl}
             width={500}
             height={700}
-            onLoad={(e) => e.target.className + ' border-2 blur-md'}
+            onLoad={(e) => e.target.className + " border-2 blur-md"}
             className="object-cover rounded-md hover:scale-105 transition-all ease-in-out duration-300 h-52"
             alt={data.title}
           />
@@ -64,10 +63,13 @@ const BlogCard = ({data, itemDescription, handleDeletedItem }) => {
               <div className="text-sm flex justify-between pb-2">
                 <p>{date}</p>
                 <p>{`${data.name}`}</p>
-
               </div>
               <h1 className="w-full text-base text-center text-default-600 font-semibold">
-                {` ${data.title.length > 65 ? `${data.title.slice(0, 65)}...` : data.title}`}
+                {` ${
+                  data.title.length > 65
+                    ? `${data.title.slice(0, 65)}...`
+                    : data.title
+                }`}
               </h1>
               <p className="w-full py-2 text-justify text-sm text-default-600 font-medium">
                 {itemDescription}

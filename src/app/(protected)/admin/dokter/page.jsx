@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { useAuth } from "@/context/AuthContext";
 import { useRouter } from "next/navigation";
 // import tempDataDokter from '@/assets/data'
-import { dokters } from "@/components/adminComponent/data";
+import { dokters } from "@/app/assets/data/data";
 import Sources from "@/components/adminComponent/Sources";
 import { getAllDokter } from "@/helpers/dokter";
 import useToast from "@/hooks/useHotToast";
