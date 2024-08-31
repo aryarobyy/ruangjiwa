@@ -6,6 +6,10 @@ import { useAuth } from "@/context/AuthContext";
 import { useRouter } from "next/navigation";
 
 // import tempDataDokter from '@/assets/data'
+<<<<<<< HEAD
+=======
+import { dokters } from "@/app/assets/data/data";
+>>>>>>> 441e2f3 (Merge branch 'fix-build' into temp-branch)
 import Sources from "@/components/adminComponent/Sources";
 import { getAllDokter } from "@/helpers/dokter";
 import useToast from "@/hooks/useHotToast";
