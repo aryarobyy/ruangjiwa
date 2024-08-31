@@ -90,7 +90,7 @@ function ProfileCard({ params }) {
                 <div className="ml-auto mr-2">
                   {userData?.username && (
                     <Button.secondary className={""}>
-                      <Link href={`/admin/profile/${userData?.username}/edit`}>Edit</Link>
+                      <Link href={`/profile/${userData?.username}/edit`}>Edit</Link>
                     </Button.secondary>
                   )}
                 </div>
