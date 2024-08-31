@@ -31,3 +31,6 @@ export const ENDPOINT_ACTIVITIE = "/api/activitie"
 
 //quotes
 export const ENDPOINT_QUOTE = "api/quote"
+
+//contact
+export const ENDPOINT_CONTACT = "api/contact"
