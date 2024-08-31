@@ -7,6 +7,8 @@ import Forum from "@/components/Forum";
 import Navbar from "@/components/Navbar";
 import LoadingSection from "@/components/system/LoadingSection";
 import Button from "@/components/ui/Button";
+
+
 import Link from "next/link";
 
 const PostPage = () => {
@@ -67,6 +69,7 @@ const PostPage = () => {
           </div>
         </div>
       )}
+  
     </>
   );
 };
