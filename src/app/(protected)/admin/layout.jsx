@@ -1,14 +1,9 @@
 'use client'
 import { ReactNode, Suspense, useEffect } from 'react'
-import dynamic from 'next/dynamic'
-// import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import { useAuth } from '@/context/AuthContext'
 import useToast from '@/hooks/useHotToast'
-// import NextTopLoader from 'nextjs-toploader'
-// import TopBar from '@/components/adminComponent/TopBar'
-const TopBar = dynamic(() => import('@/components/adminComponent/TopBar'))
-
+import TopBar from "@/components/adminComponent/TopBar"
 const loading = () => <div />
 
 const AdminLayout = ({ children }) => {

@@ -1,3 +1,4 @@
+'use client';
 import { cn } from '@/utils/twMerge';
 
 export default function Button({ children, className, type, value, onClick, disabled, ...props }) {
