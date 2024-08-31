@@ -7,7 +7,6 @@ export const mongoUpdateArtikelActivitie = async (username) => {
     try {
         const {client, database} = await connectDb();
         const col = database.collection(collectionName);
-        console.log(username);
         
         const res = await col.updateOne(
             {creator: username},

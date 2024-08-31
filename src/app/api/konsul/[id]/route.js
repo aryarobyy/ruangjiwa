@@ -3,7 +3,6 @@ import { monitorMessagesChanges } from "@/mongoMethods/konsul";
 
 export const GET = async (req, res) => {
     try {
-        console.log("asdasads")
         const {client, database} = await connectDb();
         const col = database.collection('konsul_chat');
         // await col.createIndex({ konsulId: 1 });
@@ -20,7 +19,6 @@ export const GET = async (req, res) => {
     start(controller) {
       // Send change events to the client
       changeStream.on('change', (change) => {
-        console.log('Change detected in message', change);
 
         // Write the event data in Server-Sent Event format
         controller.enqueue(

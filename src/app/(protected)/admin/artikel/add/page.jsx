@@ -59,7 +59,6 @@ const AdminArtikelAdd = () => {
             if(!file) throw new Error("Image belum terunggah");
             
             const result = await postFile(file);
-            console.log(result);
             
             if(result.data.message !== "Success") throw new Error(result.data.message);
 
@@ -69,7 +68,6 @@ const AdminArtikelAdd = () => {
             if(response.data.message !== 'Success') throw new Error(response.data.message);
             
             
-            // console.log(newData);
             updateToast({
                 message: "Sukses Mengunggah Artikel!",
                 toastId
@@ -85,9 +83,6 @@ const AdminArtikelAdd = () => {
                 isError: true
             })
         }
-
-
-        // console.log(newData);
     }
 
     return (

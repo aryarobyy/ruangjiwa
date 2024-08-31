@@ -181,7 +181,7 @@ const Register = () => {
   };
   
   return (
-    <section className="bg-white">
+    <section className="text-[var(--title-color)] bg-[var(--hero-bg-color)]">
       <div className="lg:grid lg:min-h-screen align-middle">
         <main className="flex items-center justify-center px-8 py-8 sm:px-12 lg:col-span-7 lg:px-16 lg:py-12 xl:col-span-6">
           <div className="max-w-xl lg:max-w-3xl p-7 shadow-md">
@@ -193,15 +193,15 @@ const Register = () => {
               height={29}
             />
 
-            <h1 className="mt-6 text-2xl font-bold text-gray-900 sm:text-3xl md:text-4xl">
+            <h1 className="mt-6 text-2xl font-bold sm:text-3xl md:text-4xl">
               Selamat datang di Sahabat Medis
             </h1>
 
-            <p className="mt-4 leading-relaxed text-gray-500">
+            <p className="mt-4 leading-relaxed ">
               Silahkan buat akun terlebih dahulu untuk memulai eksplorasi dan pengalaman yang lebih baik.
             </p>
 
-            <div className="text-gray-500 mt-4 w-full text-center flex flex-col gap-2">
+            <div className=" mt-4 w-full text-center flex flex-col gap-2">
               <h1 className="font-semibold">Buat Akun:</h1>
               <div className="flex gap-3 items-center justify-center">
                 <Button
@@ -236,7 +236,7 @@ const Register = () => {
                 <div className="col-span-6">
                   <label
                     htmlFor="NamaLengkap"
-                    className="block text-sm font-medium text-gray-700 my-2"
+                    className="block text-sm font-medium  my-2"
                   >
                     Nama Lengkap
                   </label>
@@ -254,7 +254,7 @@ const Register = () => {
                 <div className="col-span-6">
                   <label
                     htmlFor="Username"
-                    className="block text-sm font-medium text-gray-700 my-2"
+                    className="block text-sm font-medium  my-2"
                   >
                     Username
                   </label>
@@ -275,7 +275,7 @@ const Register = () => {
                 <div className="col-span-6">
                   <label
                     htmlFor="Email"
-                    className="block text-sm font-medium text-gray-700 my-2"
+                    className="block text-sm font-medium  my-2"
                   >
                     Email
                   </label>
@@ -293,7 +293,7 @@ const Register = () => {
                 <div className="col-span-6 sm:col-span-3">
                   <label
                     htmlFor="Password"
-                    className="block text-sm font-medium text-gray-700 my-2"
+                    className="block text-sm font-medium  my-2"
                   >
                     Password
                   </label>
@@ -314,7 +314,7 @@ const Register = () => {
                 <div className="col-span-6 sm:col-span-3">
                   <label
                     htmlFor="Password"
-                    className="block text-sm font-medium text-gray-700 my-2"
+                    className="block text-sm font-medium  my-2"
                   >
                     Confirm Password
                   </label>
@@ -338,13 +338,13 @@ const Register = () => {
                 </div>
 
                 <div className="col-span-6">
-                  <p className="text-sm text-gray-500">
+                  <p className="text-sm ">
                     By creating an account, you agree to our
-                    <a href="#" className="text-gray-700 underline">
+                    <a href="#" className=" underline">
                       {` terms and conditions `}
                     </a>
                     and
-                    <a href="#" className="text-gray-700 underline p-1">
+                    <a href="#" className=" underline p-1">
                       privacy policy.
                     </a>
                   </p>
@@ -354,11 +354,11 @@ const Register = () => {
                   <Button disabled={isSubmiting} onClick={handleRegisterUser}>
                     Buat Akun
                   </Button>
-                  <p className="mt-4 text-sm text-gray-500 sm:mt-0">
+                  <p className="mt-4 text-sm  sm:mt-0">
                     Already have an account?
                     <a
                       href="/auth/login"
-                      className="text-gray-700 underline p-1"
+                      className=" underline p-1"
                     >
                       Log in
                     </a>
@@ -374,7 +374,7 @@ const Register = () => {
                 <div className="col-span-6 grid sm:grid-cols-2 gap-2 items-stretch justify-between ">
                   <div className="">
                     <div className="w-full">
-                      <label htmlFor="NamaLengkap" className="block text-sm font-medium text-gray-700 my-2">Nama Lengkap</label>
+                      <label htmlFor="NamaLengkap" className="block text-sm font-medium  my-2">Nama Lengkap</label>
                       <Input
                         type={"text"}
                         value={inputDokter.name}
@@ -392,7 +392,7 @@ const Register = () => {
                     <div className="w-full">
                       <label
                         htmlFor="Username"
-                        className="block text-sm font-medium text-gray-700 my-2"
+                        className="block text-sm font-medium  my-2"
                       >Username</label>
                       <Input
                         type={"text"}
@@ -416,7 +416,7 @@ const Register = () => {
                 <div className="col-span-6">
                   <label
                     htmlFor="Email"
-                    className="block text-sm font-medium text-gray-700 my-2"
+                    className="block text-sm font-medium  my-2"
                   >
                     Email
                   </label>
@@ -437,7 +437,7 @@ const Register = () => {
                 <div className="col-span-6">
                   <label
                     htmlFor="Ijazah"
-                    className="block text-sm font-medium text-gray-700 my-2"
+                    className="block text-sm font-medium  my-2"
                   >
                     Ijazah
                   </label>
@@ -454,7 +454,7 @@ const Register = () => {
                 <div className="col-span-6">
                   <label
                     htmlFor="CV"
-                    className="block text-sm font-medium text-gray-700 my-2"
+                    className="block text-sm font-medium  my-2"
                   >
                     CV
                   </label>
@@ -471,7 +471,7 @@ const Register = () => {
                 <div className="col-span-6">
                   <label
                     htmlFor="Bio"
-                    className="block text-sm font-medium text-gray-700 my-2"
+                    className="block text-sm font-medium  my-2"
                   >
                     Bio
                   </label>
@@ -499,7 +499,7 @@ const Register = () => {
                 <div className="col-span-6">
                   <label
                     htmlFor="Email"
-                    className="block text-sm font-medium text-gray-700 my-2"
+                    className="block text-sm font-medium  my-2"
                   >
                     Bidang Keahlian
                   </label>
@@ -520,7 +520,7 @@ const Register = () => {
                 <div className="col-span-6 sm:col-span-3">
                   <label
                     htmlFor="Password"
-                    className="block text-sm font-medium text-gray-700 my-2"
+                    className="block text-sm font-medium  my-2"
                   >
                     Password
                   </label>
@@ -541,7 +541,7 @@ const Register = () => {
                 <div className="col-span-6 sm:col-span-3">
                   <label
                     htmlFor="Password"
-                    className="block text-sm font-medium text-gray-700 my-2"
+                    className="block text-sm font-medium  my-2"
                   >
                     Confirm Password
                   </label>
@@ -565,13 +565,13 @@ const Register = () => {
                 </div>
 
                 <div className="col-span-6">
-                  <p className="text-sm text-gray-500">
+                  <p className="text-sm ">
                     By creating an account, you agree to our
-                    <a href="#" className="text-gray-700 underline">
+                    <a href="#" className=" underline">
                       {` terms and conditions `}
                     </a>
                     and
-                    <a href="#" className="text-gray-700 underline p-1">
+                    <a href="#" className=" underline p-1">
                       privacy policy.
                     </a>
                   </p>
@@ -581,11 +581,11 @@ const Register = () => {
                   <Button disabled={isSubmiting} onClick={handleRegisterDokter}>
                     Buat Akun Dokter
                   </Button>
-                  <p className="mt-4 text-sm text-gray-500 sm:mt-0">
+                  <p className="mt-4 text-sm  sm:mt-0">
                     Already have an account?
                     <a
                       href="/auth/login"
-                      className="text-gray-700 underline p-1"
+                      className=" underline p-1"
                     >
                       Log in
                     </a>

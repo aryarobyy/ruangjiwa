@@ -30,7 +30,7 @@ const article = () => {
     <div>
       <Navbar />
       <div className="w-full p-8 bg-[var(--hero-bg-color)] text-dark">
-        <h1 className="text-3xl font-bold text-center mb-8 text-[var  (--title-color)]">
+        <h1 className="text-3xl font-bold text-center mb-8 text-[var(--title-color)]">
           Artikel yang Bermanfaat untuk anda
         </h1>
         {loading ? (
@@ -38,8 +38,8 @@ const article = () => {
             <LoadingSection />
           </div>
         ) : !artikels || artikels.length < 0 ? (
-          <div className="h-screen w-full flex items-center justify-center">
-            <h1 className="text-lg text-dark">
+          <div className="h-screen w-full flex items-center justify-center text-[var(--title-color)]">
+            <h1 className="text-lg ">
               Sepertinya belum terdapat artikel
             </h1>
           </div>

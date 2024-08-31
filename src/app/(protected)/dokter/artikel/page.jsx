@@ -33,7 +33,6 @@ const AdminArtikel = () => {
 
   const handleDeletedArtikel = (artikelId) => {
     const newArtikel = artikels.slice('').filter(item => item.artikelId !== artikelId);
-    console.log(newArtikel);
     setArtikels(newArtikel);
   }
 

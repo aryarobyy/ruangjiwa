@@ -88,7 +88,6 @@ const ChatSection = ({
 
     try {
       const response = await deleteChatBotRoom(chatId);
-      console.log(response);
       if(response.data.message !== "Success") {
         throw new Error("Gagal Menghapus Obrolan!")
       } else {

@@ -17,10 +17,8 @@ function ProfileCard({ params }) {
       setLoading(true);
       try {
         const response = await getUserByUsername(username);
-        console.log('Full API Response:', response); // Log the full response
         
         if (response && response.data) {
-          console.log('Response Data:', response.data); // Log the data part of the response
           setUserData(response.data.data); // Adjust this path based on the actual response structure
         } else {
           console.error('No data found in API response');

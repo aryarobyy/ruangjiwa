@@ -6,9 +6,6 @@ export const POST = async (req, context) => {
     const data = await req.json();
     const forumId = params.id; // Correctly accessing the forum ID
 
-    console.log("Data received:", data);
-    console.log("Forum ID:", forumId);
-
     await mongoPostComment(data, forumId);
 
     return new Response(JSON.stringify({ message: "Success" }), { status: 200 });
