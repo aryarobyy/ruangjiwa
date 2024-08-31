@@ -4,7 +4,7 @@ import Image from "next/image";
 const CardGrid = () => {
   const Card = ({ number, title, description, imgSrc, imgAlt, personName }) => (
     <div className="relative bg-[var(--compo-color)] rounded-lg shadow-lg p-6 pt-12 flex flex-col items-center text-center">
-      <div className="absolute -top-8">
+      <div className="absolute -top-20">
         <Image
           className="rounded-full"
           src={imgSrc}
@@ -22,29 +22,31 @@ const CardGrid = () => {
 
   return (
     <div className="max-w-screen-xl mx-auto py-12">
-      <h2 className="text-center text-gray-500 text-2xl font-semibold mb-8">Creators.</h2>
-      <div className="flex flex-wrap justify-center gap-8">
+      <h2 className="text-center text-gray-500 text-2xl font-semibold mb-20">
+        Creators.
+      </h2>
+      <div className="flex flex-wrap justify-center gap-20">
         <Card
           number={1}
           title="FrontEnd Developer"
-          description="kaoasasojiasjoiasjio"
-          imgSrc="/images/person3.jpg"
+          description="Universitas Singaperbangsa Karawang"
+          imgSrc="/team/rolis.png"
           imgAlt="Rolis Liu"
           personName="Rolis Liu"
         />
         <Card
           number={2}
           title="BackEnd Developer"
-          description="Air tenang menghanyutkan"
-          imgSrc="/images/person2.jpg"
+          description="Universitas Singaperbangsa Karawang"
+          imgSrc="/team/roby.png"
           imgAlt="Roby Aryanata"
           personName="Roby Aryanata"
         />
         <Card
           number={3}
           title="SEO Consulting"
-          description="aajoasjiji"
-          imgSrc="/images/person3.jpg"
+          description="Universitas Singaperbangsa Karawang"
+          imgSrc="/team/irzi.png"
           imgAlt="Irzi Rahmatullah"
           personName="Irzi Rahmatullah"
         />

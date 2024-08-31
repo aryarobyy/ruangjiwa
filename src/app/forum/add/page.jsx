@@ -126,23 +126,24 @@ const Page = () => {
   return (
     <>
       <Navbar />
-      <div>
-        <Input 
+      <div className="p-8">
+        <Input
           placeholder={`Judul (maks ${MAX_TITLE_CHAR} karakter)`}
-          onChange={handleTitle} 
+          onChange={handleTitle}
           value={forum.title}
         />
-        
-        <Input 
+        <Input
           placeholder={`Konten (maks ${MAX_CONTENT_CHAR} karakter)`}
-          onChange={handleContent} 
+          onChange={handleContent}
           value={forum.content}
         />
-
-        <InputImage title={"Post"} tempImg={tempImg} handleAddFileChange={handleImage} /> 
-
+          <InputImage
+          title={"Post"}
+          tempImg={tempImg}
+          handleAddFileChange={handleImage}
+        />
         <Button onClick={handleSubmit}>Submit</Button>
-      </div>
+        </div>
     </>
   );
 };
