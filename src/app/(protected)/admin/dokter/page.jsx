@@ -4,6 +4,8 @@ import ListOfDoctor from "@/components/adminComponent/ListOfDoctor";
 import { useEffect, useState } from "react";
 import { useAuth } from "@/context/AuthContext";
 import { useRouter } from "next/navigation";
+
+// import tempDataDokter from '@/assets/data'
 import Sources from "@/components/adminComponent/Sources";
 import { getAllDokter } from "@/helpers/dokter";
 import useToast from "@/hooks/useHotToast";

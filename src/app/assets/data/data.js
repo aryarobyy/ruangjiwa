@@ -2,20 +2,9 @@ import {
   LuAlertOctagon,
   LuBookOpen,
   LuComponent,
-  LuMessagesSquare,
   LuRadar,
   LuShieldOff,
-  LuSnowflake,
-  LuTarget,
 } from 'react-icons/lu'
-
-import github from '@/assets/images/brand/github.png'
-import bitbucket from '@/assets/images/brand/bitbucket.png'
-import dropbox from '@/assets/images/brand/dropbox.png'
-import slack from '@/assets/images/brand/slack.png'
-import dribble from '@/assets/images/brand/dribbble.png'
-import behance from '@/assets/images/brand/behance.png'
-import { BookOpenText } from 'lucide-react'
 
 const adminMenu = [
   {
