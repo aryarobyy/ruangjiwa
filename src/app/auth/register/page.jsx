@@ -198,8 +198,7 @@ const Register = () => {
             </h1>
 
             <p className="mt-4 leading-relaxed text-gray-500">
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eligendi
-              nam dolorum aliquam, quibusdam aperiam voluptatum.
+              Silahkan buat akun terlebih dahulu untuk memulai eksplorasi dan pengalaman yang lebih baik.
             </p>
 
             <div className="text-gray-500 mt-4 w-full text-center flex flex-col gap-2">

@@ -1,8 +1,11 @@
 "use client"
+import { useAuth } from "@/context/AuthContext";
 import Image from "next/image";
 import Link from "next/link";
 
 const Hero = () => {
+  const {user} = useAuth();
+
   return (
     <section className="relative overflow-hidden bg-[var(--hero-bg-color)] sm:grid sm:grid-cols-2">
       <div className="absolute inset-0 bg-gradient-to-r from-[var(--hero-bg-color)] to-transparent opacity-50"></div>
@@ -41,7 +44,7 @@ const Hero = () => {
           <div className="mt-8 flex flex-col items-center md:flex-row md:justify-start">
             <Link
               href="/auth/register"
-              className="inline-block rounded bg-[var(--button-bg-color)] px-12 py-3 text-sm font-medium text-[var(--button-text-color)] transition hover:bg-[var(--button-hover-bg-color)] focus:outline-none focus:ring"
+              className={`${user && "hidden"} inline-block rounded bg-[var(--button-bg-color)] px-12 py-3 text-sm font-medium text-[var(--button-text-color)] transition hover:bg-[var(--button-hover-bg-color)] focus:outline-none focus:ring`}
             >
               Get Started Today
             </Link>

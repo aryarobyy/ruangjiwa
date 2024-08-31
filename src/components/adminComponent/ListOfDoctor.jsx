@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { LuUserCircle } from "react-icons/lu";
-import { Eye, SquarePen, UserCog } from "lucide-react";
+import { Eye, UserCog } from "lucide-react";
 import LoadingSection from "../system/LoadingSection";
 
 const ListOfDoctor = ({data, title, type, isGettingData}) => {
@@ -52,30 +52,6 @@ const ListOfDoctor = ({data, title, type, isGettingData}) => {
                         type === 'active' ? <Eye className="size-4" /> : <UserCog className="size-4" />
                       }
                     </Link>
-                    {/* <div className="hs-dropdown-menu z-10 mt-4 min-w-[200px] rounded-lg border border-default-100 py-1.5  shadow-lg transition-[opacity,margin] hs-dropdown-open:opacity-100 ">
-                      <Link
-                        className="mx-1.5 flex items-center rounded px-3 py-2 text-dark transition-all hover:bg-default-100 hover:text-dark"
-                        href=""
-                      >
-                        <SquarePen className="me-1.5 size-4" />
-                        <span>Edit</span>
-                      </Link>
-                      <Link
-                        className="mx-1.5 flex items-center rounded px-3 py-2 text-dark transition-all hover:bg-default-100 hover:text-dark"
-                        href=""
-                      >
-                        <LuLogOut className="me-1.5 size-4" />
-                        <span>Remove from Team</span>
-                      </Link>
-                      <hr className="my-2 border-default-200" />
-                      <Link
-                        className="mx-1.5 flex items-center rounded px-3 py-2 text-red-500 transition-all hover:bg-red-500/10"
-                        href=""
-                      >
-                        <LuTrash2 className="me-1.5 size-4" />
-                        <span>Delete</span>
-                      </Link>
-                    </div> */}
                   </div>
                 </div>
               </div>
