@@ -30,7 +30,6 @@ const DokterDashboard = () => {
         
         const activitiesRes = await getActivities(user.username);
         if(activitiesRes.data.message !== "Success") throw new Error(activitiesRes.data.message);
-        console.log(activitiesRes.data);
         setActivities(activitiesRes.data.data);
         
       } catch (error) {

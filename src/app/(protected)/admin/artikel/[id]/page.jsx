@@ -48,7 +48,7 @@ const AdminArtikelDetail = ({ params }) => {
   return (
     <div className="text-dark bg-primary border-2 border-white">
       <AdminBreadcrumb title={"Artikel Detail"} />
-      <div onClick={() => console.log(artikel)} className="px-8 py-2 h-fit overflow-auto">
+      <div className="px-8 py-2 h-fit overflow-auto">
         <div className="rounded-md min-h-[400px] border border-default-200 bg-white overflow-auto dark:bg-default-50 w-full text-dark py-4 h-full">
           {loading ? (
             <div className="w-full h-[400px] flex items-center justify-center">
@@ -58,7 +58,6 @@ const AdminArtikelDetail = ({ params }) => {
             <>
               <div className="border-b border-default-200 px-6 py-3 text-center">
                 <h2
-                  onClick={() => console.log(artikel)}
                   className="text-lg text-dark"
                 >
                   {artikel?.title}

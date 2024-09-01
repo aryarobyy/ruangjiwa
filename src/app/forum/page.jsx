@@ -7,6 +7,8 @@ import Forum from "@/components/Forum";
 import Navbar from "@/components/Navbar";
 import LoadingSection from "@/components/system/LoadingSection";
 import Button from "@/components/ui/Button";
+
+
 import Link from "next/link";
 
 const PostPage = () => {
@@ -43,7 +45,7 @@ const PostPage = () => {
             Ops! Sepertinya belum terdapat forum untuk saat ini.
           </p>
           <Button>
-            <Link href={"/"}>Kembali</Link>
+            <Link href={`${user ? "/forum/add" : "/auth/login"}`}>Tambah Forum</Link>
           </Button>
         </div>
       ) : (
@@ -57,7 +59,7 @@ const PostPage = () => {
             <div>
               <Link href={`${user ? "/forum/add" : "/auth/login"}`}>
                 <button
-                  className="fixed bottom-7 right-7 bg-[var(--button-bg-color)] hover:bg-[var(--button-hover-bg-color)] text-[var(--title-color)] font-semibold py-2 px-4 rounded shadow-lg transition duration-300"
+                  className="fixed bottom-7 right-7 bg-[var(--button-bg-color)] hover:bg-[var(--button-hover-bg-color)] text-slate-100 font-semibold py-2 px-4 rounded shadow-lg transition duration-300"
                   aria-label="Add Post"
                 >
                   Tambah Forum
@@ -67,6 +69,7 @@ const PostPage = () => {
           </div>
         </div>
       )}
+  
     </>
   );
 };

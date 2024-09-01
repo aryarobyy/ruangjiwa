@@ -17,10 +17,8 @@ function ProfileCard({ params }) {
       setLoading(true);
       try {
         const response = await getUserByUsername(username);
-        console.log('Full API Response:', response); // Log the full response
         
         if (response && response.data) {
-          console.log('Response Data:', response.data); // Log the data part of the response
           setUserData(response.data.data); // Adjust this path based on the actual response structure
         } else {
           console.error('No data found in API response');
@@ -90,7 +88,7 @@ function ProfileCard({ params }) {
                 <div className="ml-auto mr-2">
                   {userData?.username && (
                     <Button.secondary className={""}>
-                      <Link href={`/admin/profile/${userData?.username}/edit`}>Edit</Link>
+                      <Link href={`/profile/${userData?.username}/edit`}>Edit</Link>
                     </Button.secondary>
                   )}
                 </div>

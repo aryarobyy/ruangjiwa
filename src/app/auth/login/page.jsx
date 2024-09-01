@@ -61,7 +61,7 @@ const Login = () => {
   }
 
   return (
-    <section className="bg-white">
+    <section className="bg-[var(--hero-bg-color)] text-[var(--title-color)]">
       <div className="lg:grid lg:min-h-screen align-middle">
         <main className="flex items-center justify-center px-8 py-8 sm:px-12 lg:col-span-7 lg:px-16 lg:py-12 xl:col-span-6">
           <div className="max-w-xl lg:max-w-3xl p-7 shadow-md">
@@ -70,16 +70,15 @@ const Login = () => {
               <Image src="/logo.svg" alt="logo" className="rounded-md" width={64} height={29} />
             </a>
 
-            <h1 className="mt-6 text-2xl font-bold text-gray-900 sm:text-3xl md:text-4xl">
+            <h1 className="mt-6 text-2xl font-bold sm:text-3xl md:text-4xl">
               Selamat datang kembali
             </h1>
 
-            <p className="mt-4 leading-relaxed text-gray-500">
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eligendi
-              nam dolorum aliquam, quibusdam aperiam voluptatum.
+            <p className="mt-4 leading-relaxed ">
+              Silahkan login dengan username dan password terlebih dahulu untuk pengalaman yang lebih baik.
             </p>
 
-            <div className="text-gray-500 w-full text-center flex flex-col gap-2">
+            <div className=" w-full text-center flex flex-col gap-5 pt-4">
               <h1 className="font-semibold">Login sebagai:</h1>
               <div className="flex gap-3 items-center justify-center">
                 <Button onClick={(e) => setRole(e.target.value)} value={"user"} className={`${role === 'user' ? 'bg-blue-500 ring-blue-500 hover:bg-blue-600 focus:ring-blue-500' : ''}`}>User</Button>
@@ -91,7 +90,7 @@ const Login = () => {
               <div className="col-span-6">
                 <label
                   htmlFor="Email"
-                  className="block text-sm font-medium text-gray-700"
+                  className="block text-sm font-medium"
                 >
                   Username
                 </label>
@@ -110,7 +109,7 @@ const Login = () => {
               <div className="col-span-6">
                 <label
                   htmlFor="Password"
-                  className="block text-sm font-medium text-gray-700"
+                  className="block text-sm font-medium "
                 >
                   Password
                 </label>
@@ -129,9 +128,9 @@ const Login = () => {
                   Login
                 </Button>
 
-                <p className="mt-4 text-sm text-gray-500 sm:mt-0">
+                <p className="mt-4 text-sm sm:mt-0">
                   Belum Punya Akun?
-                  <a href="/auth/register" className="text-gray-700 underline p-1">
+                  <a href="/auth/register" className=" underline p-1">
                     Buat akun
                   </a>
                 </p>

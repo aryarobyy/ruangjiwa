@@ -4,13 +4,14 @@ import React from "react";
 import PropTypes from "prop-types";
 import Image from "next/image";
 import { Label } from "@/components/ui/Label";
+import { dateConvert } from "@/utils/dateConvert";
 
 const GetComment = ({ lastReply, comments }) => {
   return (
     <>
       {
         !comments || comments.length < 1 ? (
-          <div className="w-full h-full flex items-center justify-center">
+          <div className="w-full h-full flex items-center justify-center text-center px-4">
             <Label className="text-[var(--title-color)]">
               Sepertinya belum terdapat komentar, yuk mulai komentar pada temanmu!
             </Label>
@@ -23,13 +24,16 @@ const GetComment = ({ lastReply, comments }) => {
                 alt={`${comment?.createdBy}'s profile`}
                 width={50}
                 height={50}
-                className="rounded-full"
+                className="rounded-full w-12 h-12"
               />
               <div className="flex flex-col gap-1 w-full">
                 <div className="flex justify-between items-center w-full">
                   <span className="text-sm font-bold">{comment?.name}</span>
                 </div>
-                <p>{comment?.comment}</p>
+                <div className="w-full justify-between items-center flex">
+                  <p>{comment?.comment}</p>
+                  <p className="text-xs">{dateConvert(comment.date)}</p>
+                </div>
               </div>
             </div>
           ))

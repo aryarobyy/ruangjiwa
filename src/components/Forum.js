@@ -3,6 +3,7 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import { useAuth } from "@/context/AuthContext";
+import { dateConvert } from "@/utils/dateConvert";
 
 const Forum = ({ forum }) => {
   const {user} = useAuth();
@@ -10,9 +11,9 @@ const Forum = ({ forum }) => {
   return (
     <div
       key={forum.forumId}
-      className="flex gap-3 mb-4 p-4 py-5 hover:shadow-md rounded-md border border-[var(--border-color)]"
+      className="flex gap-3 mb-4 p-4 py-5 hover:shadow-md rounded-md border border-[var(--border-color)] h-fit"
     >
-      <div className="flex-1 flex flex-col gap-2">
+      <div className="flex-1 flex flex-col gap-2 h-fit p-4">
         <div className="flex w-full items-center justify-between">
           <Link href={`/profile/${forum.postedBy}`}>
             <div className="flex items-center w-full">
@@ -37,33 +38,37 @@ const Forum = ({ forum }) => {
 
           <div className="flex gap-4 items-center">
             <p className="text-xs w-36 text-right text-gray-400">
-              {new Date(forum.date).toLocaleDateString()}
+              {
+                dateConvert(forum.date)
+              }
             </p>
           </div>
         </div>
         <Link href={user ? `/forum/${forum.forumId}` : "/auth/login"}>
-          <div>
-            <h1 className="font-bold text-lg mb-2">
-              {forum.title.length > 100
-                ? `${forum.title.slice(0, 100)}...`
-                : forum.title}
-            </h1>
-            <p className="text-sm">
-              {forum.content.length > 200
-                ? `${forum.content.slice(0, 200)}`
-                : forum.content}
-            </p>
-          </div>
-          {forum.forumImage && (
-            <div className="rounded overflow-hidden w-full h-64 relative">
-              <Image
-                src={forum.forumImage}
-                alt="post"
-                layout="fill"
-                objectFit="cover"
-              />
+          <div className="flex flex-col items-center justify-center gap-12">
+            <div>
+              <h1 className="font-bold text-lg mb-2">
+                {forum.title.length > 100
+                  ? `${forum.title.slice(0, 100)}...`
+                  : forum.title}
+              </h1>
+              <p className="text-sm">
+                {forum.content.length > 200
+                  ? `${forum.content.slice(0, 200)}`
+                  : forum.content}
+              </p>
             </div>
-          )}
+            {forum.forumImage && (
+              <div className="rounded overflow-hidden w-full h-64 relative">
+                <Image
+                  src={forum.forumImage}
+                  alt="post"
+                  layout="fill"
+                  objectFit="cover"
+                />
+              </div>
+            )}
+          </div>
         </Link>
       </div>
     </div>

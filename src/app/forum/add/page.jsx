@@ -87,14 +87,12 @@ const Page = () => {
       if (file) {
         const imageResponse = await postFile(file);
         imagePath = imageResponse.data.data;
-        // console.log("data",imagePath)
-        // setForum((prev) => ({ ...prev, forumImage: imagePath.data.data }));
       }
       const forumData = {
       ...forum,
       forumImage: imagePath,
       userId: user?.userId || user?.dokterId,
-      postedBy: user?.username,
+      postedBy: user?.name,
       date: new Date(),
       };
       const response = await addForum(forumData);
@@ -128,23 +126,24 @@ const Page = () => {
   return (
     <>
       <Navbar />
-      <div>
-        <Input 
+      <div className="p-8">
+        <Input
           placeholder={`Judul (maks ${MAX_TITLE_CHAR} karakter)`}
-          onChange={handleTitle} 
+          onChange={handleTitle}
           value={forum.title}
         />
-        
-        <Input 
+        <Input
           placeholder={`Konten (maks ${MAX_CONTENT_CHAR} karakter)`}
-          onChange={handleContent} 
+          onChange={handleContent}
           value={forum.content}
         />
-
-        <InputImage title={"Post"} tempImg={tempImg} handleAddFileChange={handleImage} /> 
-
+          <InputImage
+          title={"Post"}
+          tempImg={tempImg}
+          handleAddFileChange={handleImage}
+        />
         <Button onClick={handleSubmit}>Submit</Button>
-      </div>
+        </div>
     </>
   );
 };

@@ -38,8 +38,8 @@ const BlogSection = ({ title, type, data, isGettingData, onDeletedItem, href }) 
                   handleDeletedItem={onDeletedItem}
                   itemDescription={
                     type === "dashboard"
-                      ? `${item.description?.slice(0, 200)}...`
-                      : `${item.description?.slice(0, 500)}...`
+                      ? `${item?.description?.slice(0, 200)}...`
+                      : `${item?.description?.slice(0, 500)}...`
                   }
                 />
               );

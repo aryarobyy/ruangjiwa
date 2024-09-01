@@ -10,7 +10,6 @@ export const GET = async (req, {params}) => {
             data: res
         })
     } catch (error) {    
-        console.log(error.message)
         return Response.json({
             message: "Failed",
             data: null
