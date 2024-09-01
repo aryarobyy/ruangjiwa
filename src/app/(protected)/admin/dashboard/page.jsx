@@ -49,11 +49,15 @@ const Dashboard = () => {
   
       if (activitieRes.data.message !== "Success")
         throw new Error("Sepertinya gagal memuat \nreport aktifitas dokter");
+
+      console.log("dokter", doktors);
+      console.log("artikel", artikels);
+      console.log("activitie", activitieRes);
   
-      setArtikel(artikels.data.data);
-      setActivities(activitieRes.data.data);
       setAprovedDokter(doktors.data.data.filter((el) => el.isApproved));
       setPendingDokter(doktors.data.data.filter((el) => !el.isApproved));
+      setArtikel(artikels.data.data);
+      setActivities(activitieRes.data.data);
     } catch (error) {
       console.error(error.message);
     } finally {
