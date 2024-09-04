@@ -32,6 +32,7 @@ export const mongoGetAllDokter = async () => {
         const col = database.collection(collectionName);
 
         const res = await col.find({}).toArray();
+        console.log("Isi dokter: ",res)
         await client.close();
 
         return res;
