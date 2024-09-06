@@ -1,24 +1,22 @@
 import { mongoGetAllDokter } from "@/mongoMethods/dokter";
-export const GET = async () => {
+import jwtGenerate from "@/hooks/jwtGenerate";
+import { cookies } from 'next/headers';
+
+export const GET = async (req) => {
     try {
+        cookies();
+
         const response = await mongoGetAllDokter();
-        return new Response(JSON.stringify({
+        return Response.json({
             message: "Success",
             data: response
-        }), {
-            headers: {
-                'Cache-Control': 'no-store'  //Buat disable caching
-            }
         });
+        
     } catch (error) {
         console.error(error.message);
-        return new Response(JSON.stringify({
-            message: "Failed",  
+        return Response.json({
+            message: "Failed",
             data: []
-        }), {
-            headers: {
-                'Cache-Control': 'no-store'  
-            }
         });
     }
-}
+};

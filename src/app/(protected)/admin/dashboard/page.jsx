@@ -10,6 +10,7 @@ import { useRouter } from "next/navigation";
 import { getAllDokter } from "@/helpers/dokter";
 import { getAllActivitie } from "@/helpers/activities";
 import { quotes } from "@/app/assets/data/quotesData";
+import * as url from '@/helpers/endpointUrl'
 
 // coba pindain get data ke masing2 kompo, page ini jadiin use server
 
@@ -40,24 +41,29 @@ const Dashboard = () => {
     try {
       const [artikels, activitieRes, doktors] = await Promise.all([
         getAllArtikel(),
-        getAllActivitie(),
-        getAllDokter(),
+        // getAllActivitie(),
+        // getAllDokter(),
+        fetch(`${process.env.NEXT_PUBLIC_API_URL}${url.ENDPOINT_ACTIVITIE}`, { cache : "reload" })
+        .then(res => res.json()),
+        
+        fetch(`${process.env.NEXT_PUBLIC_API_URL}${url.ENDPOINT_DOKTER}`, { cache : "reload"})
+        .then(res => res.json())
       ]);
   
       if (artikels.data.message !== "Success")
         throw new Error("Sepertinya gagal memuat artikel!");
   
-      if (activitieRes.data.message !== "Success")
+      if (activitieRes.message !== "Success")
         throw new Error("Sepertinya gagal memuat \nreport aktifitas dokter");
 
       console.log("dokter", doktors);
       console.log("artikel", artikels);
       console.log("activitie", activitieRes);
   
-      setAprovedDokter(doktors.data.data.filter((el) => el.isApproved));
-      setPendingDokter(doktors.data.data.filter((el) => !el.isApproved));
+      setAprovedDokter(doktors.data.filter((el) => el.isApproved));
+      setPendingDokter(doktors.data.filter((el) => !el.isApproved));
       setArtikel(artikels.data.data);
-      setActivities(activitieRes.data.data);
+      setActivities(activitieRes.data);
     } catch (error) {
       console.error(error.message);
     } finally {
