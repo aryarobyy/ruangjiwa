@@ -23,6 +23,7 @@
     "framer-motion": "^11.3.24",
     "heroicons": "^2.1.5",
     "joi": "^17.13.3",
+    "js-cookie": "^3.0.5",
     "jsonwebtoken": "^9.0.2",
     "lucide-react": "^0.427.0",
     "mongodb": "^6.8.0",
