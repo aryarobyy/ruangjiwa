@@ -207,7 +207,7 @@ const Footer = () => {
         </div>
 
         <p className="text-xs text-[var(--text-color)]">
-          &copy; 2022. Company Name. All rights reserved.
+          &copy; 2024. Ruang Jiwa. All rights reserved.
         </p>
       </div>
     </footer>
