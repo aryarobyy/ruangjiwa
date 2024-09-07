@@ -17,6 +17,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      <head ><link rel="icon" href="/logo.ico" sizes="any" /></head>
       <body className={`text-dark ${poppins.className}`}>
         <AuthProvider>
           <BaseToaster />
